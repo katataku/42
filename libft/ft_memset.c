@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:45:53 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/07 19:59:47 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/07 20:44:37 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memset(void *buf, int ch, size_t n)
 {
-	size_t	i;
+	size_t			i;
 	unsigned char	*ptr;
 
 	ptr = (unsigned char *) buf;
