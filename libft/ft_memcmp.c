@@ -1,27 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 13:03:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 13:03:15 by takkatao         ###   ########.fr       */
+/*   Created: 2021/10/08 12:45:23 by takkatao          #+#    #+#             */
+/*   Updated: 2021/10/08 14:18:47 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+#include "libft.h"
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned int	i;
+	size_t			i;
+	unsigned char	*ptr1;
+	unsigned char	*ptr2;
 
+	ptr1 = (unsigned char *) s1;
+	ptr2 = (unsigned char *) s2;
 	i = 0;
 	if (n == 0)
 		return (0);
-	while (s1[i] != '\0' && s1[i] == s2[i])
-	{
-		if (i == n - 1)
+	while (ptr1[i] == ptr2[i])
+		if (++i == n)
 			return (0);
-		i++;
-	}
-	return ((int)((unsigned char)s1[i] - (unsigned char)s2[i]));
+	return ((int)(ptr1[i] - ptr2[i]));
 }

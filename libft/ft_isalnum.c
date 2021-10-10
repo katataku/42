@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:28:38 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/07 17:29:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:20:24 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	ft_isalnum(int c)
 
 	ans = FALSE;
 	if (ft_isalpha(c) || ft_isdigit(c))
-	{
 		ans = TRUE;
-	}
 	return (ans);
 }

@@ -1,24 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
+#    Updated: 2021/10/08 09:38:23 by takkatao         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME=libft
 CC = gcc
-RM				= rm -f
 CFLAGS		=	-Werror -Wall -Wextra# -g3 -fsanitize=address
+RM				= /bin/rm -f
 
 SRCDIR=.
 SOURCES  = $(wildcard $(SRCDIR)/*.c)
-OBJDIR=./obj
 OBJS  = $(SOURCES:.c=.o)
 
-all:libft
+all: $(NAME)
 
-libft:$(OBJS)
-	ar -rcs libft.a $(OBJS)
+$(NAME):$(OBJS)
+	ar -rcs $(NAME).a $(OBJS)
 
 $(OBJS):$(SOURCES)
 	$(CC) $(CFLAGS) -o $@ -c $*.c
 
 clean:
-	/bin/rm $(OBJS)
+	$(RM) $(OBJS)
 
 fclean:clean
-	/bin/rm -f libft.a
+	$(RM) -f $(NAME).a
 
 re:fclean all
