@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 16:23:03 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/12 17:37:14 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,41 +31,46 @@ static void	*free_all(char **ptr, t_list	*lst)
 	return (NULL);
 }
 
+static void	update_content(t_split_list *content, int start_index, int len)
+{
+	content->start_index = start_index;
+	content->len = len;
+}
+
 static t_list	*get_lst(char const *s, char c)
 {
-	t_list			*ans;
+	t_list			*lst;
 	t_split_list	*content;
 	int				index;
 
 	content = (t_split_list *)ft_calloc(1, sizeof(t_split_list));
 	if (content == NULL)
 		return (NULL);
-	ans = NULL;
-	index = -1;
-	while (s[++index] != '\0')
+	update_content(content, 0, -1);
+	lst = NULL;
+	while (s[content->start_index + (++content->len)] != '\0')
 	{
-		if (s[index] == c)
+		if (s[content->start_index + content->len] == c)
 		{
+			index = content->start_index + content->len;
 			if (content->len > 0)
 			{
-				ft_lstadd_back(&ans, ft_lstnew(content));
+				ft_lstadd_back(&lst, ft_lstnew(content));
 				content = (t_split_list *)ft_calloc(1, sizeof(t_split_list));
 				if (content == NULL)
 				{
-					ft_lstclear(&ans, free);
+					ft_lstclear(&lst, free);
 					return (NULL);
 				}
 			}
-			content->start_index = index + 1;
-			content->len = -1;
+			update_content(content, index + 1, -1);
 		}
-		content->len++;
 	}
 	if (content->len > 0)
-		ft_lstadd_back(&ans, ft_lstnew(content));
+		ft_lstadd_back(&lst, ft_lstnew(content));
 	else
 		free(content);
-	return (ans);
+	return (lst);
 }
 
 char	**ft_split(char const *s, char c)
