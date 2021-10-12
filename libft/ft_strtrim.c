@@ -6,13 +6,13 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/09 14:25:59 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:51:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int is_in(char c, char const *set)
+static int	is_in(char c, char const *set)
 {
 	int	flag;
 	int	i;
@@ -37,19 +37,12 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (s1 == NULL)
 		return (NULL);
-	ans = ft_strdup(s1);
-	if (ans != NULL )
-	{
-		start = 0;
-		while (is_in(*(ans + start), set) && *(ans + start) != '\0')
-			start++;
-		size = ft_strlen(ans + start);
-		while (is_in(*(ans + start + size - 1), set) && size > 0)
-		{
-			ans[start + size - 1] = '\0';
-			size--;
-		}
-		ft_memmove(ans, s1 + start, size);
-	}
+	start = 0;
+	while (is_in(*(s1 + start), set) && *(s1 + start) != '\0')
+		start++;
+	size = ft_strlen((char *)s1 + start);
+	while (size > 0 && is_in(*(s1 + start + size - 1), set))
+		size--;
+	ans = ft_substr(s1, start, size);
 	return (ans);
 }

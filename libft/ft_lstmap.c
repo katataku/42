@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 10:46:33 by takkatao         ###   ########.fr       */
+/*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
+/*   Updated: 2021/10/12 14:40:20 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	size;
-	char	*ans;
+	t_list	**ans;
+	t_list	*new_node;
 
-	if (s1 == NULL || s2 == NULL)
-		return (NULL);
-	size = ft_strlen((char *)s1);
-	size += ft_strlen((char *)s2);
-	ans = (char *)ft_calloc(sizeof(char), size + 1);
-	if (ans != NULL)
+	ans = (t_list **)ft_calloc(1, sizeof(t_list *));
+	while (lst != NULL)
 	{
-		ft_memcpy(ans, s1, ft_strlen((char *)s1));
-		ft_memcpy(ans + ft_strlen((char *)s1), s2, ft_strlen((char *)s2));
+		new_node = ft_lstnew(lst->content);
+		if (new_node == NULL)
+		{
+			ft_lstclear(ans, del);
+			return (NULL);
+		}
+		new_node->content = f(new_node->content);
+		ft_lstadd_back(ans, new_node);
+		lst = lst->next;
 	}
-	return (ans);
+	return (*ans);
 }

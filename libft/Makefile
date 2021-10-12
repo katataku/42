@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/10/08 09:38:23 by takkatao         ###   ########.fr        #
+#    Updated: 2021/10/12 15:15:56 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,3 +34,5 @@ fclean:clean
 	$(RM) -f $(NAME).a
 
 re:fclean all
+
+.PHONY: all clean fclean 
