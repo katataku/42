@@ -57,7 +57,7 @@ typedef struct s_split_list
 {
 	int	start_index;
 	int	len;
-}	t_split_list;
+}	t_split;
 
 //bonus
 
