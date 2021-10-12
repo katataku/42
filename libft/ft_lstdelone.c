@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 13:28:32 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/12 22:23:10 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
 	if (lst != NULL)
 	{
-		if (del != NULL)
+		if (del != NULL && lst->content != NULL)
 			del(lst->content);
 		free(lst);
 	}
