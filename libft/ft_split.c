@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 19:15:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/12 21:13:12 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	*free_all(char **ptr, t_list	*lst)
 	return (NULL);
 }
 
-static void	up_c(t_split *content, int start_index, int len)
+static void	up_content(t_split *content, int start_index, int len)
 {
 	if (content != NULL)
 	{
@@ -58,10 +58,10 @@ static t_list	*get_lst(char const *s, char c)
 {
 	t_list	*lst;
 	t_split	*content;
-	int		tmp;
+	int		tmp_ind;
 
 	content = (t_split *)ft_calloc(1, sizeof(t_split));
-	up_c(content, 0, -1);
+	up_content(content, 0, -1);
 	lst = NULL;
 	if (content == NULL || s == NULL)
 		return (NULL);
@@ -73,12 +73,12 @@ static t_list	*get_lst(char const *s, char c)
 		{
 			ft_lstadd_back(&lst, ft_lstnew(content));
 			content = (t_split *)ft_calloc(1, sizeof(t_split));
-			tmp = ((t_split *)(ft_lstlast(lst)->content))->start_index + 1;
-			tmp += ((t_split *)(ft_lstlast(lst)->content))->len;
-			up_c(content, tmp, -1);
+			tmp_ind = ((t_split *)(ft_lstlast(lst)->content))->start_index + 1;
+			tmp_ind += ((t_split *)(ft_lstlast(lst)->content))->len;
+			up_content(content, tmp_ind, -1);
 		}
 		else
-			up_c(content, content->start_index + content->len + 1, -1);
+			up_content(content, content->start_index + content->len + 1, -1);
 	}
 	return (get_lst_finalize(lst, content, s));
 }
