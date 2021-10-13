@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/10 08:48:23 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/13 08:38:56 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 	{
 		i = -1;
 		while (s[++i] != '\0')
-		{
 			f(i, &s[i]);
-		}
 	}
 }

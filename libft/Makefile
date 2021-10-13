@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/10/12 18:49:38 by takkatao         ###   ########.fr        #
+#    Updated: 2021/10/13 09:13:16 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ all: $(NAME)
 
 $(NAME):$(OBJS)
 	ar -rcs $(NAME).a $(OBJS)
+
+bonus:$(NAME)
 
 $(OBJS):$(SOURCES)
 	$(CC) $(CFLAGS) -o $@ -c $*.c
