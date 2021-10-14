@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 22:34:41 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/14 10:10:43 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	*free_all(char **ptr, t_list	*lst)
 		}
 		free(ptr);
 	}
-	ft_lstclear(&lst, free);
+	ft_lstclear(&lst, &free);
 	return (NULL);
 }
 
@@ -47,7 +47,7 @@ static t_list	*finalize_get_lst(t_list *lst, t_split *content, char const *s)
 {
 	if (content == NULL || s == NULL)
 	{
-		ft_lstclear(&lst, free);
+		ft_lstclear(&lst, &free);
 		return (NULL);
 	}
 	if (content->len > 0)
@@ -96,12 +96,12 @@ char	**ft_split(char const *s, char c)
 	t_split	*slist;
 
 	if (s == NULL)
-		return (NULL);
+		return ((char **)ft_calloc(1, sizeof(char *)));
 	lst = get_lst(s, c);
 	if (lst == NULL)
 		return ((char **)ft_calloc(1, sizeof(char *)));
-	ans = (char **)ft_calloc(ft_lstsize(lst), sizeof(char *));
-	if (ans == NULL || lst == NULL)
+	ans = (char **)ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
+	if (ans == NULL)
 		return (ans);
 	i = -1;
 	while (lst != NULL)
@@ -113,6 +113,6 @@ char	**ft_split(char const *s, char c)
 		ft_memmove(ans[i], (char *)s + slist->start_index, slist->len);
 		lst = lst->next;
 	}
-	ft_lstclear(&lst, free);
+	ft_lstclear(&lst, &free);
 	return (ans);
 }

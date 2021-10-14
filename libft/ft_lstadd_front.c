@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 13:03:24 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/14 08:55:18 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	new->next = lst[0];
-	*lst = new;
+	if (lst != NULL && new != NULL)
+	{
+		new->next = lst[0];
+		*lst = new;
+	}
 }
