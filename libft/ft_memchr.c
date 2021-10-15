@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 12:45:23 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 13:00:25 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/15 08:53:15 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	{
 		if (*ptr == (unsigned char)c)
 			return (ptr);
-		++ptr;
+		ptr++;
 	}
 	return (NULL);
 }
