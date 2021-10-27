@@ -6,11 +6,12 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:22:42 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/07 18:50:01 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:00:46 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_toupper(int c)
 {
 	int	ans;

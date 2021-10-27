@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: taku <taku@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:22:42 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/07 18:50:47 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 14:58:34 by taku             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
 int	ft_tolower(int c)
 {
 	int	ans;

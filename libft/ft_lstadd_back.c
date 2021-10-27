@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: taku <taku@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/12 13:23:45 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 13:44:34 by taku             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_list **lst, t_list *n)
 {
 	if (lst != NULL && *lst != NULL)
-		ft_lstlast(*lst)->next = new;
+		ft_lstlast(*lst)->next = n;
 	else
-		*lst = new;
+		*lst = n;
 }

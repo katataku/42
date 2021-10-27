@@ -6,26 +6,23 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 12:38:21 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 15:05:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strrchr(const char *s, int c)
 {
-	int	i;
-	int	ans;
+	char	*index;
 
-	i = 0;
-	ans = -1;
-	while (s[i] != '\0')
+	index = (char *)s + ft_strlen((char *)s) + 1;
+	while (TRUE)
 	{
-		if (s[i] == (char)c)
-			ans = i;
-		i++;
+		if (*index == (char)c)
+			return (index);
+		if (index == s)
+			return (NULL);
+		index--;
 	}
-	if (c == '\0')
-		ans = i;
-	if (ans == -1)
-		return (0);
-	return ((char *) s + ans);
 }
