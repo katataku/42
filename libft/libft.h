@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
+/*   Updated: 2021/10/27 22:05:49 by takkatao         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -58,7 +70,6 @@ typedef struct s_split_list
 }	t_split;
 
 //bonus
-
 typedef struct s_list
 {
 	void			*content;
@@ -74,14 +85,5 @@ void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void *), void (*d)(void *));
-
-// //other
-// void			ft_putchar(char c);
-// void			ft_swap(int *a, int *b);
-// void			ft_putstr(char *str);
-// int				ft_strcmp(char *s1, char *s2);
-// void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
-// char			*ft_strcat(char *dest, char *src);
-// int				ft_memcmp(const void *s1, const void *s2, size_t n);
 
 #endif
