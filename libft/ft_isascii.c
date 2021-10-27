@@ -6,18 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:58:00 by taku              #+#    #+#             */
-/*   Updated: 2021/10/27 15:05:47 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:39:08 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_isascii(int c)
 {
-	int	ans;
-
-	ans = FALSE;
-	if (0 <= c && c <= 127 )
-		ans = TRUE;
-	return (ans);
+	return (0 <= c && c <= 127);
 }

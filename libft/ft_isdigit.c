@@ -6,18 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:29:21 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 11:20:17 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:38:41 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_isdigit(int c)
 {
-	int	ans;
-
-	ans = FALSE;
-	if ('0' <= c && c <= '9')
-		ans = TRUE;
-	return (ans);
+	return ('0' <= c && c <= '9');
 }

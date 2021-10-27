@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taku <taku@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 13:45:45 by taku             ###   ########.fr       */
+/*   Updated: 2021/10/27 17:50:55 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*n_node;
 
 	ans = (t_list **)ft_calloc(1, sizeof(t_list *));
+	if (ans == NULL)
+		return (NULL);
 	while (lst != NULL)
 	{
 		n_node = ft_lstnew(lst->content);
@@ -26,7 +28,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 			ft_lstclear(ans, del);
 			return (NULL);
 		}
-		n_node->content = f(n_node->content);
+		if (f != NULL)
+			n_node->content = f(n_node->content);
 		ft_lstadd_back(ans, n_node);
 		lst = lst->next;
 	}

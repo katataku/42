@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/10/27 15:50:09 by takkatao         ###   ########.fr        #
+#    Updated: 2021/10/27 19:49:18 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,13 +79,13 @@ RM				= /bin/rm -f
 
 .PHONY: all clean fclean re bonus
 
-all: $(NAME) ## make $(NAME)
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 bonus: 
-	@make WITH_BONUS=1
+	@make $(NAME) WITH_BONUS=1
 
 .c.o:
 	$(CC) $(CFLAGS) -o $@ -c $*.c

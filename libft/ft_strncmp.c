@@ -6,13 +6,15 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 13:03:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 13:03:15 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:42:46 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+#include "libft.h"
+
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	if (n == 0)
@@ -25,3 +27,29 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	}
 	return ((int)((unsigned char)s1[i] - (unsigned char)s2[i]));
 }
+
+/*
+#include <string.h>
+#include <stdio.h>
+#include <assert.h> 
+
+void	my_test(const void *s1, const void *s2, size_t n)
+{
+	int	a = ft_strncmp(s1, s2, n);
+	int	b = strncmp(s1, s2, n);
+
+	printf("  %d：ft_mstrnmp\n", a);
+	printf("  %d：strncmp\n", b);
+	assert(a == b);
+}
+
+int	main(void)
+{
+	char *s1 = calloc(2,sizeof(char));
+	char *s2 = calloc(2,sizeof(char));
+
+	*s1='\200';
+	*s2='\0';
+	my_test((const void*) s1,(const void*) s2,1);
+}
+*/

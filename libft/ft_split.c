@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/14 10:10:43 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:59:22 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ static t_list	*finalize_get_lst(t_list *lst, t_split *content, char const *s)
 	if (content->len > 0)
 		ft_lstadd_back(&lst, ft_lstnew(content));
 	else
-	{
 		free(content);
-	}
 	return (lst);
 }
 

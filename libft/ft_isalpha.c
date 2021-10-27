@@ -6,18 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:22:42 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 11:35:11 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 18:37:43 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
 int	ft_isalpha(int c)
 {
-	int	ans;
-
-	ans = FALSE;
-	if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
-		ans = TRUE;
-	return (ans);
+	return (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'));
 }

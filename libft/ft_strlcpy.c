@@ -6,13 +6,15 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:03:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 15:03:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/27 17:24:43 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dest, char *src, size_t size)
 {
-	unsigned int	i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
@@ -31,8 +33,5 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 			dest[i] = src[i];
 		i++;
 	}
-	i = 0;
-	while (src[i] != '\0')
-		i++;
-	return (i);
+	return (ft_strlen(src));
 }
