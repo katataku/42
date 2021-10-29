@@ -6,16 +6,18 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:50:59 by taku              #+#    #+#             */
-/*   Updated: 2021/10/27 15:05:38 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:34:17 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (s[i] != '\0')
 	{
 		i += 1;
 	}

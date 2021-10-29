@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taku <taku@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 17:22:42 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 14:58:34 by taku             ###   ########.fr       */
+/*   Updated: 2021/10/29 12:52:32 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_tolower(int c)
 	int	ans;
 
 	ans = c;
-	if (c >= 'A' && c <= 'Z')
+	if ('A' <= c && c <= 'Z')
 	{
 		ans += 'a' - 'A';
 	}

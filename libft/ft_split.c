@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 18:59:22 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 12:03:06 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ char	**ft_split(char const *s, char c)
 		ans[++i] = (char *)ft_calloc(slist->len + 1, sizeof(char));
 		if (ans[i] == NULL)
 			return (free_all(ans, lst));
-		ft_memmove(ans[i], (char *)s + slist->start_index, slist->len);
+		ft_strlcpy(ans[i], (char *)s + slist->start_index, slist->len + 1);
 		lst = lst->next;
 	}
 	ft_lstclear(&lst, &free);

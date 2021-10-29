@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:45:53 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/09 14:55:05 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:52:11 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,10 @@ char	*ft_strdup(const char *s1)
 {
 	size_t	size;
 	char	*tmp;
-	char	*s1_cp;
 
-	s1_cp = (char *)s1;
-	size = sizeof(char) * (ft_strlen(s1_cp) + 1);
-	tmp = (char *)malloc(size);
+	size = (ft_strlen(s1) + 1);
+	tmp = (char *)ft_calloc(size, sizeof(char));
 	if (tmp != NULL)
-		ft_memcpy(tmp, s1, size);
+		ft_strlcpy(tmp, (char *)s1, size);
 	return (tmp);
 }

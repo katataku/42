@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 18:42:04 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 11:46:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	start = 0;
 	while (is_in(*(s1 + start), set) && *(s1 + start) != '\0')
 		start++;
-	size = ft_strlen((char *)s1 + start);
+	size = ft_strlen(s1 + start);
 	while (size > 0 && is_in(*(s1 + start + size - 1), set))
 		size--;
 	ans = ft_substr(s1, start, size);

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:03:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 17:24:43 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:20:31 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,12 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	i = 0;
 	while (i < size)
 	{
-		if (i == size - 1)
-		{
-			dest[size - 1] = '\0';
-			break ;
-		}
-		if (src[i] == '\0')
+		dest[i] = src[i];
+		if (i == size - 1 || src[i] == '\0')
 		{
 			dest[i] = '\0';
-			break ;
+			return (ft_strlen(src));
 		}
-		else
-			dest[i] = src[i];
 		i++;
 	}
 	return (ft_strlen(src));

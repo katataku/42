@@ -6,29 +6,19 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/27 17:15:25 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/29 13:16:22 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static long	get_next_to_space(char *str)
+static	int	is_space(char c)
 {
-	long	i;
-	long	flag;
-
-	i = -1;
-	flag = 1;
-	while (flag)
-	{
-		i++;
-		flag = 0;
-		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v')
-			flag = 1;
-		if (str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
-			flag = 1;
-	}
-	return (i);
+	if (c == '\t' || c == '\n' || c == '\v')
+		return (TRUE);
+	if (c == '\f' || c == '\r' || c == ' ')
+		return (TRUE);
+	return (FALSE);
 }
 
 int	ft_atoi(const char *str)
@@ -38,18 +28,19 @@ int	ft_atoi(const char *str)
 	unsigned long	cnt;
 	unsigned long	pre;
 
-	i = get_next_to_space((char *)str);
-	is_neg = FALSE;
+	i = 0;
+	while (is_space(str[i]))
+		i++;
 	if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
 		return (0);
+	is_neg = FALSE;
 	if (!ft_isdigit(str[i]) && str[i++] == '-')
 		is_neg = TRUE;
 	cnt = 0;
 	while (ft_isdigit(str[i]))
 	{
 		pre = cnt;
-		cnt *= 10;
-		cnt += str[i++] - '0';
+		cnt = (cnt * 10) + str[i++] - '0';
 		if (!is_neg && (cnt > LONG_MAX || pre > cnt))
 			return ((int) LONG_MAX);
 		if (is_neg && (cnt > (unsigned long) LONG_MAX + 1 || pre > cnt))
