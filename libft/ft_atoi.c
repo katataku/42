@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 13:16:22 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/30 17:28:11 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static	int	is_space(char c)
 
 int	ft_atoi(const char *str)
 {
-	long			i;
+	size_t			i;
 	int				is_neg;
 	unsigned long	cnt;
 	unsigned long	pre;

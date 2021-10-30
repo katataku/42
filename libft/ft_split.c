@@ -6,32 +6,28 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 12:03:06 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/30 16:10:18 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	*free_all(char **ptr, t_list	*lst)
+static void	free_all(void *input)
 {
-	int	i;
-	int	len;
+	t_split	*slist;
+	t_list	*lst;
 
-	len = sizeof(lst);
-	i = -1;
-	if (ptr != NULL)
+	lst = input;
+	if (lst != NULL)
 	{
-		while (++i < len)
+		if (lst->content != NULL)
 		{
-			if (ptr[i] != NULL)
-				free(ptr[i]);
-			else
-				break ;
+			slist = lst->content;
+			if (slist->ptr != NULL)
+				free(slist->ptr);
 		}
-		free(ptr);
+		free(lst);
 	}
-	ft_lstclear(&lst, &free);
-	return (NULL);
 }
 
 static void	up_content(t_split *content, int start_index, int len)
@@ -45,7 +41,10 @@ static void	up_content(t_split *content, int start_index, int len)
 
 static t_list	*finalize_get_lst(t_list *lst, t_split *content, char const *s)
 {
-	if (content == NULL || s == NULL)
+	t_list	*cur_lst;
+	t_split	*slist;
+
+	if (content == NULL)
 	{
 		ft_lstclear(&lst, &free);
 		return (NULL);
@@ -54,10 +53,22 @@ static t_list	*finalize_get_lst(t_list *lst, t_split *content, char const *s)
 		ft_lstadd_back(&lst, ft_lstnew(content));
 	else
 		free(content);
+	cur_lst = lst;
+	while (cur_lst != NULL)
+	{
+		slist = cur_lst->content;
+		slist->ptr = ft_substr(s, slist->start_index, slist->len);
+		if (slist->ptr == NULL)
+		{
+			ft_lstclear(&lst, &free_all);
+			return (NULL);
+		}
+		cur_lst = cur_lst -> next;
+	}
 	return (lst);
 }
 
-static t_list	*get_lst(char const *s, char c)
+static t_list	*generate_t_list(char const *s, char c)
 {
 	t_list	*lst;
 	t_split	*con;
@@ -88,29 +99,94 @@ static t_list	*get_lst(char const *s, char c)
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
+	size_t	i;
 	char	**ans;
 	t_list	*lst;
-	t_split	*slist;
+	t_list	*lst_init;
 
-	if (s == NULL)
+	if (s == NULL || *s == '\0')
 		return ((char **)ft_calloc(1, sizeof(char *)));
-	lst = get_lst(s, c);
+	lst = generate_t_list(s, c);
 	if (lst == NULL)
-		return ((char **)ft_calloc(1, sizeof(char *)));
+		return (NULL);
 	ans = (char **)ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
 	if (ans == NULL)
-		return (ans);
-	i = -1;
+		return (NULL);
+	lst_init = lst;
+	i = 0;
 	while (lst != NULL)
 	{
-		slist = lst->content;
-		ans[++i] = (char *)ft_calloc(slist->len + 1, sizeof(char));
-		if (ans[i] == NULL)
-			return (free_all(ans, lst));
-		ft_strlcpy(ans[i], (char *)s + slist->start_index, slist->len + 1);
+		ans[i++] = ((t_split *)(lst->content))->ptr;
 		lst = lst->next;
 	}
-	ft_lstclear(&lst, &free);
+	ft_lstclear(&lst_init, &free);
 	return (ans);
 }
+
+/*
+#include <string.h>
+#include <xlocale.h>
+#include <stdio.h>
+#include <assert.h> 
+
+int	main(void)
+{
+	char	**a;
+	int		i;
+
+	a = ft_split("hello world", ' ');
+	i = 0;
+	assert(!strcmp(a[0], "hello"));
+	assert(!strcmp(a[1], "world"));
+	while (a[i] != NULL)
+	{
+		printf("%s\n",a[i]);
+		free(a[i++]);
+	}
+	free(a);
+
+	a = ft_split("abcdaba", 'a');
+	i = 0;
+	assert(!strcmp(a[0], "bcd"));
+	assert(!strcmp(a[1], "b"));
+	while (a[i] != NULL)
+	{
+		printf("%s\n",a[i]);
+		free(a[i++]);
+	}
+	free(a);
+
+	a = ft_split("abcdaba", '\0');
+	i = 0;
+	assert(!strcmp(a[0], "abcdaba"));
+	while (a[i] != NULL)
+	{
+		printf("%s\n",a[i]);
+		free(a[i++]);
+	}
+	free(a);
+
+	a = ft_split("", 'a');
+	i = 0;
+	assert(*a == NULL);
+	while (a[i] != NULL)
+	{
+		printf("%s\n",a[i]);
+		free(a[i++]);
+	}
+	free(a);
+
+	a = ft_split(NULL, 'a');
+	i = 0;
+	assert(*a == NULL);
+	while (a[i] != NULL)
+	{
+		printf("%s\n",a[i]);
+		free(a[i++]);
+	}
+	free(a);
+
+	system("leaks a.out");
+	return (0);
+}
+*/

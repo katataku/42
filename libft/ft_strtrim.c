@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 11:46:49 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/30 00:15:03 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	size;
 	char	*ans;
-	int		start;
+	size_t	start;
 
 	if (s1 == NULL)
 		return (NULL);

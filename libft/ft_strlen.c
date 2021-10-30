@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 14:50:59 by taku              #+#    #+#             */
-/*   Updated: 2021/10/29 11:34:17 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/30 00:14:14 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i] != '\0')
-	{
-		i += 1;
-	}
+		i++;
 	return (i);
 }

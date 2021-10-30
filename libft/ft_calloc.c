@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:45:53 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 14:55:13 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/30 00:09:24 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*tmp;
+	void	*ans;
 	size_t	malloc_size;
 
 	malloc_size = count * size;
@@ -22,8 +22,8 @@ void	*ft_calloc(size_t count, size_t size)
 		malloc_size = 1;
 	if (count && size > SIZE_MAX / count)
 		malloc_size = SIZE_MAX;
-	tmp = (void *)malloc(malloc_size);
-	if (tmp != NULL)
-		ft_bzero(tmp, malloc_size);
-	return (tmp);
+	ans = (void *)malloc(malloc_size);
+	if (ans != NULL)
+		ft_bzero(ans, malloc_size);
+	return (ans);
 }
