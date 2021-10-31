@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/30 00:14:45 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/31 10:15:37 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
 	size_t	start;
-	int		flag;
+	int		is_match;
 
 	i = 0;
 	start = -1;
@@ -24,13 +24,13 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		return ((char *) haystack);
 	while (TRUE)
 	{
-		flag = TRUE;
+		is_match = TRUE;
 		i = -1;
 		start += 1;
 		while (needle[++i] != '\0')
 			if (haystack[start + i] != needle[i])
-				flag = FALSE;
-		if (flag == TRUE && start + i <= len)
+				is_match = FALSE;
+		if (is_match == TRUE && start + i <= len)
 			return ((char *)(haystack + start));
 		if (haystack[start] == '\0')
 			break ;
@@ -62,8 +62,14 @@ int	main(void)
 	*s2='2';
 	my_test(s1,s2,1);
 	my_test(s1,s2,0);
+	free(s1);
+	free(s2);
 //	my_test(s1,NULL,0);
-	my_test(NULL,s2,0);
+//	my_test(NULL,s2,0);
 	my_test("abbbcdefg", "bbc", 20);
+	my_test("ab", "abcdefgh", 1);
+	my_test("ab", "abcdefgh", 5);
+	my_test("ab", "abcdefgh", 100);
+	system("leaks a.out");
 }
 */

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/30 16:05:59 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/10/31 09:53:09 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void			ft_putnbr_fd(int n, int fd);
 //for split
 typedef struct s_split_list
 {
-	int		start_index;
-	int		len;
+	size_t	start_index;
+	size_t	len;
 	char	*ptr;
 }	t_split;
 
