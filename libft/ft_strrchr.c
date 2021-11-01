@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 11:45:29 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:52:51 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*index;
+	char	*ans_ptr;
 
-	index = (char *)(s + ft_strlen(s));
-	while (TRUE)
+	ans_ptr = (char *)(s + ft_strlen(s));
+	while (true)
 	{
-		if (*index == (char)c)
-			return (index);
-		if (index == s)
+		if (*ans_ptr == (char)c)
+			return (ans_ptr);
+		if (ans_ptr == s)
 			return (NULL);
-		index--;
+		ans_ptr--;
 	}
 }

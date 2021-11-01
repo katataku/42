@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/30 00:15:03 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:57:41 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	is_in(char c, char const *set)
 	int	i;
 
 	if (set == NULL)
-		return (FALSE);
+		return (false);
 	i = -1;
 	while (set[++i] != '\0')
 	{
 		if (c == set[i])
-			return (TRUE);
+			return (true);
 	}
-	return (FALSE);
+	return (false);
 }
 
 char	*ft_strtrim(char const *s1, char const *set)

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/09 14:46:06 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:14:11 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 
 	if (f == NULL || s == NULL)
 		return (NULL);
-	ans = ft_strdup(s);
+	ans = (char *)ft_calloc(ft_strlen(s) + 1, sizeof(char));
 	if (ans != NULL)
 	{
 		i = 0;

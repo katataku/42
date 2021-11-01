@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/31 09:53:09 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:51:58 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 # define LIBFT_H
 
 //My Bool
-# define TRUE 1
-# define FALSE 0
 # include "stdlib.h"
 # include "limits.h"
 # include <unistd.h>
+# include <stdbool.h>
 
 //part1-1 left
 int				ft_isalpha(int c);

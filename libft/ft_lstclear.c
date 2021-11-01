@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 12:56:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/15 09:41:40 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:19:22 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,12 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
 	t_list	*pre;
 
-	if (lst != NULL)
+	if (lst == NULL)
+		return ;
+	while (*lst != NULL)
 	{
-		while (*lst != NULL)
-		{
-			pre = *lst;
-			*lst = (*lst)->next;
-			ft_lstdelone(pre, del);
-		}
+		pre = *lst;
+		*lst = (*lst)->next;
+		ft_lstdelone(pre, del);
 	}
 }

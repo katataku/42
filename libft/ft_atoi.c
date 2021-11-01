@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/30 17:28:11 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:03:36 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,38 +15,38 @@
 static	int	is_space(char c)
 {
 	if (c == '\t' || c == '\n' || c == '\v')
-		return (TRUE);
+		return (true);
 	if (c == '\f' || c == '\r' || c == ' ')
-		return (TRUE);
-	return (FALSE);
+		return (true);
+	return (false);
 }
 
 int	ft_atoi(const char *str)
 {
 	size_t			i;
-	int				is_neg;
+	int				sign;
 	unsigned long	cnt;
 	unsigned long	pre;
 
 	i = 0;
 	while (is_space(str[i]))
 		i++;
-	if (!ft_isdigit(str[i]) && str[i] != '+' && str[i] != '-')
-		return (0);
-	is_neg = FALSE;
-	if (!ft_isdigit(str[i]) && str[i++] == '-')
-		is_neg = TRUE;
+	sign = 1;
+	if (str[i] == '-')
+		sign = -1;
+	if (str[i] == '+' || str[i] == '-')
+		i++;
 	cnt = 0;
 	while (ft_isdigit(str[i]))
 	{
 		pre = cnt;
 		cnt = (cnt * 10) + str[i++] - '0';
-		if (!is_neg && (cnt > LONG_MAX || pre > cnt))
+		if (sign == 1 && (cnt > LONG_MAX || pre > cnt))
 			return ((int) LONG_MAX);
-		if (is_neg && (cnt > (unsigned long) LONG_MAX + 1 || pre > cnt))
+		if (sign == -1 && (cnt > (unsigned long) LONG_MAX + 1 || pre > cnt))
 			return ((int) LONG_MIN);
 	}
-	return ((int)(cnt * ((-2 * is_neg) + 1)));
+	return (cnt * sign);
 }
 
 /*

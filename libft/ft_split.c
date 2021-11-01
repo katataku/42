@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/31 10:01:15 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 11:30:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	free_lst_and_content(void *input)
 		if (lst->content != NULL)
 		{
 			slist = lst->content;
-			if (slist->ptr != NULL)
-				free(slist->ptr);
+			free(slist->ptr);
 		}
 		free(lst);
 	}
@@ -74,10 +73,10 @@ static t_list	*generate_t_list(char const *s, char c)
 	size_t	cur_index;
 
 	con = (t_split *)ft_calloc(1, sizeof(t_split));
-	up_content(con, 0, -1);
-	lst = NULL;
 	if (con == NULL || s == NULL)
 		return (NULL);
+	up_content(con, 0, -1);
+	lst = NULL;
 	while (con != NULL && s[con->start_index + (++(con->len))] != '\0')
 	{
 		cur_index = con->start_index + con->len;

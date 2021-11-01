@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:45:53 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/29 11:49:32 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 10:18:12 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (s == NULL)
 		return (NULL);
-	ptr = (char *)s;
-	if (start > (unsigned int) ft_strlen(ptr))
+	if (start > (unsigned int) ft_strlen(s))
 		return (ft_strdup(""));
-	if (len > ft_strlen(ptr + start))
-		len = ft_strlen(ptr + start);
+	if (len > ft_strlen(s + start))
+		len = ft_strlen(s + start);
 	ptr = (char *)ft_calloc(sizeof(char), (len + 1));
 	if (ptr != NULL)
 		ft_strlcpy(ptr, (char *)s + start, len + 1);
