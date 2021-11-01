@@ -6,115 +6,108 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 11:30:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:41:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static void	free_lst_and_content(void *input)
+static t_split	*generate_con_and_addback(t_list **lst, int start_ind, int len)
 {
-	t_split	*slist;
-	t_list	*lst;
+	t_split	*content;
 
-	lst = input;
-	if (lst != NULL)
-	{
-		if (lst->content != NULL)
-		{
-			slist = lst->content;
-			free(slist->ptr);
-		}
-		free(lst);
-	}
-}
-
-static void	up_content(t_split *content, int start_index, int len)
-{
-	if (content != NULL)
-	{
-		content->start_index = start_index;
-		content->len = len;
-	}
-}
-
-static t_list	*finalize_get_lst(t_list *lst, t_split *content, char const *s)
-{
-	t_list	*cur_lst;
-	t_split	*slist;
-
+	content = (t_split *)ft_calloc(1, sizeof(t_split));
 	if (content == NULL)
 	{
-		ft_lstclear(&lst, &free);
+		ft_lstclear(lst, &free);
 		return (NULL);
 	}
-	if (content->len <= 0)
-	{
-		free(content);
-		content = NULL;
-	}
-	ft_lstadd_back(&lst, ft_lstnew(content));
-	cur_lst = lst;
-	while (lst != NULL && cur_lst != NULL && cur_lst->content != NULL)
-	{
-		slist = cur_lst->content;
-		slist->ptr = ft_substr(s, slist->start_index, slist->len);
-		if (slist->ptr == NULL)
-			ft_lstclear(&lst, &free_lst_and_content);
-		cur_lst = cur_lst -> next;
-	}
-	return (lst);
+	content->start_index = start_ind;
+	content->len = len;
+	ft_lstadd_back(lst, ft_lstnew(content));
+	return (content);
 }
 
 static t_list	*generate_t_list(char const *s, char c)
 {
-	t_list	*lst;
 	t_split	*con;
-	size_t	cur_index;
+	t_list	*lst;
+	size_t	start_index;
+	size_t	len;
 
-	con = (t_split *)ft_calloc(1, sizeof(t_split));
-	if (con == NULL || s == NULL)
-		return (NULL);
-	up_content(con, 0, -1);
 	lst = NULL;
-	while (con != NULL && s[con->start_index + (++(con->len))] != '\0')
+	start_index = 0;
+	len = -1;
+	while (true)
 	{
-		cur_index = con->start_index + con->len;
-		if (s[cur_index] == c && con->len > 0)
+		if (s[start_index + ++len] != '\0' && s[start_index + (len)] != c)
+			continue ;
+		if (len > 0)
 		{
-			ft_lstadd_back(&lst, ft_lstnew(con));
-			con = (t_split *)ft_calloc(1, sizeof(t_split));
-			up_content(con, cur_index + 1, -1);
+			con = generate_con_and_addback(&lst, start_index, len);
+			if (con == NULL)
+				return (NULL);
 		}
-		else if (s[cur_index] == c && con->len == 0)
-			up_content(con, cur_index + 1, -1);
+		if (s[start_index + (len)] == '\0')
+			break ;
+		start_index = start_index + len + 1;
+		len = -1;
 	}
-	return (finalize_get_lst(lst, con, s));
+	ft_lstadd_back(&lst, ft_lstnew(NULL));
+	return (lst);
+}
+
+static char	**free_ans(char **ans)
+{
+	size_t	i;
+
+	if (ans == NULL)
+		return (NULL);
+	i = 0;
+	while (ans[i] != NULL)
+	{
+		free(ans[i]);
+		i++;
+	}
+	free(ans);
+	return (NULL);
+}
+
+static char	**generate_ans(t_list	*lst_init, char const *s)
+{
+	char	**ans;
+	t_list	*cur_lst;
+	t_split	*content;
+	size_t	i;
+
+	ans = (char **)ft_calloc(ft_lstsize(lst_init) + 1, sizeof(char *));
+	if (ans == NULL)
+		return (NULL);
+	i = 0;
+	cur_lst = lst_init;
+	while (lst_init != NULL && cur_lst != NULL && cur_lst->content != NULL)
+	{
+		content = cur_lst->content;
+		ans[i] = ft_substr(s, content->start_index, content->len);
+		if (ans[i++] == NULL)
+			return (free_ans(ans));
+		cur_lst = cur_lst -> next;
+	}
+	return (ans);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
 	char	**ans;
 	t_list	*lst;
-	t_list	*lst_init;
 
-	if (s == NULL || *s == '\0')
+	if (s == NULL)
 		return ((char **)ft_calloc(1, sizeof(char *)));
 	lst = generate_t_list(s, c);
 	if (lst == NULL)
 		return (NULL);
-	ans = (char **)ft_calloc(ft_lstsize(lst) + 1, sizeof(char *));
-	if (ans == NULL)
-		return (NULL);
-	lst_init = lst;
-	i = 0;
-	while (lst != NULL && lst->content != NULL)
-	{
-		ans[i++] = ((t_split *)(lst->content))->ptr;
-		lst = lst->next;
-	}
-	ft_lstclear(&lst_init, &free);
+	ans = generate_ans(lst, s);
+	ft_lstclear(&lst, &free);
 	return (ans);
 }
 
@@ -156,14 +149,17 @@ int	main(void)
 	print_and_free(a);
 
 	a = ft_split("", 'a');
+	printf("\n\n===TEST:%s\n",a);
 	assert(*a == NULL);
 	print_and_free(a);
 
 	a = ft_split(NULL, 'a');
+	printf("\n\n===TEST:%s\n",a);
 	assert(*a == NULL);
 	print_and_free(a);
 
 	a = ft_split("      ", ' ');
+	printf("\n\n===TEST:%s\n",a);
 	assert(*a == NULL);
 	print_and_free(a);
 

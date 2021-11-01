@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 10:51:58 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 14:03:06 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ typedef struct s_split_list
 {
 	size_t	start_index;
 	size_t	len;
-	char	*ptr;
 }	t_split;
 
 //bonus
