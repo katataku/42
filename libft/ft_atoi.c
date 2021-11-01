@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 11:03:36 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/01 15:31:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 static	int	is_space(char c)
 {
-	if (c == '\t' || c == '\n' || c == '\v')
-		return (true);
-	if (c == '\f' || c == '\r' || c == ' ')
+	if (c == '\t' || c == '\n' || c == '\v'
+		|| c == '\f' || c == '\r' || c == ' ')
 		return (true);
 	return (false);
 }
