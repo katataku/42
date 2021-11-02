@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 15:31:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/02 15:07:46 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,29 @@ static	int	is_space(char c)
 	return (false);
 }
 
+static long	add_safety(long a, long b)
+{
+	if ((a > 0) && (b > (LONG_MAX - a)))
+		return (LONG_MAX);
+	if ((a < 0) && (b < (LONG_MIN - a)))
+		return (LONG_MIN);
+	return (a + b);
+}
+
+static long	mul_safety(long a, long b)
+{
+	if ((a > 0) && (a > (LONG_MAX / b)))
+		return (LONG_MAX);
+	if ((a < 0) && (a < (LONG_MIN / b)))
+		return (LONG_MIN);
+	return (a * b);
+}
+
 int	ft_atoi(const char *str)
 {
-	size_t			i;
-	int				sign;
-	unsigned long	cnt;
-	unsigned long	pre;
+	size_t	i;
+	int		sign;
+	long	cnt;
 
 	i = 0;
 	while (is_space(str[i]))
@@ -38,14 +55,14 @@ int	ft_atoi(const char *str)
 	cnt = 0;
 	while (ft_isdigit(str[i]))
 	{
-		pre = cnt;
-		cnt = (cnt * 10) + str[i++] - '0';
-		if (sign == 1 && (cnt > LONG_MAX || pre > cnt))
+		cnt = mul_safety(cnt, 10);
+		cnt = add_safety(cnt, (str[i++] - '0') * sign);
+		if (sign == 1 && cnt == LONG_MAX)
 			return ((int) LONG_MAX);
-		if (sign == -1 && (cnt > (unsigned long) LONG_MAX + 1 || pre > cnt))
+		if (sign == -1 && cnt == LONG_MIN)
 			return ((int) LONG_MIN);
 	}
-	return (cnt * sign);
+	return (cnt);
 }
 
 /*
@@ -100,5 +117,24 @@ int	main(void)
 	my_test(" -9223372036854775809");
 	my_test(" -9223372036854775808");//LONG NIN
 	my_test(" -9223372036854775807");
+
+	my_test(" -922337203685477580009");
+	my_test(" -922337203685477580008");//LONG NIN
+	my_test(" -922337203685477580007");
+
+	my_test(" 634106827633765826700"); //abend
+	my_test(" 63410682763376582679");
+	my_test(" 63410682763376582680");
+	my_test(" 63410682763376582678");
+	my_test(" 922337203685477580008");
+	my_test(" 922337203685477580007");
+
+	my_test(" -634106827633765826700"); //abend
+	my_test(" -63410682763376582679");
+	my_test(" -63410682763376582680");
+	my_test(" -63410682763376582678");
+	my_test(" -922337203685477580008");
+	my_test(" -922337203685477580007");
+
 }
 */
