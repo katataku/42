@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 21:26:26 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/03 23:41:33 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/04 08:43:42 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	i;
 	size_t	j;
 
+	if (size == 0)
+		return (ft_strlen((char *)src));
 	i = ft_strlen(dest);
 	if (i >= size)
 		return (size + ft_strlen(src));
@@ -29,7 +31,6 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[i + j] = '\0';
 	return (i + ft_strlen(src));
 }
-
 
 
 #include <sys/types.h>
@@ -50,7 +51,7 @@ void	my_test(char *dest1, char *dest2,const char *src, size_t size)
 	size_t	expect;
 	size_t	actual;
 
-
+	printf("====test(%s,%s,%s,%zu)\n",dest1, dest2, src, size);
 	pid = fork();
 	if (pid == 0)
 	{
@@ -81,9 +82,11 @@ void	my_test(char *dest1, char *dest2,const char *src, size_t size)
 		actual = ft_strlcat(dest2, src, size);
 		printf("  %zu：expect\n", expect);
 		printf("  %zu：actual\n", actual);
-		assert(expect==actual);
+		assert(expect == actual);
 	}
-
+	else
+		printf(" Sig Abort \n");
+		printf(" WTERMSIG:%d\n",WTERMSIG(status_actual));
 }
 
 int	main(void)
@@ -98,8 +101,6 @@ int	main(void)
 	dest2 = ft_strdup("Hello");
 	my_test(dest1, dest2, src, size);
 	my_test(NULL, NULL, src, size);
-
-	dest1 = ft_strdup("Hello");
-	dest2 = ft_strdup("Hello");
-	my_test(dest1, dest2, src, 0);
+	my_test(NULL, NULL, src, 1);
+	my_test(NULL, NULL, src, 0);
 }
