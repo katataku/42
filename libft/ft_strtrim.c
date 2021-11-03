@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 16:42:06 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/03 10:53:15 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/03 14:19:02 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static bool	is_in(char c, char const *set)
 {
-	int	i;
+	size_t	i;
 
 	if (set == NULL)
 		return (false);
-	i = -1;
-	while (set[++i] != '\0')
+	i = 0;
+	while (set[i] != '\0')
 	{
 		if (c == set[i])
 			return (true);
+		i++;
 	}
 	return (false);
 }
