@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/05 14:34:44 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/05 15:06:25 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_atoi(const char *str)
 	return (cnt);
 }
 
-
+/*
 #include <stdio.h>
 #include <assert.h> 
 
@@ -164,3 +164,4 @@ int	main(void)
 	my_test("-92233720368547758000");
 	my_test("-92233720368547758000");
 }
+*/
