@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 11:22:58 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/04 09:01:42 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ static char	*digit2str(char c)
 {
 	char	*ans;
 
-	ans = (char *)ft_calloc(2, sizeof(char));
+	ans = ft_strdup("0");
 	if (ans == NULL)
 		return (NULL);
-	ans[0] = c + '0';
+	ans[0] += c;
 	return (ans);
 }
 

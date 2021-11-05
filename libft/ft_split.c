@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/01 14:41:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/05 09:25:20 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,13 +121,18 @@ void	print_and_free(char **a)
 {
 	int		i;
 
-	i = 0;
-	while (a[i] != NULL)
+	if (a != NULL)
 	{
-		printf("%s\n",a[i]);
-		free(a[i++]);
+		i = 0;
+		while (a[i] != NULL)
+		{
+			printf("  %s\n",a[i]);
+			free(a[i++]);
+		}
 	}
 	free(a);
+	printf("  ---free completed---\n");
+
 }
 
 int	main(void)
@@ -149,17 +154,18 @@ int	main(void)
 	print_and_free(a);
 
 	a = ft_split("", 'a');
-	printf("\n\n===TEST:%s\n",a);
 	assert(*a == NULL);
 	print_and_free(a);
 
 	a = ft_split(NULL, 'a');
-	printf("\n\n===TEST:%s\n",a);
 	assert(*a == NULL);
 	print_and_free(a);
 
 	a = ft_split("      ", ' ');
-	printf("\n\n===TEST:%s\n",a);
+	assert(*a == NULL);
+	print_and_free(a);
+
+	a = ft_split("\0aa\0bbb", '\0');
 	assert(*a == NULL);
 	print_and_free(a);
 

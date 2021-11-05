@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:46:16 by takkatao          #+#    #+#             */
-/*   Updated: 2021/10/08 16:00:59 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/04 09:12:36 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_putnbr_fd(int nb, int fd)
 {
-	long	tmp;
+	long long	tmp;
 
 	tmp = nb;
 	if (tmp < 0)
