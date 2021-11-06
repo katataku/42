@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 15:03:47 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/05 15:12:20 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/06 09:50:06 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 	return (ft_strlen(src));
 }
 
-
+/*
 #include <sys/types.h>
 #include <unistd.h> 
 #include <sys/wait.h>
@@ -156,3 +156,4 @@ int	main(void)
 	my_test(NULL, NULL, NULL, 1);
 	my_test(NULL, NULL, NULL, 0);
 }
+*/
