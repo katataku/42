@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 21:26:26 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/05 15:06:28 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/05 15:11:40 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	return (i + ft_strlen(src));
 }
 
-
+/*
 #include <sys/types.h>
 #include <unistd.h> 
 #include <sys/wait.h>
@@ -109,13 +109,18 @@ int	main(void)
 
 	dest1 = ft_strdup("Hello");
 	dest2 = ft_strdup("Hello");
-	my_test(dest1, dest2, NULL, 1);
+	my_test(dest1, dest2, NULL, 1);// セグフォが起きるが正しい
 
 	dest1 = ft_strdup("Hello");
 	dest2 = ft_strdup("Hello");
-	my_test(dest1, dest2, NULL, 0);
+	my_test(dest1, dest2, NULL, 0);// セグフォが起きるが正しい
 
 	my_test(NULL, NULL, src, size);
 	my_test(NULL, NULL, src, 1);// セグフォが起きるが正しい
 	my_test(NULL, NULL, src, 0);// セグフォが起きないが正しい
+
+	my_test(NULL, NULL, NULL, size);
+	my_test(NULL, NULL, NULL, 1);// セグフォが起きるが正しい
+	my_test(NULL, NULL, NULL, 0);// セグフォが起きるが正しい
 }
+*/
