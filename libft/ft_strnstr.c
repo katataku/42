@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/04 09:56:49 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/08 06:39:40 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,16 @@ int	main(void)
 	my_test(s1,s2,0);
 	my_test(s1,NULL,0);
 	my_test(NULL,s2,0);
+	my_test(NULL,NULL,0);
 	my_test(s1,NULL,1);
 	my_test(NULL,s2,1);
+	my_test(NULL,NULL,1);
 	my_test(s1,NULL,2);
 	my_test(NULL,s2,2);
+	my_test(NULL,NULL,2);
 	my_test(s1,NULL,3);
 	my_test(NULL,s2,3);
+	my_test(NULL,NULL,3);
 	my_test("abbbcdefg", "bbc", 1);
 	my_test("abbbcdefg", "bbc", 5);
 	my_test("abbbcdefg", "bbc", 100);
