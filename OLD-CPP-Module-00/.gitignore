@@ -1,5 +1,8 @@
+*.txt
 megaphone
 phonebook
+account
+*.log
 
 # Prerequisites
 *.d

@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/08 18:06:45 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/09 11:29:07 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS  = $(SOURCES:.cpp=.o)
 SUB_OBJS =$(SUB_SOURCES:.cpp=.o)
 
 CC = clang++
-CFLAGS		=	-Wall -Wextra -Werror# -g3 -fsanitize=address
+CFLAGS		= -std=c++98 -pedantic -Wall -Wextra -Werror# -g3 -fsanitize=address
 RM				= /bin/rm -f
 
 .PHONY: all clean fclean re test

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:38:43 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/08 09:59:16 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/09 17:57:27 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(int argc, char** argv)
 				std::cout << (char)std::toupper(str[j]);
 			}
 		}
+		std::cout << std::endl;
 	}
 	return (0);
 }

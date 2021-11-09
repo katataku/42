@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/08 10:22:47 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/09 17:57:19 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,10 +15,10 @@ NAME=megaphone
 SRCDIR=.
 SOURCES  = megaphone.cpp 
 
-OBJS  = $(SOURCES:.c=.o)
+OBJS  = $(SOURCES:.cpp=.o)
 
 CC = clang++
-CFLAGS		=	-Wall -Wextra -Werror# -g3 -fsanitize=address
+CFLAGS		=	-std=c++98 -pedantic  -Wall -Wextra -Werror# -g3 -fsanitize=address
 RM				= /bin/rm -f
 
 .PHONY: all clean fclean re 

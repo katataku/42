@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/08 09:38:43 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/08 18:18:08 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/09 15:47:23 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,19 +19,17 @@
 class PhoneBook
 {
 	private:
-		contact contact_array[8];
+		std::string truncate_10(std::string str);
 
 	public:
+		contact contact_array[8];
 		int			contact_count;
 		int 		add_contact(contact contact);
 		int 		add_contact_wrapper();
 		int			search_contact();
 		std::string	show_contact(int index);
+		PhoneBook();
 
-	PhoneBook()
-	{
-		contact_count = 0;
-	};
 };
 
 #endif
