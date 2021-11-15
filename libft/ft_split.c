@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:47:31 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/05 09:25:20 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/15 11:18:02 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static t_split	*generate_con_and_addback(t_list **lst, int start_ind, int len)
 {
 	t_split	*content;
+	t_list	*new_lst;
 
 	content = (t_split *)ft_calloc(1, sizeof(t_split));
 	if (content == NULL)
@@ -24,7 +25,14 @@ static t_split	*generate_con_and_addback(t_list **lst, int start_ind, int len)
 	}
 	content->start_index = start_ind;
 	content->len = len;
-	ft_lstadd_back(lst, ft_lstnew(content));
+	new_lst = ft_lstnew(content);
+	if (new_lst == NULL)
+	{
+		free(content);
+		ft_lstclear(lst, &free);
+		return (NULL);
+	}
+	ft_lstadd_back(lst, new_lst);
 	return (content);
 }
 
