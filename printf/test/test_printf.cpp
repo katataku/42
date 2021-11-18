@@ -189,6 +189,292 @@ TEST(test_printf, 8)
 	EXPECT_EQ(actual_return_value,expect_return_value);
 }
 
+//aaa%i 5
+TEST(test_printf, 9)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%i", 5);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%i", 5);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//aaa%iaa%i,5,5
+TEST(test_printf, 10)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%iaa%i",5,5);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%iaa%i",5,5);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%x",)
+TEST(test_printf, 11)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%x",127);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%x",127);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%x",)
+TEST(test_printf, 12)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%x",0);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%x",0);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%x",)
+TEST(test_printf, 13)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%x",9999);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%x",9999);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+
+//("%X",)
+TEST(test_printf, 14)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%X",127);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%X",127);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%X",)
+TEST(test_printf, 15)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%X",0);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%X",0);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%X",)
+TEST(test_printf, 16)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%X",9999);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%X",9999);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+//("%u",)
+TEST(test_printf, 17)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%u",127);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%u",127);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%u",)
+TEST(test_printf, 18)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%u",0);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%u",0);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//("%u",)
+TEST(test_printf, 19)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%u",9999);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%u",9999);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+//("%p",)
+TEST(test_printf, 20)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+	const char *str = "pointer";
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%p",str);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%p",str);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//aaa%d INTMAX
+TEST(test_printf, 21)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%d", INT_MAX);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%d", INT_MAX);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+//aaa%d INTMAX + 1
+TEST(test_printf, 22)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%d", INT_MAX + 1);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%d", INT_MAX + 1);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
 
 
 //"%"
@@ -209,6 +495,25 @@ TEST(test_printf, err_1)
 
 	EXPECT_STREQ(actual_stdout,expect_stdout);
 	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+// %d %d %d 5 5
+TEST(test_printf, err_2)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("%d %d %d", 5, 5);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("%d %d %d", 5, 5);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_EQ(actual_return_value < 0,expect_return_value < 0);
 }
 
 
