@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/19 05:31:55 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/19 06:08:38 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_print_status
 	long long			va_long_long;
 	void				*va_void_ptr;
 	va_list				ap;
+	bool				is_loop_continue;
 
 }	t_print_status;
 
@@ -71,73 +72,88 @@ static int	count_digit(int n)
 	return (cnt);
 }
 
+t_print_status	*loop_handler(t_print_status *status, const char *format)
+{
+	if (format[status->index] == '\0')
+	{
+		status->is_loop_continue = false;
+		return (status);
+	}
+	if (format[status->index] != '%')
+	{
+		ft_putchar_fd(format[status->index], 1);
+		status->index++;
+		status->ret_len++;
+		return (status);
+	}
+	status->index++;
+	if (format[status->index] == '%')
+	{
+		ft_putchar_fd(format[status->index], 1);
+		status->ret_len += 1;
+	}
+	else if (format[status->index] == 'c')
+	{
+		status->va_char = va_arg(status->ap, int);
+		ft_putchar_fd(status->va_char, 1);
+		status->ret_len += 1;
+	}
+	else if (format[status->index] == 's')
+	{
+		status->va_char_ptr = va_arg(status->ap, char *);
+		if (status->va_char_ptr == NULL)
+			status->va_char_ptr = ft_strdup("(null)");
+		ft_putstr_fd(status->va_char_ptr, 1);
+		status->ret_len += ft_strlen(status->va_char_ptr);
+	}
+	else if (format[status->index] == 'p')
+	{
+		status->va_ull = va_arg(status->ap, unsigned long long);
+		ft_putstr_fd("0x", 1);
+		status->ret_len += 2 + ft_putnbr_base(status->va_ull, "0123456789abcdef");
+	}
+	else if (format[status->index] == 'd' || format[status->index] == 'i')
+	{
+		status->va_int = va_arg(status->ap, int);
+		ft_putnbr_fd(status->va_int, 1);
+		status->ret_len += count_digit(status->va_int);
+	}
+	else if (format[status->index] == 'u')
+	{
+		status->va_unsigned_int = va_arg(status->ap, unsigned int);
+		status->ret_len += ft_putnbr_base(status->va_unsigned_int, "0123456789");
+	}
+	else if (format[status->index] == 'x')
+	{
+		status->va_unsigned_int = va_arg(status->ap, unsigned int);
+		status->ret_len += ft_putnbr_base(status->va_unsigned_int, "0123456789abcdef");
+	}
+	else if (format[status->index] == 'X')
+	{
+		status->va_unsigned_int = va_arg(status->ap, unsigned int);
+		status->ret_len += ft_putnbr_base(status->va_unsigned_int, "0123456789ABCDEF");
+	}
+	else
+	{
+		status->ret_len = 0;
+		status->is_loop_continue = false;
+	}
+	status->index++;
+	return (status);
+}
+
 int	ft_printf(const char *format, ...)
 {
-	t_print_status	status;
+	t_print_status	tmp;
+	t_print_status	*status;
 
-	va_start(status.ap, format);
-	status.index = 0;
-	status.ret_len = 0;
-	while (true)
-	{
-		if (format[status.index] == '\0')
-			break ;
-		if (format[status.index] == '%')
-		{
-			status.index++;
-			if (format[status.index] == '%')
-				ft_putchar_fd(format[status.index], 1);
-			else if (format[status.index] == 'c')
-			{
-				status.va_char = va_arg(status.ap, int);
-				ft_putchar_fd(status.va_char, 1);
-			}
-			else if (format[status.index] == 's')
-			{
-				status.va_char_ptr = va_arg(status.ap, char *);
-				if (status.va_char_ptr == NULL)
-					status.va_char_ptr = ft_strdup("(null)");
-				ft_putstr_fd(status.va_char_ptr, 1);
-				status.ret_len += ft_strlen(status.va_char_ptr) - 1;
-			}
-			else if (format[status.index] == 'p')
-			{
-				status.va_ull = va_arg(status.ap, unsigned long long);
-				ft_putstr_fd("0x", 1);
-				status.ret_len += 2 + ft_putnbr_base(status.va_ull, "0123456789abcdef") - 1;
-			}
-			else if (format[status.index] == 'd' || format[status.index] == 'i')
-			{
-				status.va_int = va_arg(status.ap, int);
-				ft_putnbr_fd(status.va_int, 1);
-				status.ret_len += count_digit(status.va_int) - 1;
-			}
-			else if (format[status.index] == 'u')
-			{
-				status.va_unsigned_int = va_arg(status.ap, unsigned int);
-				status.ret_len += ft_putnbr_base(status.va_unsigned_int, "0123456789") - 1;
-			}
-			else if (format[status.index] == 'x')
-			{
-				status.va_unsigned_int = va_arg(status.ap, unsigned int);
-				status.ret_len += ft_putnbr_base(status.va_unsigned_int, "0123456789abcdef") - 1;
-			}
-			else if (format[status.index] == 'X')
-			{
-				status.va_unsigned_int = va_arg(status.ap, unsigned int);
-				status.ret_len += ft_putnbr_base(status.va_unsigned_int, "0123456789ABCDEF") - 1;
-			}
-			else
-			{
-				status.ret_len = 0;
-				break ;
-			}
-		}
-		else
-			ft_putchar_fd(format[status.index], 1);
-		status.index++;
-		status.ret_len++;
-	}
-	va_end(status.ap);
-	return (status.ret_len);
+	status = &tmp;
+	va_start(status->ap, format);
+	status->index = 0;
+	status->ret_len = 0;
+	status->is_loop_continue = true;
+	while (status->is_loop_continue)
+		loop_handler(status, format);
+	va_end(status->ap);
+	return (status->ret_len);
 }
