@@ -87,3 +87,147 @@ TEST(test_printf, 3)
 	EXPECT_STREQ(actual_stdout,expect_stdout);
 	EXPECT_EQ(actual_return_value,expect_return_value);
 }
+
+//aaa%d 5
+TEST(test_printf, 4)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%d", 5);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%d", 5);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//aaa%daa%d,5,5
+TEST(test_printf, 5)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%daa%d",5,5);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%daa%d",5,5);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//"aaa%s","bbb"
+TEST(test_printf, 6)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%s","bbb");
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%s","bbb");
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//"aaa%sccc%s","bbb","ddd"
+TEST(test_printf, 7)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%sccc%s","bbb","ddd");
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%sccc%s","bbb","ddd");
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+//"aaa%c",'a'
+TEST(test_printf, 8)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%c",'a');
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%c",'a');
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+
+//"%"
+TEST(test_printf, err_1)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("%");
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("%");
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+
+//NULL
+TEST(test_printf, DISABLED_err_1)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf(NULL);
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	
+	testing::internal::CaptureStdout();
+	expect_return_value = printf(NULL);
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}

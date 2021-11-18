@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/18 10:14:13 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/18 10:59:32 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,8 @@
 # define LIBFTPRINTF_H
 
 //My Bool
-# include <stdlib.h>
-# include <limits.h>
-# include <unistd.h>
-# include <stdbool.h>
 # include "libft.h"
+# include <stdarg.h>
 
 int	ft_printf(const char *format, ...);
 
