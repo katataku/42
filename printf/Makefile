@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/18 10:22:25 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/18 10:44:33 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,6 +109,5 @@ re:fclean all
 test:$(LIBFT_A)
 	make
 	g++ -std=c++11 ./test/test_printf.cpp -lgtest_main -lgtest ./libftprintf.a $(INCLUDES)&& ./a.out && $(RM) ./a.out
-
 
 -include $(DEPENDS)

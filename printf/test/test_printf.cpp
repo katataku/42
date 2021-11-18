@@ -31,6 +31,7 @@ TEST(test_dry_run, DISABLED_always_true)
 	EXPECT_STREQ(actual_stdout,expect_stdout);
 }
 
+//1
 TEST(test_printf, 1)
 {
 	const char *expect_stdout;
@@ -49,6 +50,7 @@ TEST(test_printf, 1)
 	EXPECT_EQ(actual_return_value,expect_return_value);
 }
 
+//11
 TEST(test_printf, 2)
 {
 	const char *expect_stdout;
@@ -61,6 +63,25 @@ TEST(test_printf, 2)
 	actual_stdout = testing::internal::GetCapturedStdout().c_str();
 	testing::internal::CaptureStdout();
 	expect_return_value = printf("11");
+	expect_stdout = testing::internal::GetCapturedStdout().c_str();
+
+	EXPECT_STREQ(actual_stdout,expect_stdout);
+	EXPECT_EQ(actual_return_value,expect_return_value);
+}
+
+//aaa%%
+TEST(test_printf, 3)
+{
+	const char *expect_stdout;
+	const char *actual_stdout;
+	int expect_return_value;
+	int actual_return_value;
+
+	testing::internal::CaptureStdout();
+	actual_return_value = ft_printf("aaa%%");
+	actual_stdout = testing::internal::GetCapturedStdout().c_str();
+	testing::internal::CaptureStdout();
+	expect_return_value = printf("aaa%%");
 	expect_stdout = testing::internal::GetCapturedStdout().c_str();
 
 	EXPECT_STREQ(actual_stdout,expect_stdout);
