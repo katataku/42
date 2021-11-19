@@ -6,13 +6,18 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/18 10:44:33 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/19 09:19:03 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	 	= libftprintf.a
 SRCSDIR		= ./src
-SRCS 	 	= $(SRCSDIR)/ft_printf.c
+SRCS 	 	= \
+	$(SRCSDIR)/ft_printf.c\
+	$(SRCSDIR)/number_utils.c\
+	$(SRCSDIR)/print_utils_cspd.c\
+	$(SRCSDIR)/print_utils_else.c
+
 OBJSDIR		= ./obj
 OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.c=.o)))
 
@@ -80,10 +85,11 @@ INCLUDES 		= -I./includes
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_OBJS)
-	ar rcs $(NAME)  $(OBJS) $(LIBFT_OBJS)
+	ar rcs $(NAME) $(OBJS) $(LIBFT_OBJS)
 
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
+	mkdir -p $(OBJSDIR)
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
 
 $(LIBFT_A): $(LIBFT_OBJS)
@@ -100,14 +106,14 @@ clean:
 
 .PHONY:fclean
 fclean:clean
-	$(RM) $(LIBFT_A)
+	$(RM) $(NAME)
 
 .PHONY:re
 re:fclean all
 
 .PHONY:test
-test:$(LIBFT_A)
+test:$(NAME)
 	make
-	g++ -std=c++11 ./test/test_printf.cpp -lgtest_main -lgtest ./libftprintf.a $(INCLUDES)&& ./a.out && $(RM) ./a.out
+	g++ -std=c++11 ./test/test_printf.cpp -lgtest_main -lgtest $(NAME) $(INCLUDES)&& ./a.out && $(RM) ./a.out
 
 -include $(DEPENDS)
