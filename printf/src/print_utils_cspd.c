@@ -6,11 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:08:52 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/19 09:13:46 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:17:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	print_c(t_print_status *status)
 {

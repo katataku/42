@@ -6,11 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/19 09:05:24 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/19 09:05:29 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:17:51 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_putnbr_base_rec(unsigned long long nbr, char *base)
 {

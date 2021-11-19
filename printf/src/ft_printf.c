@@ -6,11 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/19 09:12:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/19 11:39:53 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 void	loop_handler(t_print_status *status, const char *format)
 {
@@ -57,6 +57,8 @@ int	ft_printf(const char *format, ...)
 			status->index++;
 			loop_handler(status, format);
 		}
+		if (status->index < 0)
+			status->is_loop_continue = false;
 	}
 	va_end(status->ap);
 	return (status->ret_len);
