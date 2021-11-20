@@ -1,0 +1,12 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+    # サービスの状態を取得
+    - name: service facts
+      service_facts:
+
+    # 取得した情報を出力
+    - name:
+      debug:
+        var: ansible_facts.services

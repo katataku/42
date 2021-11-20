@@ -1,0 +1,21 @@
+---
+- hosts: test_servers
+  become: yes
+  vars_files:
+    - vars/user-list-var.yml
+  tasks:
+  - name: Create user
+    user:
+      state: absent #ユーザを削除するときはコメントアウトを外す
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      groups:  "{{ item.group }}"
+      shell: /bin/bash
+    with_items:
+      - "{{ users }}"
+    when: users #usersが1件以上の場合のみ実行
+
+  - name: create takkatao
+    user:
+      name: 'takkatao'
+      groups: 'users, sudo, group42'

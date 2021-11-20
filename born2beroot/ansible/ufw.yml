@@ -1,0 +1,23 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+  - name: install apps
+    apt: 
+      name: ufw
+  
+  - name: activate ufw
+    service:
+      name: ufw
+      enabled: yes
+      state: started
+
+  - name: ufw activate
+    community.general.ufw:
+      state: enabled
+
+  - name: Allow port range 22
+    community.general.ufw:
+      rule: allow
+      port: '22'
+      proto: tcp

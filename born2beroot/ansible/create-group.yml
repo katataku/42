@@ -1,0 +1,8 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+  - name: create group
+    group:  
+      name: "group42"
+

@@ -1,0 +1,7 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: takkatao42

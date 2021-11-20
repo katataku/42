@@ -1,0 +1,8 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+  - name: install vdagent for clipboard sharing
+    apt: 
+      name: spice-vdagent 
+  
