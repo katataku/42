@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/21 21:39:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/22 10:58:56 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,10 @@ typedef struct s_gnl_status
 	char				*buffer;
 	size_t				line_len;
 	bool				is_eof;
-	
-
-	int					ret_len;
-	char				*va_char_ptr;
-	int					va_char;
-	unsigned int		va_uint;
-	int					va_int;
-	unsigned long long	va_ull;
-	long long			va_long_long;
-	void				*va_void_ptr;
-	va_list				ap;
-	bool				is_loop_continue;
-
+	char				*first_n;
+	size_t				first_n_index;
+	char				*ans_work;
+	bool				is_find_nl;
 }	t_gnl_status;
 
 char	*get_next_line(int fd);

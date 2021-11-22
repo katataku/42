@@ -330,6 +330,10 @@ TEST(test_printf, standard_3_aaa_withnl_buf1)
 	expect.return_value = strdup("");
 	actual.return_value = get_next_line_core(fd, buffer_size);
 	EXPECT_STREQ(actual.return_value,expect.return_value);
+
+	expect.return_value = NULL;
+	actual.return_value = get_next_line_core(fd, buffer_size);
+	EXPECT_EQ(actual.return_value,expect.return_value);
 }
 
 

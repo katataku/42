@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/22 05:48:16 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/11/22 11:01:21 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,32 +16,40 @@
 char	*get_next_line_core(int fd, size_t buffer_size)
 {
 	char				*ans;
-	char				*first_n;
 	static t_gnl_status	status;
 
+	ans = NULL;
 	while (true)
 	{
 		if (status.buffer == NULL)
 		{
 			status.buffer = (char *)ft_calloc(sizeof(char), (buffer_size + 1));
 			status.read_ret = read(fd, status.buffer, buffer_size);
-			if (status.read_ret == 0)
-				break ;
+			status.index = 0;
 		}
-		first_n = ft_strchr(status.buffer, '\n');
-		if (first_n != NULL)
+		if (status.read_ret <= 0)
 		{
-			*first_n = '\0';
-			ans = ft_strjoin(ans, status.buffer);
-			status.buffer = first_n + 1;
+			free(status.buffer);
+			status.buffer = NULL;
+			if (status.ans_work != NULL && status.read_ret == 0)
+				ans = ft_strdup(status.ans_work);
 			break ;
 		}
-		if (status.read_ret > 0)
+		status.first_n = ft_strchr(&status.buffer[status.index], '\n');
+		if (status.first_n != NULL)
 		{
-			ans = ft_strjoin(ans, status.buffer);
+			*status.first_n = '\0';
+			status.ans_work = ft_strjoin(status.ans_work, &status.buffer[status.index]);
+			status.index = status.first_n - status.buffer + 1;
+			ans = ft_strdup(status.ans_work);
+			break ;
 		}
+		status.ans_work = ft_strjoin(status.ans_work, &status.buffer[status.index]);
+		free(status.buffer);
 		status.buffer = NULL;
 	}
+	free(status.ans_work);
+	status.ans_work = NULL;
 	return (ans);
 }
 
