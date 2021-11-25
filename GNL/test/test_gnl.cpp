@@ -454,3 +454,26 @@ TEST(test_printf, standard_3_aaa_withnl_buf5)
 	actual.return_value = get_next_line_core(fd, buffer_size);
 	EXPECT_STREQ(actual.return_value,expect.return_value);
 }
+
+
+TEST(test_printf, standard_41_with_nl_buf1)
+{
+	t_behavior actual;
+	t_behavior expect;
+	int buffer_size = 1;
+	const char *path = "test/inputs/41_with_nl";
+	int fd = open(path,O_RDONLY);
+	assert(fd != -1);
+
+	expect.return_value = strdup("0123456789012345678901234567890123456789");
+	actual.return_value = get_next_line_core(fd, buffer_size);
+	EXPECT_STREQ(actual.return_value,expect.return_value);
+
+	expect.return_value = strdup("0");
+	actual.return_value = get_next_line_core(fd, buffer_size);
+	EXPECT_STREQ(actual.return_value,expect.return_value);
+
+	expect.return_value = NULL;
+	actual.return_value = get_next_line_core(fd, buffer_size);
+	EXPECT_EQ(actual.return_value,expect.return_value);
+}

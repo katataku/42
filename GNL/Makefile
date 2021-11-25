@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/22 05:27:48 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/22 11:49:20 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,4 +54,11 @@ re:fclean all
 test:$(OBJS)
 	g++ -std=c++11 ../libft/libft.a ./test/test_gnl.cpp -lgtest_main -lgtest $(OBJS) $(INCLUDES)&& ./a.out && $(RM) ./a.out
 
+.PHONY:submit
+submit:
+	mkdir -p submit
+	cp src/get_next_line.c submit/
+	cp src/get_next_line_utils.c submit/
+	cp includes/get_next_line.h submit/
+	
 -include $(DEPENDS)
