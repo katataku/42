@@ -1,147 +1,131 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/23 09:58:46 by takkatao         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#include "get_next_line.h"
 
-#include<stdio.h>
-#include<assert.h>
-#include<string.h>
-# include <unistd.h>
-# include <stdbool.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include "libft.h"
-
-
-
-
-char	*get_next_line_core(int fd, size_t buffer_size)
+int	file_read(t_gnl_status *status, t_gnl_status_var *status_var)
 {
-	static char *buffer;
-	static char *ans;
 	ssize_t	rc;
-	char	*next_n_ptr;
-	char	*tmp;
-	size_t	next_n_index;
 
-	rc = 1;
-	while (true)
+	if (status->buffer == NULL)
 	{
-		if (buffer == NULL)
+		status->next_n = 0;
+		status->buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
+		if (status->buffer == NULL)
+			return (-1);
+		rc = read(status_var->fd, status->buffer, BUFFER_SIZE);
+		if (rc <= 0)
 		{
-			buffer = (char *)malloc(buffer_size + 1);
-			if (buffer == NULL)
-				return (NULL);
-			rc = read(fd, buffer, buffer_size);
-			if (rc < 0)
-				return (NULL);
+			free(status->buffer);
+			status->buffer = NULL;
 			if (rc == 0)
-				break ;
-			buffer[buffer_size] = '\0';
-			next_n_index = 0;
+				return (0);
+			return (-1);
 		}
-		if (ans == NULL)
-			ans = "";
-		tmp = ft_strjoin(ans, &buffer[next_n_index]);
-		free(ans);
-		ans = tmp;
-		if (strchr(buffer, '\n'))
-		{
-			next_n_ptr = strchr(buffer, '\n') + 1;//次のためにbufferを整理
-			next_n_index = next_n_ptr - buffer;
-			next_n_ptr = strchr(ans, '\n') + 1;//今回のためにansを整理
-			*next_n_ptr = '\0';//今回のためにansを整理
-			break ;
-		}
-		free (buffer);
-		buffer = NULL;
+		status->buffer[rc] = '\0';
 	}
-	return (ans);
+	return (1);
+}
+
+int	organizer(t_gnl_status *st, t_gnl_status_var *status_var)
+{
+	char					*tmp;
+
+	if (ft_strchr(&st->buffer[st->next_n], '\n'))
+	{
+		st->next_n = ft_strchr(&st->buffer[st->next_n], '\n') + 1 - st->buffer;
+		if (st->next_n == BUFFER_SIZE)
+		{
+			free(st->buffer);
+			st->buffer = NULL;
+		}
+		tmp = ft_strchr(status_var->ans, '\n') + 1;
+		*tmp = '\0';
+		return (0);
+	}
+	if (st->buffer[st->next_n] == '\0')
+	{
+		free(st->buffer);
+		free(status_var->ans);
+		status_var->ans = NULL;
+		return (0);
+	}
+	return (1);
+}
+
+int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
+{
+	int		ret;
+	char	*tmp;
+
+	ret = file_read(status, status_var);
+	if (ret < 0)
+		return (-1);
+	if (ret == 0)
+		return (0);
+	if (status_var->ans == NULL)
+		status_var->ans = ft_strdup("");
+	tmp = ft_strjoin(status_var->ans, &status->buffer[status->next_n]);
+	if (tmp == NULL)
+		return (-1);
+	free(status_var->ans);
+	status_var->ans = tmp;
+	ret = organizer(status, status_var);
+	if (ret == 0)
+		return (0);
+	free (status->buffer);
+	status->buffer = NULL;
+	return (1);
 }
 
 char	*get_next_line(int fd)
 {
-	return (get_next_line_core(fd, BUFFER_SIZE));
+	static t_gnl_status		status;
+	t_gnl_status_var		status_var;
+	int						ret;
+
+	status_var.fd = fd;
+	status_var.ans = NULL;
+	while (true)
+	{
+		ret = loop_handler(&status, &status_var);
+		if (ret < 0)
+			break ;
+		if (ret == 0)
+			return (status_var.ans);
+	}
+	free(status.buffer);
+	status.buffer = NULL;
+	free(status_var.ans);
+	status_var.ans = NULL;
+	return (NULL);
 }
+
+/*
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include "get_next_line.h"
 
 int	main(void)
 {
-	int	fd;
+	int	index;//読み込み回数を確認する用
+	//static int i;
+	int	fd = open("test.txt", O_RDONLY);
+	printf("fd = %d\n", fd);
 
-
-
-	write(1,"1",1);
-	fd = open("../test/inputs/test_1_a", O_RDONLY);
-	assert(strcmp(get_next_line(fd), "a") == 0);
-
-	write(1,"2",1);
-	fd = open("../test/inputs/test_1_b", O_RDONLY);
-	assert(strcmp(get_next_line(fd), "b") == 0);
-
-	write(1,"3",1);
-	fd = open("../test/inputs/test_1_aa", O_RDONLY);
-	assert(strcmp(get_next_line(fd), "aa") == 0);
-
-	write(1,"4",1);
-	fd = open("../test/inputs/test_1_aa", O_RDONLY);
-	assert(strcmp(get_next_line_core(fd, 1), "aa") == 0);
-
-	write(1,"5",1);
-	fd = open("../test/inputs/test_3_a", O_RDONLY);
-	assert(strcmp(get_next_line_core(fd, 1), "a\n") == 0);
-	assert(strcmp(get_next_line_core(fd, 1), "b\n") == 0);
-	assert(strcmp(get_next_line_core(fd, 1), "c\n") == 0);
-
-	write(1,"6",1);
-	fd = open("../test/inputs/test_3_aaa", O_RDONLY);
-	assert(strcmp(get_next_line_core(fd, 5), "aaa\n") == 0);
-	assert(strcmp(get_next_line_core(fd, 5), "b\n") == 0);
-	assert(strcmp(get_next_line_core(fd, 5), "c\n") == 0);
-
-	// write(1,"7",1);
-	// fd = open("../test/inputs/test_empty", O_RDONLY);
-//	assert(get_next_line_core(fd, 5) == NULL);
-
-	printf("\nAll Green\n");
-
-/*
-	todo:
-		[ ] INTMAX 以上来た時にbuffersize +1だとオーバーフローする.size_tにcast
-		[ ] リーク
-
-*/
-
-	return (0);
-	// int	main(void)
-// {
-// 	int	index;//読み込み回数を確認する用
-// 	//static int i;
-// 	int	fd = open("test.txt", O_RDONLY);
-// 	printf("fd = %d\n", fd);
-
-// 	char	*receiver = NULL;
-// 	index = 0;
-// 	//printf("static=%d\n", i);//staticの初期値を調べている。デフォルトがある。
-// 	while (1){
-// 		receiver = get_next_line(fd);
-// 		if (!receiver){
-// 			printf("EOF or ERROR\n");
-// 			break ;
-// 		}
-// 		printf("[%d]%s", index, receiver);
-// 		index ++;
-// 		free(receiver);
-// 	}
-// 	system("leaks a.out");
-// 	close(fd);
-// }
+	char	*receiver = NULL;
+	index = 0;
+	//printf("static=%d\n", i);//staticの初期値を調べている。デフォルトがある。
+	while (1){
+		receiver = get_next_line(fd);
+		if (!receiver){
+			printf("EOF or ERROR\n");
+			break ;
+		}
+		printf("[%d]%s", index, receiver);
+		index ++;
+		free(receiver);
+	}
+	system("leaks a.out");
+	close(fd);
 }
+*/

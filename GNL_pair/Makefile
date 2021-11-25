@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/11/22 11:49:20 by takkatao         ###   ########.fr        #
+#    Updated: 2021/11/25 13:44:44 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,10 @@ OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.c=.o)))
 DEPENDS   		= $(OBJS:.o=.d)
 
 CC 				= gcc
-CFLAGS			= -Werror -Wall -Wextra -MMD -MP
+CFLAGS			= -Werror -Wall -Wextra -MMD -MP -D BUFFER_SIZE=1024
 DEGUB_CFLAGS	= -g3 -fsanitize=address fsanitize=leak
 RM				= /bin/rm -f
-INCLUDES 		= -I./includes -I../libft 
+INCLUDES 		= -I./includes
 
 
 .PHONY: all
@@ -49,10 +49,6 @@ fclean:clean
 
 .PHONY:re
 re:fclean all
-
-.PHONY:test
-test:$(OBJS)
-	g++ -std=c++11 ../libft/libft.a ./test/test_gnl.cpp -lgtest_main -lgtest $(OBJS) $(INCLUDES)&& ./a.out && $(RM) ./a.out
 
 .PHONY:submit
 submit:

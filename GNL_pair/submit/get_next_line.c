@@ -1,78 +1,131 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/22 11:42:07 by takkatao         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "get_next_line.h"
 
-char	*get_next_line_core(int fd, size_t buffer_size)
+int	file_read(t_gnl_status *status, t_gnl_status_var *status_var)
 {
-	char				*ans;
-	char				*tmp;
-	static t_gnl_status	status;
+	ssize_t	rc;
 
-	ans = NULL;
-	while (!status.is_find_nl)
+	if (status->buffer == NULL)
 	{
-		if (status.buffer == NULL)
+		status->next_n = 0;
+		status->buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
+		if (status->buffer == NULL)
+			return (-1);
+		rc = read(status_var->fd, status->buffer, BUFFER_SIZE);
+		if (rc <= 0)
 		{
-			status.buffer = (char *)ft_calloc(sizeof(char), (buffer_size + 1));
-			status.read_ret = read(fd, status.buffer, buffer_size);
-			status.index = 0;
+			free(status->buffer);
+			status->buffer = NULL;
+			if (rc == 0)
+				return (0);
+			return (-1);
 		}
-		if (status.read_ret <= 0)
-		{
-			free(status.buffer);
-			status.buffer = NULL;
-			if (status.ans_work != NULL && status.read_ret == 0)
-				ans = ft_strdup(status.ans_work);
-			break ;
-		}
-		status.first_n = ft_strchr(&status.buffer[status.index], '\n');
-		if (status.first_n != NULL)
-		{
-			*status.first_n = '\0';
-			status.ans_work = ft_strjoin(status.ans_work, &status.buffer[status.index]);
-			status.index = status.first_n - status.buffer + 1;
-			ans = ft_strdup(status.ans_work);
-			status.is_find_nl = true;
-		}
-		else
-		{
-			tmp = ft_strjoin(status.ans_work, &status.buffer[status.index]);
-			free(status.ans_work);
-			status.ans_work = tmp;
-			free(status.buffer);
-			status.buffer = NULL;
-		}
+		status->buffer[rc] = '\0';
 	}
-	free(status.ans_work);
-	status.ans_work = NULL;
-	status.is_find_nl = false;
-	return (ans);
+	return (1);
+}
+
+int	organizer(t_gnl_status *st, t_gnl_status_var *status_var)
+{
+	char					*tmp;
+
+	if (ft_strchr(&st->buffer[st->next_n], '\n'))
+	{
+		st->next_n = ft_strchr(&st->buffer[st->next_n], '\n') + 1 - st->buffer;
+		if (st->next_n == BUFFER_SIZE)
+		{
+			free(st->buffer);
+			st->buffer = NULL;
+		}
+		tmp = ft_strchr(status_var->ans, '\n') + 1;
+		*tmp = '\0';
+		return (0);
+	}
+	if (st->buffer[st->next_n] == '\0')
+	{
+		free(st->buffer);
+		free(status_var->ans);
+		status_var->ans = NULL;
+		return (0);
+	}
+	return (1);
+}
+
+int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
+{
+	int		ret;
+	char	*tmp;
+
+	ret = file_read(status, status_var);
+	if (ret < 0)
+		return (-1);
+	if (ret == 0)
+		return (0);
+	if (status_var->ans == NULL)
+		status_var->ans = ft_strdup("");
+	tmp = ft_strjoin(status_var->ans, &status->buffer[status->next_n]);
+	if (tmp == NULL)
+		return (-1);
+	free(status_var->ans);
+	status_var->ans = tmp;
+	ret = organizer(status, status_var);
+	if (ret == 0)
+		return (0);
+	free (status->buffer);
+	status->buffer = NULL;
+	return (1);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*ans;
-	size_t	buffer_size;
+	static t_gnl_status		status;
+	t_gnl_status_var		status_var;
+	int						ret;
 
-	buffer_size = BUFFER_SIZE;
-	ans = get_next_line_core(fd, buffer_size);
-	return (ans);
+	status_var.fd = fd;
+	status_var.ans = NULL;
+	while (true)
+	{
+		ret = loop_handler(&status, &status_var);
+		if (ret < 0)
+			break ;
+		if (ret == 0)
+			return (status_var.ans);
+	}
+	free(status.buffer);
+	status.buffer = NULL;
+	free(status_var.ans);
+	status_var.ans = NULL;
+	return (NULL);
 }
 
 /*
-int main(void)
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+
+int	main(void)
 {
-	get_next_line(0);
-	return (0);
+	int	index;//読み込み回数を確認する用
+	//static int i;
+	int	fd = open("test.txt", O_RDONLY);
+	printf("fd = %d\n", fd);
+
+	char	*receiver = NULL;
+	index = 0;
+	//printf("static=%d\n", i);//staticの初期値を調べている。デフォルトがある。
+	while (1){
+		receiver = get_next_line(fd);
+		if (!receiver){
+			printf("EOF or ERROR\n");
+			break ;
+		}
+		printf("[%d]%s", index, receiver);
+		index ++;
+		free(receiver);
+	}
+	system("leaks a.out");
+	close(fd);
 }
 */
