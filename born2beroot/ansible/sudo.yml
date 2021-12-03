@@ -4,21 +4,14 @@
   tasks:
     - name: Create a directory if it does not exist
       file:
-        path: /root/bin
+        path: /var/log/sudo
         state: directory
         mode: '0755'
         
     - name: copy file
       copy:
-        src: ./files/monitor.sh
-        dest: /root/bin/monitor.sh
+        src: ./files/sudo.cnf
+        dest: /etc/sudoers.d/sudocnf
         mode: 0755
         owner: root
         group: root
-
-    - name: create cronjob
-      cron:
-        name: "send monitoring message" 
-        minute: "*/10"
-        job: "/root/bin/monitor.sh"
-        # disabled: yes

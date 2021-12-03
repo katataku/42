@@ -1,0 +1,17 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+    - shell: "lsblk"
+      register: return_from_shell
+      
+    - name: show previous shell stdout
+      debug:
+        msg: "{{ return_from_shell.stdout }}"
+
+    - shell: "ufw status"
+      register: return_from_shell
+      
+    - name: show previous shell stdout
+      debug:
+        msg: "{{ return_from_shell.stdout }}"

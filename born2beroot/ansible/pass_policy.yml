@@ -1,0 +1,27 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+
+    - name: copy file
+      copy:
+        src: ./files/login.defs
+        dest: /etc/login.defs
+        mode: 0644
+        owner: root
+        group: root
+
+    - name: install libpam-pwquality
+      apt: 
+        name: libpam-pwquality
+
+    - name: copy file
+      copy:
+        src: ./files/common-password
+        dest: /etc/pam.d/common-password
+        mode: 0644
+        owner: root
+        group: root
+  
+    - shell: "pwunconv && pwconv"
+      register: return_from_shell

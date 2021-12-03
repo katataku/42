@@ -1,8 +1,0 @@
----
-- name: find all disk devices
-  find:
-    paths: /dev
-    file_type: any
-    patterns: "^sd[b-z]$"
-    use_regex: yes
-    register: found_devices

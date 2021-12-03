@@ -2,6 +2,14 @@
 - hosts: test_servers
   become: yes
   tasks:
+    - name: debug ansible_hostname
+      debug:
+        msg: "{{ansible_hostname}}"
+
     - name: Set a hostname
       ansible.builtin.hostname:
         name: takkatao42
+
+    - name: debug ansible_hostname
+      debug:
+        msg: "{{ansible_hostname}}"
