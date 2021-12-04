@@ -1,0 +1,7 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+    - name: Delay shutting down the remote node
+      community.general.shutdown:
+        delay: 10

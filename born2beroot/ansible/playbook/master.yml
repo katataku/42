@@ -1,0 +1,9 @@
+---
+- import_playbook: apps.yml
+- import_playbook: create-group.yml
+- import_playbook: create-user.yml
+- import_playbook: hostname.yml
+- import_playbook: pass_policy.yml
+- import_playbook: sudo.yml
+- import_playbook: ufw.yml
+- import_playbook: cron.yml

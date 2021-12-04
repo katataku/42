@@ -5,7 +5,7 @@
 
     - name: copy file
       copy:
-        src: ./files/login.defs
+        src: ../files/login.defs
         dest: /etc/login.defs
         mode: 0644
         owner: root
@@ -17,7 +17,7 @@
 
     - name: copy file
       copy:
-        src: ./files/common-password
+        src: ../files/common-password
         dest: /etc/pam.d/common-password
         mode: 0644
         owner: root

@@ -1,3 +1,0 @@
----
-- import_playbook: create-group.yml
-- import_playbook: create-user.yml

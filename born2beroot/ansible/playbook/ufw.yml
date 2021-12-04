@@ -16,15 +16,22 @@
       community.general.ufw:
         state: enabled
 
-    - name: Allow port range 22
+    - name: Allow port range 4242
       community.general.ufw:
         rule: allow
-        port: '22'
+        port: '4242'
         proto: tcp
 
     - name: Allow port range 8080
       community.general.ufw:
         rule: allow
         port: '8080'
+        proto: tcp
+        delete: yes
+
+    - name: Allow port range 22
+      community.general.ufw:
+        rule: allow
+        port: '22'
         proto: tcp
         delete: yes

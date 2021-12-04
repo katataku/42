@@ -10,7 +10,7 @@
         
     - name: copy file
       copy:
-        src: ./files/sudo.cnf
+        src: ../files/sudo.cnf
         dest: /etc/sudoers.d/sudocnf
         mode: 0755
         owner: root
