@@ -2,25 +2,31 @@
 - hosts: test_servers
   become: yes
   tasks:
-    - name: install apps
-      apt: 
-        name: ufw
+    # - name: install apps
+    #   apt: 
+    #     name: ufw
     
-    - name: started ufw
-      service:
-        name: ufw
-        enabled: yes
-        state: started
+    # - name: started ufw
+    #   service:
+    #     name: ufw
+    #     enabled: yes
+    #     state: started
 
-    - name: enable UFW
-      community.general.ufw:
-        state: enabled
+    # - name: enable UFW
+    #   community.general.ufw:
+    #     state: enabled
 
-    - name: Allow port range 4242
-      community.general.ufw:
-        rule: allow
-        port: '4242'
-        proto: tcp
+    # - name: Allow port range 4242
+    #   community.general.ufw:
+    #     rule: allow
+    #     port: '4242'
+    #     proto: tcp
+    #     delete: yes
+
+    # - name: Allow port range 4242
+    #   community.general.ufw:
+    #     rule: allow
+    #     port: '4242'
 
     - name: Allow port range 8080
       community.general.ufw:

@@ -4,5 +4,9 @@
   tasks:
   - name: create group
     group:  
-      name: "group42"
+      name: "user42"
+
+  - name: create group
+    group:  
+      name: "evaluating"
 

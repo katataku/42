@@ -1,3 +1,4 @@
 users:
-  - { name: 'user01', uid: 1001, group: 'users', password: "{{ 'pa'|password_hash('sha512','thisissalt') }}", update_password: 'on_create', comment: 'user01' }
-  - { name: 'user02', uid: 1002, group: 'users', password: "{{ 'pa'|password_hash('sha512','thisissalt') }}", update_password: 'on_create', comment: 'user02' }
+  - { name: 'user01', uid: 1001, group: 'users', password: "{{ 'Takumitakumitakum1'|password_hash('sha512','thisissalt') }}", update_password: 'on_create', comment: 'user01' }
+  - { name: 'user02', uid: 1002, group: 'users', password: "{{ 'Takumitakumitakum1'|password_hash('sha512','thisissalt') }}", update_password: 'on_create', comment: 'user02' }
+#  - { name: 'user02', uid: 2001, group: 'users, sudo, group42, evaluating', password: "{{ 'Takumitakumitakum1'|password_hash('sha512','thisissalt') }}", update_password: 'on_create', comment: 'user02' }

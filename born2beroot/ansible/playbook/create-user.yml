@@ -13,14 +13,14 @@
         shell: /bin/bash
       with_items:
         - "{{ users }}"
-      when: users #usersが1件以上の場合のみ実行
+      when: users #usersが1件以上の場合のみ実行ß
 
     - name: create takkatao
       user:
         name: 'takkatao'
-        groups: 'users, sudo, group42'
+        groups: 'users, sudo, user42'
 
-    - name: create testev1
+    - name: create kayumi
       user:
-        name: 'testev1'
-        groups: 'users, sudo, group42'
+        name: 'kayumi'
+        groups: 'users, sudo, user42, evaluating'

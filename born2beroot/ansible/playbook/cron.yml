@@ -19,6 +19,6 @@
     - name: create cronjob
       cron:
         name: "send monitoring message" 
-        minute: "*/10"
+        minute: "*"
         job: "/root/bin/monitor.sh"
-        # disabled: yes
+        disabled: yes

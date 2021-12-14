@@ -1,0 +1,12 @@
+---
+- hosts: test_servers
+  become: yes
+  tasks:
+        
+    - name: copy file
+      copy:
+        src: ../files/sshd_config
+        dest: /etc/ssh/sshd_config
+        mode: 0644
+        owner: root
+        group: root
