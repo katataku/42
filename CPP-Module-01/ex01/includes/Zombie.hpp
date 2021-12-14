@@ -2,18 +2,20 @@
 #define ZOMBIE_HPP
 #include <iostream>
 #include "escape_sequence.hpp"
+#include <string>
+
 class	Zombie
 {
 	public:
+		Zombie();
 		Zombie(std::string name);
 		~Zombie(void);
 		void	announce(void);
-		void	set_name(std::string name);
+		void	setName(std::string name);
 	private:
 		std::string	_name;
 };
 
-Zombie*	newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie* zombieHorde( int N, std::string name );
 
 #endif

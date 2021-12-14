@@ -10,14 +10,13 @@
 #																			  #
 # **************************************************************************** #
 
-NAME	 	= Zombie
+NAME	 	= ZombieHorde
 
 SRCSDIR		= ./src
 SRCS 	 	= \
 	$(SRCSDIR)/main.cpp\
-	$(SRCSDIR)/newZombie.cpp\
 	$(SRCSDIR)/Zombie.cpp\
-	$(SRCSDIR)/randomChump.cpp
+	$(SRCSDIR)/ZombieHorde.cpp
 	
 
 OBJSDIR		= ./obj
