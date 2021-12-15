@@ -15,13 +15,10 @@ void Karen::complain(std::string level)
 	{
 	case 1:
 		Karen::debug();
-		break;
 	case 2:
 		Karen::info();
-		break;
 	case 3:
 		Karen::warning();
-		break;
 	case 4:
 		Karen::error();
 		break;
