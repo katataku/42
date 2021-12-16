@@ -14,21 +14,22 @@ void Karen::complain(std::string level)
 	switch (idx)
 	{
 	case 1:
-		Karen::debug();
+		this->func = &Karen::debug;
 		break;
 	case 2:
-		Karen::info();
+		this->func = &Karen::info;
 		break;
 	case 3:
-		Karen::warning();
+		this->func = &Karen::warning;
 		break;
 	case 4:
-		Karen::error();
+		this->func = &Karen::error;
 		break;
 	default:
-		Karen::default_message();
+		this->func = &Karen::default_message;
 		break;
 	}
+	(this->*func)();
 }
 
 void Karen::default_message(void)

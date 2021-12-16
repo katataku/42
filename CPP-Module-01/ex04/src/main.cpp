@@ -27,7 +27,9 @@ int main(int argc, char **argv)
 	while (std::getline(ifs, line))
 	{
 		line = regex_replace(line, std::regex(before), after);
-		ofs << line << std::endl;
+		ofs << line;
+		if (!ifs.eof())
+			ofs << std::endl;
 	}
 	return (0);
 }

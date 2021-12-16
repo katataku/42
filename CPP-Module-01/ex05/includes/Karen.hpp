@@ -13,6 +13,7 @@ class Karen
 	void warning(void);
 	void error(void);
 	void default_message(void);
+	void (Karen::*func)(void);
 
   public:
 	Karen();
