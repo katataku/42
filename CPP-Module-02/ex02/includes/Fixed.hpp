@@ -1,7 +1,7 @@
 #ifndef FIXED_HPP
 #define FIXED_HPP
-#include <cmath>
 #include "escape_sequence.hpp"
+#include <cmath>
 #include <iostream>
 #include <string>
 #define EIGHT_BIT 256
@@ -19,21 +19,30 @@ class Fixed
 	Fixed(const float val);
 
 	Fixed &operator=(const Fixed &);
-	bool operator<(const Fixed &);
-	bool operator>(const Fixed &);
-	bool operator<=(const Fixed &);
-	bool operator>=(const Fixed &);
-	bool operator==(const Fixed &);
-	bool operator!=(const Fixed &);
-	
+	bool   operator<(const Fixed &);
+	bool   operator>(const Fixed &);
+	bool   operator<=(const Fixed &);
+	bool   operator>=(const Fixed &);
+	bool   operator==(const Fixed &);
+	bool   operator!=(const Fixed &);
+
+	Fixed &operator+(const Fixed &);
+	Fixed &operator-(const Fixed &);
+	Fixed &operator*(const Fixed &);
+	Fixed &operator/(const Fixed &);
+
+	Fixed &operator++();
+	Fixed  operator++(int);
 
 	int	 getRawBits(void) const;
 	void setRawBits(int const raw);
 
 	float toFloat(void) const;
 	int	  toInt(void) const;
-
+	static Fixed min(const Fixed &a, const Fixed &b);
+	static Fixed max(const Fixed &a, const Fixed &b);
 };
 
-std::ostream& operator<<(std::ostream& , const Fixed& );
+std::ostream &operator<<(std::ostream &, const Fixed &);
+
 #endif
