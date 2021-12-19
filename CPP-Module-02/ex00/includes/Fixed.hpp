@@ -4,7 +4,7 @@
 #include "escape_sequence.hpp"
 #include <iostream>
 #include <string>
-
+#define EIGHT_BIT 256
 class Fixed
 {
   private:
