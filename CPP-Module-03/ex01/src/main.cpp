@@ -15,4 +15,5 @@ int main(void)
 	C.attack("c");
 	D.takeDamage(10);
 	C.beRepaired(3);
+	C.guardGate();
 }

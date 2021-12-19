@@ -32,3 +32,8 @@ void ScavTrap::beRepaired(unsigned int amount)
 	std::cout << "ScavTrap " << name << " be repaired " << amount
 			  << " points of damege!" << std::endl;
 }
+
+void ScavTrap::guardGate()
+{
+	std::cout << "ScavTrap entered in the Gate keeper mode." << std::endl;
+}
