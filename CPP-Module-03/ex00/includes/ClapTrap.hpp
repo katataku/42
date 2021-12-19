@@ -4,7 +4,6 @@
 #include "escape_sequence.hpp"
 #include <iostream>
 #include <string>
-#define EIGHT_BIT 256
 class ClapTrap
 {
   private:
@@ -14,6 +13,7 @@ class ClapTrap
 	unsigned int attackDamage;
 
   public:
+  	ClapTrap();
 	ClapTrap(std::string name);
 	~ClapTrap();
 	ClapTrap(const ClapTrap &);

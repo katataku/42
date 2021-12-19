@@ -1,11 +1,16 @@
 #include "ClapTrap.hpp"
 
+ClapTrap::ClapTrap()
+{
+	ClapTrap("");
+}
+
 ClapTrap::ClapTrap(std::string name)
 	: name(name), hitpoints(10), energyPoints(10), attackDamage(0)
 {
 	std::cout << GREEN << "ClapTrap constructor" << RESET << std::endl;
-	std::cout << GREEN << "  " <<name <<" " << hitpoints <<" "<<energyPoints<<" "<<attackDamage<< RESET << std::endl;
-	
+	std::cout << GREEN << "  " << name << " " << hitpoints << " "
+			  << energyPoints << " " << attackDamage << RESET << std::endl;
 }
 ClapTrap::~ClapTrap()
 {
