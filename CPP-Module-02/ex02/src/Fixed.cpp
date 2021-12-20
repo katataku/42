@@ -84,23 +84,22 @@ bool Fixed::operator!=(const Fixed &f)
 
 Fixed &Fixed::operator+(const Fixed &f)
 {
-	setRawBits((this->toFloat() + f.toFloat()) / EIGHT_BIT);
+	setRawBits((this->toFloat() + f.toFloat()) * EIGHT_BIT);
 	return *this;
 }
 Fixed &Fixed::operator-(const Fixed &f)
 {
-	setRawBits((this->toFloat() - f.toFloat()) / EIGHT_BIT);
+	setRawBits((this->toFloat() - f.toFloat()) * EIGHT_BIT);
 	return *this;
 }
 Fixed &Fixed::operator*(const Fixed &f)
 {
-	long long tmp = (this->toFloat() * f.toFloat());
-	setRawBits(tmp * EIGHT_BIT);
+	setRawBits(this->toFloat() * f.toFloat() * EIGHT_BIT);
 	return *this;
 }
 Fixed &Fixed::operator/(const Fixed &f)
 {
-	setRawBits((this->toFloat() / f.toFloat()) / EIGHT_BIT);
+	setRawBits((this->toFloat() / f.toFloat()) * EIGHT_BIT);
 	return *this;
 }
 
@@ -113,6 +112,18 @@ Fixed Fixed::operator++(int)
 {
 	Fixed old = *this;
 	value++;
+	return old;
+}
+
+Fixed &Fixed::operator--()
+{
+	value--;
+	return *this;
+}
+Fixed Fixed::operator--(int)
+{
+	Fixed old = *this;
+	value--;
 	return old;
 }
 
