@@ -99,7 +99,13 @@ Fixed &Fixed::operator*(const Fixed &f)
 }
 Fixed &Fixed::operator/(const Fixed &f)
 {
-	setRawBits((this->toFloat() / f.toFloat()) * EIGHT_BIT);
+	if (f.getRawBits() == 0)
+	{
+		std::cout << "zero divide detected" << std::endl;
+	} else
+	{
+		setRawBits((this->toFloat() / f.toFloat()) * EIGHT_BIT);
+	}
 	return *this;
 }
 
