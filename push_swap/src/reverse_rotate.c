@@ -1,36 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/22 10:12:55 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/22 09:58:12 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_list **lst)
+void	rrotate(t_list **lst)
 {
-	void	*tmp;
+	t_list	*tmp;
+	int		i;
+	t_list	*tar;
 
-	if (*(lst) == NULL || (*(lst))->next == NULL)
-		return ;
-	tmp = (*(lst))->content;
-	(*(lst))->content = ((*(lst))->next)->content;
-	((*(lst))->next)->content = tmp;
+	tmp = ft_lstlast(*lst);
+	tar = *lst;
+	i = ftlstsize(lst);
+	while (i-- > 2)
+	{
+		tar = tar->next;
+	}
+	tar->next = NULL;
+	ft_lstadd_front((lst), tmp);
 }
 
-void	sa(t_stack *stack)
+void	rra(t_stack *stack)
 {
-	ft_putstr_fd("sa\n", 1);
-	swap(stack->lst_a);
+	ft_putstr_fd("rra\n", 1);
+	rrotate(stack->lst_a);
 }
 
-void	sb(t_stack *stack)
+void	rrb(t_stack *stack)
 {
-	ft_putstr_fd("sb\n", 1);
-	swap(stack->lst_b);
+	ft_putstr_fd("rrb\n", 1);
+	rrotate(stack->lst_b);
 }
+
+void	rrr(t_stack *stack)
+{
+	ft_putstr_fd("rrr\n", 1);
+	rrotate(stack->lst_a);
+	rrotate(stack->lst_b);
+}
+
