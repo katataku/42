@@ -1,6 +1,8 @@
 *
 !*/
 
+!push_swap/push_spwap_tester
+!push_swap_tester/
 !.gitignore
 !**.c
 !**.h
