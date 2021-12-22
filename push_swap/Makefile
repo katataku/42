@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/22 09:16:58 by takkatao         ###   ########.fr        #
+#    Updated: 2021/12/22 11:11:48 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS 	 	= \
 	$(SRCSDIR)/push.c\
 	$(SRCSDIR)/swap.c\
 	$(SRCSDIR)/rotate.c\
+	$(SRCSDIR)/reverse_rotate.c\
 	$(SRCSDIR)/init_utils.c\
 
 OBJSDIR		= ./obj
@@ -115,6 +116,6 @@ re:fclean all
 .PHONY:test
 test:$(NAME)
 	make
-	g++ -std=c++11 ./test/test_printf.cpp -lgtest_main -lgtest $(NAME) $(INCLUDES)&& ./a.out && $(RM) ./a.out
+	cd push_swap_tester && python3 push_swap_tester.py -l 100 -c 500 
 
 -include $(DEPENDS)

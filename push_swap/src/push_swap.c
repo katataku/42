@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/22 10:13:26 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/22 11:32:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@ int	get_top(t_list *lst)
 	return (ft_atoi(lst->content));
 }
 
+int	get_last(t_list *lst)
+{
+	return (ft_atoi((ft_lstlast(lst))->content));
+}
+
 int	get_sec(t_list *lst)
 {
 	return (ft_atoi((lst->next)->content));
@@ -24,24 +29,30 @@ int	get_sec(t_list *lst)
 
 void	push_swap(t_stack *stack)
 {
-	while (ft_lstsize(*(stack->lst_a)) > 2)
+	while (ft_lstsize(*(stack->lst_a)) > 0)
 	{
-		while (ft_lstsize(*(stack->lst_a)) > 1)
+		pb(stack);
+		if (ft_lstsize(*(stack->lst_b)) > 1)
 		{
-			if (get_top(*(stack->lst_a)) < get_sec(*(stack->lst_a)))
-				sa(stack);
+			if (get_top(*(stack->lst_b)) > get_sec(*(stack->lst_b)))
+				rb(stack);
+			else
+				sb(stack);
+		}
+	}
+	rb(stack);
+	while (ft_lstsize(*(stack->lst_b)) > 0)
+	{
+		pa(stack);
+		while (get_top(*(stack->lst_a)) < get_last(*(stack->lst_a)))
+		{
+			rra(stack);
 			pb(stack);
+			if (get_top(*(stack->lst_b)) > get_last(*(stack->lst_b)))
+				rrb(stack);
 		}
 		ra(stack);
-		ft_lstdelone(ft_lstlast(*(stack->lst_a)), free);
-		*(stack->lst_a) = NULL;
-		while (ft_lstsize(*(stack->lst_b)) > 0)
-			pa(stack);
 	}
-	if (get_top(*(stack->lst_a)) > get_sec(*(stack->lst_a)))
-		sa(stack);
-	ra(stack);
-	ra(stack);
 }
 
 int	main(int argc, char **argv)
