@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/22 09:58:36 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/23 09:24:02 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,13 @@ void	rotate(t_list **lst)
 {
 	t_list	*tmp;
 
-	tmp = *(lst);
-	*(lst) = (*(lst))->next;
-	tmp->next = NULL;
-	ft_lstadd_back((lst), tmp);
+	if (lst != NULL)
+	{
+		tmp = *(lst);
+		*(lst) = (*(lst))->next;
+		tmp->next = NULL;
+		ft_lstadd_back((lst), tmp);
+	}
 }
 
 void	ra(t_stack *stack)
