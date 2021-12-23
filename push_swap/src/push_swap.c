@@ -6,33 +6,21 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/22 11:32:57 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/23 09:28:16 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	get_top(t_list *lst)
+void	gnome_sort(t_stack *stack)
 {
-	return (ft_atoi(lst->content));
-}
+	int	init_lst_b_size;
 
-int	get_last(t_list *lst)
-{
-	return (ft_atoi((ft_lstlast(lst))->content));
-}
-
-int	get_sec(t_list *lst)
-{
-	return (ft_atoi((lst->next)->content));
-}
-
-void	push_swap(t_stack *stack)
-{
+	init_lst_b_size = ft_lstsize(*(stack->lst_b));
 	while (ft_lstsize(*(stack->lst_a)) > 0)
 	{
 		pb(stack);
-		if (ft_lstsize(*(stack->lst_b)) > 1)
+		if (ft_lstsize(*(stack->lst_b)) > 1 + init_lst_b_size)
 		{
 			if (get_top(*(stack->lst_b)) > get_sec(*(stack->lst_b)))
 				rb(stack);
@@ -41,36 +29,57 @@ void	push_swap(t_stack *stack)
 		}
 	}
 	rb(stack);
-	while (ft_lstsize(*(stack->lst_b)) > 0)
+	while (ft_lstsize(*(stack->lst_b)) > init_lst_b_size)
 	{
 		pa(stack);
 		while (get_top(*(stack->lst_a)) < get_last(*(stack->lst_a)))
 		{
 			rra(stack);
 			pb(stack);
-			if (get_top(*(stack->lst_b)) > get_last(*(stack->lst_b)))
-				rrb(stack);
 		}
 		ra(stack);
 	}
+	ft_lstclear(stack->lst_a, free);
+	stack->lst_a = (t_list**)ft_calloc(1, sizeof(t_list*));
 }
 
-int	main(int argc, char **argv)
-{
-	int		i;
-	t_stack	*stack;
-	char	**arg_list;
 
-	stack = init_stack();
-	arg_list = init_arg_list(argc, argv);
-	if (stack == NULL || arg_list == NULL)
+void	push_swap(t_stack *stack)
+{
+	int	low_num;
+	int	init_lst_b_size;
+
+	low_num = 0;
+	init_lst_b_size = ft_lstsize(*(stack->lst_b));
+	if (ft_lstsize(*(stack->lst_a)) < 400)
 	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
+		return (gnome_sort(stack));
 	}
-	i = -1;
-	while (arg_list[++i] != NULL)
-		ft_lstadd_back((stack->lst_a), ft_lstnew(arg_list[i]));
+	while (ft_lstsize(*(stack->lst_a)) > 0)
+	{
+		pb(stack);
+		if (ft_lstsize(*(stack->lst_b)) - init_lst_b_size > 1)
+		{
+			if (get_top(*(stack->lst_b)) > get_sec(*(stack->lst_b)))
+				rb(stack);
+			else
+			{
+				low_num++;
+				sb(stack);
+			}
+		}
+	}
+	rb(stack);
+	while (low_num-- > 0)
+		pa(stack);
 	push_swap(stack);
-	return (0);
+	rrb(stack);
+	pa(stack);
+	ra(stack);
+	while (ft_lstsize(*(stack->lst_b)) > init_lst_b_size)
+	{
+		rrb(stack);
+		pa(stack);
+	}	
+	push_swap(stack);
 }

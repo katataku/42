@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/22 11:11:48 by takkatao         ###   ########.fr        #
+#    Updated: 2021/12/23 07:30:27 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,9 @@ SRCS 	 	= \
 	$(SRCSDIR)/swap.c\
 	$(SRCSDIR)/rotate.c\
 	$(SRCSDIR)/reverse_rotate.c\
-	$(SRCSDIR)/init_utils.c\
+	$(SRCSDIR)/main.c\
+	$(SRCSDIR)/utils_lst.c\
+	
 
 OBJSDIR		= ./obj
 OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.c=.o)))
