@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/23 09:24:02 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 17:37:14 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,19 @@ void	rotate(t_list **lst)
 
 void	ra(t_stack *stack)
 {
-	ft_putstr_fd("ra\n", 1);
+	ft_lstadd_back(stack->lst_ans, ft_lstnew("ra"));
 	rotate(stack->lst_a);
 }
 
 void	rb(t_stack *stack)
 {
-	ft_putstr_fd("rb\n", 1);
+	ft_lstadd_back(stack->lst_ans, ft_lstnew("rb"));
 	rotate(stack->lst_b);
 }
 
 void	rr(t_stack *stack)
 {
-	ft_putstr_fd("rr\n", 1);
+	ft_lstadd_back(stack->lst_ans, ft_lstnew("rr"));
 	rotate(stack->lst_a);
 	rotate(stack->lst_b);
 }
