@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 10:28:01 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 14:00:10 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,11 @@ void	push_swap(t_stack *stack)
 {
 	int	low_num;
 	int	high_num;
-	int	init_lst_b_size;
 	int	i;
+	int	tmp;
 
 	low_num = 0;
 	high_num = 0;
-	init_lst_b_size = ft_lstsize(*(stack->lst_b));
 	i = stack->a_hight;
 	//少ない時はsize_mini
 	if (i < 4)
@@ -122,17 +121,25 @@ void	push_swap(t_stack *stack)
 	while (i-- > 0)
 		rra(stack);
 	pa(stack);
+	//lowの対応
 	i = low_num;
-	while (i-- > 0)
+	tmp = stack->a_hight;
+	if (i > 3)
 	{
-		pa(stack);
+		//lowをaのtopに戻す
+		while (i-- > 0)
+		{
+			pa(stack);
+		}
+		stack->a_hight = low_num;
+		push_swap(stack);
 	}
-	int	tmp = stack->a_hight;
-	stack->a_hight = low_num;
-	push_swap(stack);
-	stack->a_hight = tmp - low_num-1;
+	else
+	{
+		size_mini(stack);
+	}
+	stack->a_hight = tmp - low_num - 1;
 	ra(stack);
-
-	if (stack->a_hight>0)
+	if (stack->a_hight > 0)
 		push_swap(stack);
 }
