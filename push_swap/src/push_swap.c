@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 14:00:10 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 14:22:55 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +101,10 @@ void	push_swap(t_stack *stack)
 	}
 	//多い時
 	//highとlowに分割。lowはbに。
-	while (i-- > 1)
+	int key = get_top(*(stack->lst_a));
+	while (i-- > 0)
 	{
-		sa(stack);
-		if (get_top(*(stack->lst_a)) < get_sec(*(stack->lst_a)))
+		if (get_top(*(stack->lst_a)) < key)
 		{
 			low_num++;
 			pb(stack);
@@ -117,10 +117,8 @@ void	push_swap(t_stack *stack)
 	}
 	//highはaのtopに戻す
 	i = high_num;
-	pb(stack);
 	while (i-- > 0)
 		rra(stack);
-	pa(stack);
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;
