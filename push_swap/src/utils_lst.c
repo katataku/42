@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 17:38:11 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 19:57:43 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,13 +106,19 @@ void	ft_lstdel_lastone(t_list **lst, void (*del)(void*))
 
 void lst_ans_compose(t_list **lst)
 {
-	while (*lst != NULL)
+	t_list	*tar = *lst;
+	
+	while (tar != NULL && tar->next != NULL && tar->next->next != NULL && tar->next->next->next != NULL)
 	{
-		if (ft_strncmp((*lst)->content, "ra", 3) && ft_strncmp((*lst)->next->content,"rra", 3))
+		if ((ft_strncmp(tar->next->content, "ra", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "rra", 3) == 0)||
+			(ft_strncmp(tar->next->content, "pa", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "pb", 3) == 0))
 		{
-			(*lst)->next = (*lst)->next->next->next;
+			tar->next = tar->next->next->next;
+			tar = *lst;
+			continue ;
 		}
-		else
-			*lst = (*lst)->next;
+		tar = tar->next;
 	}
 }
