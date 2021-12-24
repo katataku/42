@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 20:10:04 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/25 06:02:31 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,6 @@ void	sort_mini(t_stack *stack)
 			&& get_sec(*(stack->lst_b)) < get_third(*(stack->lst_b)))
 			rb(stack);
 	}
-	// if (ft_lstsize(*(stack->lst_b)) > 3 && get_sec(*(stack->lst_b)) < 7)
-	// {
-	// 	while (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
-	// 		rb(stack);
-	// 	pa(stack);
-	// 	sort_mini(stack);
-	// 	pb(stack);
-	// }
 }
 
 void	size_mini(t_stack *stack)
@@ -101,7 +93,6 @@ void	size_mini(t_stack *stack)
 	{
 		pa(stack);
 		ra(stack);
-		// ft_lstdel_lastone(stack->lst_a, free);
 	}
 }
 
@@ -111,7 +102,7 @@ void	push_swap(t_stack *stack)
 	int	high_num;
 	int	i;
 	int	tmp;
-	int mini_size_limit;
+	int	mini_size_limit;
 
 	mini_size_limit = 10;
 	low_num = 0;
@@ -153,9 +144,12 @@ void	push_swap(t_stack *stack)
 		}
 	}
 	//highはaのtopに戻す
-	i = high_num;
-	while (i-- > 0)
-		rra(stack);
+	if (low_num + high_num != ft_lstsize(*(stack->lst_a)) + ft_lstsize(*(stack->lst_b)))
+	{
+		i = high_num;
+		while (i-- > 0)
+			rra(stack);
+	}
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;

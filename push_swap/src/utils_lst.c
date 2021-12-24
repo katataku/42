@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 19:57:43 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/25 05:56:05 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,20 @@ int	get_min(t_list *lst)
 		lst = lst->next;
 	}
 	return (min);
+}
+
+int	get_max(t_list *lst)
+{
+	int	max;
+
+	max = INT_MIN;
+	while (lst != NULL)
+	{
+		if (max < ft_atoi(lst->content))
+			max = ft_atoi(lst->content);
+		lst = lst->next;
+	}
+	return (max);
 }
 
 
