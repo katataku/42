@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 14:22:55 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 16:40:06 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,28 @@ void	sort_mini(t_stack *stack)
 			&& get_sec(*(stack->lst_b)) < get_third(*(stack->lst_b)))
 			rb(stack);
 	}
-
 }
 
 void	size_mini(t_stack *stack)
 {
-
+	while (ft_lstsize(*(stack->lst_b)) > 3)
+	{
+		while (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
+		{
+			if (get_top(*(stack->lst_b)) < get_sec(*(stack->lst_b)))
+				sb(stack);
+			rb(stack);
+		}
+		pa(stack);
+		if (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
+		{
+			if (get_top(*(stack->lst_b)) < get_sec(*(stack->lst_b)))
+				sb(stack);
+			rr(stack);
+		}
+		else
+			ra(stack);
+	}
 	sort_mini(stack);
 	while (ft_lstsize(*(stack->lst_b)) > 0)
 	{
@@ -87,12 +103,14 @@ void	push_swap(t_stack *stack)
 	int	high_num;
 	int	i;
 	int	tmp;
+	int mini_size_limit;
 
+	mini_size_limit = 10;
 	low_num = 0;
 	high_num = 0;
 	i = stack->a_hight;
 	//少ない時はsize_mini
-	if (i < 4)
+	if (i < mini_size_limit)
 	{
 		while (i-- > 0)
 			pb(stack);
@@ -104,6 +122,17 @@ void	push_swap(t_stack *stack)
 	int key = get_top(*(stack->lst_a));
 	while (i-- > 0)
 	{
+		tmp = i;
+		t_list	*tmp_lst = *(stack->lst_a);
+		while (tmp-- > 0)
+		{
+			if (ft_atoi(tmp_lst->content) >= key)
+				tmp_lst = tmp_lst->next;
+			else
+				break ;
+			if (tmp_lst == NULL)
+				i = 0;
+		}
 		if (get_top(*(stack->lst_a)) < key)
 		{
 			low_num++;
@@ -122,7 +151,7 @@ void	push_swap(t_stack *stack)
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;
-	if (i > 3)
+	if (i > mini_size_limit)
 	{
 		//lowをaのtopに戻す
 		while (i-- > 0)
