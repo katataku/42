@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/25 06:02:31 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/25 08:43:23 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	gnome_sort(t_stack *stack)
 	}
 }
 
-void	sort_mini(t_stack *stack)
+void	sort_mini_b(t_stack *stack)
 {
 	if (ft_lstsize(*(stack->lst_b)) == 2)
 	{
@@ -75,7 +75,10 @@ void	size_mini(t_stack *stack)
 		while (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
 		{
 			if (get_top(*(stack->lst_b)) < get_sec(*(stack->lst_b)))
+			{
 				sb(stack);
+				rb(stack);
+			}
 			rb(stack);
 		}
 		pa(stack);
@@ -88,7 +91,7 @@ void	size_mini(t_stack *stack)
 		else
 			ra(stack);
 	}
-	sort_mini(stack);
+	sort_mini_b(stack);
 	while (ft_lstsize(*(stack->lst_b)) > 0)
 	{
 		pa(stack);
@@ -140,6 +143,8 @@ void	push_swap(t_stack *stack)
 		else
 		{
 			high_num++;
+			if (tmp > 1 && get_top(*(stack->lst_a)) > get_sec(*(stack->lst_a)) && get_sec(*(stack->lst_a)) > key)
+				sa(stack);
 			ra(stack);
 		}
 	}
