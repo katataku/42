@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_utils.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/23 06:55:42 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 09:22:33 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	main(int argc, char **argv)
 	i = -1;
 	while (arg_list[++i] != NULL)
 		ft_lstadd_back((stack->lst_a), ft_lstnew(arg_list[i]));
+	stack->a_hight = ft_lstsize(*stack->lst_a);
+	stack->b_hight = ft_lstsize(*stack->lst_b);
 	push_swap(stack);
 	return (0);
 }

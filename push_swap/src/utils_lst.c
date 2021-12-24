@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/23 09:22:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 09:52:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	get_sec(t_list *lst)
 	return (ft_atoi((lst->next)->content));
 }
 
+int	get_third(t_list *lst)
+{
+	return (ft_atoi((lst->next)->next->content));
+}
+
 void	print_lst(t_list *lst)
 {
 	while (lst != NULL)
@@ -37,4 +42,38 @@ void	print_lst(t_list *lst)
 		lst = lst->next;
 	}
 	ft_putchar_fd('\n', 1);
+}
+
+void print_stack(t_stack *stack)
+{
+	ft_putstr_fd("lst_a:", 1);
+	print_lst(*(stack->lst_a));
+	ft_putstr_fd("lst_b:", 1);
+	print_lst(*(stack->lst_b));
+	ft_putstr_fd("high_a:", 1);
+	ft_putnbr_fd(stack->a_hight,1);
+	ft_putstr_fd("\nhigh_b:", 1);
+	ft_putnbr_fd(stack->b_hight,1);
+	ft_putstr_fd("\n", 1);
+	
+
+}
+
+void	ft_lstdel_lastone(t_list **lst, void (*del)(void*))
+{
+	t_list	*pre;
+
+	pre = NULL;
+	if (*lst != NULL)
+	{
+		while ((*lst)->next != NULL)
+		{
+			pre = *lst;
+			*lst = (*lst)->next;
+		}
+		if (pre != NULL)
+			pre->next = NULL;
+		ft_lstdelone(*lst, del);
+		*lst = NULL;
+	}
 }

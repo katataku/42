@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/22 17:35:59 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/24 10:06:40 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,18 @@ void	rrotate(t_list **lst)
 	int		i;
 	t_list	*tar;
 
-	tmp = ft_lstlast(*lst);
-	tar = *lst;
 	i = ft_lstsize(*lst);
-	while (i-- > 2)
+	if (i > 1)
 	{
-		tar = tar->next;
+		tmp = ft_lstlast(*lst);
+		tar = *lst;
+		while (i-- > 2)
+		{
+			tar = tar->next;
+		}
+		tar->next = NULL;
+		ft_lstadd_front((lst), tmp);
 	}
-	tar->next = NULL;
-	ft_lstadd_front((lst), tmp);
 }
 
 void	rra(t_stack *stack)
