@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/25 09:06:15 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/26 05:21:36 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,14 +202,19 @@ void	push_swap(t_stack *stack)
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;
+	int tmp_low = get_min(*(stack->lst_b));
 	if (i > mini_size_limit)
 	{
 		//lowをaのtopに戻す
 		while (i-- > 0)
 		{
 			pa(stack);
+			if (get_top(*(stack->lst_a)) == tmp_low)
+			{
+				ra(stack);
+			}
 		}
-		stack->a_hight = low_num;
+		stack->a_hight = low_num - 1;
 		push_swap(stack);
 	}
 	else
