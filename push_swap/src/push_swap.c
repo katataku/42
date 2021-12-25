@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/26 05:21:36 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/26 06:43:03 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,18 +89,16 @@ void	sort_mini_b(t_stack *stack)
 	{
 		while (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
 		{
-			if (get_top(*(stack->lst_b)) < get_sec(*(stack->lst_b)))
+			if (get_last(*(stack->lst_b)) == get_min(*(stack->lst_b)))
 			{
-				sb(stack);
-				rb(stack);
+				rrb(stack);
 			}
-			rb(stack);
+			else
+				rb(stack);
 		}
 		pa(stack);
 		if (get_top(*(stack->lst_b)) != get_min(*(stack->lst_b)))
 		{
-			if (get_top(*(stack->lst_b)) < get_sec(*(stack->lst_b)))
-				sb(stack);
 			rr(stack);
 		}
 		else
@@ -202,19 +200,27 @@ void	push_swap(t_stack *stack)
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;
-	int tmp_low = get_min(*(stack->lst_b));
 	if (i > mini_size_limit)
 	{
 		//lowをaのtopに戻す
-		while (i-- > 0)
+		stack->a_hight = 0;
+		while (ft_lstsize(*(stack->lst_b)) > 15)
 		{
-			pa(stack);
-			if (get_top(*(stack->lst_a)) == tmp_low)
+			int key = get_last(*(stack->lst_b));
+			while (get_top(*(stack->lst_b)) != key)
 			{
-				ra(stack);
+				if (get_top(*(stack->lst_b)) > key)
+				{
+					stack->a_hight++;
+					pa(stack);
+				}
+				else
+				{
+					rb(stack);
+				}
 			}
 		}
-		stack->a_hight = low_num - 1;
+		sort_mini_b(stack);
 		push_swap(stack);
 	}
 	else

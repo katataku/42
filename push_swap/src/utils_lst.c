@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/25 08:55:25 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/26 06:40:33 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ int	get_max(t_list *lst)
 	}
 	return (max);
 }
+
+
 
 int	is_sorted(t_list *lst)
 {
@@ -138,12 +140,20 @@ void lst_ans_compose(t_list **lst)
 {
 	t_list	*tar = *lst;
 	
-	while (tar != NULL && tar->next != NULL && tar->next->next != NULL && tar->next->next->next != NULL)
+	while (tar != NULL && tar->next != NULL && tar->next->next != NULL)
 	{
 		if ((ft_strncmp(tar->next->content, "ra", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rra", 3) == 0)||
-			(ft_strncmp(tar->next->content, "pa", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "pb", 3) == 0))
+			&& ft_strncmp(tar->next->next->content, "rra", 3) == 0)
+			|| (ft_strncmp(tar->next->content, "rra", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "ra", 3) == 0)
+			|| (ft_strncmp(tar->next->content, "rb", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "rrb", 3) == 0)
+			|| (ft_strncmp(tar->next->content, "rrb", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "rb", 3) == 0)
+			|| (ft_strncmp(tar->next->content, "pa", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "pb", 3) == 0)
+			|| (ft_strncmp(tar->next->content, "pb", 3) == 0 \
+			&& ft_strncmp(tar->next->next->content, "pa", 3) == 0))
 		{
 			tar->next = tar->next->next->next;
 			tar = *lst;
@@ -151,4 +161,53 @@ void lst_ans_compose(t_list **lst)
 		}
 		tar = tar->next;
 	}
+}
+
+
+int get_avg(t_list **lst)
+{
+	t_list	*tar = *lst;
+	int		sum = 0;
+	int		cnt = 0;
+	
+	while (tar != NULL)
+	{
+		if (ft_atoi(tar->content) == get_min(*lst))
+			break ;
+		sum += ft_atoi(tar->content);
+		tar = tar->next;
+		cnt++;
+	}
+	return (sum / cnt);
+}
+
+
+int	get_next(t_stack *stack)
+{
+	t_list *cur;
+	int ans;
+	t_list *tmp;
+	int	min;
+
+	cur = *(stack->lst_a);
+	min = get_min(*(stack->lst_a));
+	if (min > get_min(*(stack->lst_b)))
+		min = get_min(*(stack->lst_b));
+	while (cur != NULL && ft_atoi(cur->content) != min)
+		cur = cur->next;
+	while (cur != NULL)
+	{
+		if (cur->next == NULL || ft_atoi(cur->content) > ft_atoi(cur->next->content))
+			break ;
+		cur = cur->next;
+	}
+	tmp = *(stack->lst_b);
+	ans = ft_atoi(tmp->content);
+	while (tmp != NULL)
+	{
+		if (ft_atoi(tmp->content) > ft_atoi(cur->content) && ft_atoi(tmp->content) < ans)
+			ans = ft_atoi(tmp->content);
+		tmp = tmp->next;
+	}
+	return (ans);
 }
