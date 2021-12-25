@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 19:38:54 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/25 08:50:34 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,10 @@ int	main(int argc, char **argv)
 		ft_lstadd_back((stack->lst_a), ft_lstnew(arg_list[i]));
 	stack->a_hight = ft_lstsize(*stack->lst_a);
 	stack->b_hight = ft_lstsize(*stack->lst_b);
-	push_swap(stack);
+	if (stack->a_hight < 7)
+		sort_mini_a(stack);
+	else
+		push_swap(stack);
 	lst_ans_compose((stack->lst_ans));
 	print_lst_str(*(stack->lst_ans));
 	return (0);
