@@ -6,31 +6,52 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/26 06:40:33 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 04:39:51 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+
+int	getter(t_list *lst, int i)
+{
+	if (i == 0)
+	{
+		return (ft_atoi(lst->content));
+	}
+	if (i > 0)
+		return (getter(lst->next, i - 1));
+	return (getter(lst, ft_lstsize(lst) + i));
+}
+
+int	find(t_list *lst, int i)
+{
+	if (lst == NULL)
+		return (0);
+	if (ft_atoi(lst->content) == i)
+		return (0);
+	return (1 + find(lst->next, i));
+}
+
 int	get_top(t_list *lst)
 {
 	assert(lst != NULL);
-	return (ft_atoi(lst->content));
+	return (getter(lst, 0));
 }
 
 int	get_last(t_list *lst)
 {
-	return (ft_atoi((ft_lstlast(lst))->content));
+	return (getter(lst, -1));
 }
 
 int	get_sec(t_list *lst)
 {
-	return (ft_atoi((lst->next)->content));
+	return (getter(lst, 1));
 }
 
 int	get_third(t_list *lst)
 {
-	return (ft_atoi((lst->next)->next->content));
+	return (getter(lst, 2));
 }
 
 int	get_min(t_list *lst)
@@ -180,7 +201,6 @@ int get_avg(t_list **lst)
 	}
 	return (sum / cnt);
 }
-
 
 int	get_next(t_stack *stack)
 {
