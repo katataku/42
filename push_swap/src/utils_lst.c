@@ -6,12 +6,11 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 04:39:51 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:42:01 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
 
 int	getter(t_list *lst, int i)
 {
@@ -82,8 +81,6 @@ int	get_max(t_list *lst)
 	return (max);
 }
 
-
-
 int	is_sorted(t_list *lst)
 {
 	int	cur;
@@ -99,98 +96,15 @@ int	is_sorted(t_list *lst)
 	return (1);
 }
 
-
-void	print_lst_int(t_list *lst)
+int	get_avg(t_list **lst)
 {
-	while (lst != NULL)
-	{
-		assert(lst->content != NULL);
-		ft_putnbr_fd(ft_atoi(lst->content), 1);
-		ft_putstr_fd(" ", 1);
-		lst = lst->next;
-	}
-	ft_putchar_fd('\n', 1);
-}
-void	print_lst_str(t_list *lst)
-{
-	while (lst != NULL)
-	{
-		assert(lst->content != NULL);
-		ft_putstr_fd((lst->content), 1);
-		ft_putstr_fd("\n", 1);
-		lst = lst->next;
-	}
-//	ft_putchar_fd('\n', 1);
-}
+	t_list	*tar;
+	int		sum;
+	int		cnt;
 
-void print_stack(t_stack *stack)
-{
-	ft_putstr_fd("lst_a:", 1);
-	print_lst_int(*(stack->lst_a));
-	ft_putstr_fd("lst_b:", 1);
-	print_lst_int(*(stack->lst_b));
-	ft_putstr_fd("high_a:", 1);
-	ft_putnbr_fd(stack->a_hight,1);
-	ft_putstr_fd("\nhigh_b:", 1);
-	ft_putnbr_fd(stack->b_hight,1);
-	ft_putstr_fd("\n", 1);
-	ft_putstr_fd("lst_ans:", 1);
-	print_lst_str(*(stack->lst_ans));
-}
-
-void	ft_lstdel_lastone(t_list **lst, void (*del)(void*))
-{
-	t_list	*pre;
-
-	pre = NULL;
-	if (*lst != NULL)
-	{
-		while ((*lst)->next != NULL)
-		{
-			pre = *lst;
-			*lst = (*lst)->next;
-		}
-		if (pre != NULL)
-			pre->next = NULL;
-		ft_lstdelone(*lst, del);
-		*lst = NULL;
-	}
-}
-
-void lst_ans_compose(t_list **lst)
-{
-	t_list	*tar = *lst;
-	
-	while (tar != NULL && tar->next != NULL && tar->next->next != NULL)
-	{
-		if ((ft_strncmp(tar->next->content, "ra", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rra", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "rra", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "ra", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "rb", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rrb", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "rrb", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rb", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "pa", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "pb", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "pb", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "pa", 3) == 0))
-		{
-			tar->next = tar->next->next->next;
-			tar = *lst;
-			continue ;
-		}
-		tar = tar->next;
-	}
-}
-
-
-int get_avg(t_list **lst)
-{
-	t_list	*tar = *lst;
-	int		sum = 0;
-	int		cnt = 0;
-	
+	tar = *lst;
+	sum = 0;
+	cnt = 0;
 	while (tar != NULL)
 	{
 		if (ft_atoi(tar->content) == get_min(*lst))
@@ -204,10 +118,10 @@ int get_avg(t_list **lst)
 
 int	get_next(t_stack *stack)
 {
-	t_list *cur;
-	int ans;
-	t_list *tmp;
-	int	min;
+	t_list	*cur;
+	int		ans;
+	t_list	*tmp;
+	int		min;
 
 	cur = *(stack->lst_a);
 	min = get_min(*(stack->lst_a));
@@ -217,7 +131,8 @@ int	get_next(t_stack *stack)
 		cur = cur->next;
 	while (cur != NULL)
 	{
-		if (cur->next == NULL || ft_atoi(cur->content) > ft_atoi(cur->next->content))
+		if (cur->next == NULL
+			|| ft_atoi(cur->content) > ft_atoi(cur->next->content))
 			break ;
 		cur = cur->next;
 	}
@@ -225,9 +140,21 @@ int	get_next(t_stack *stack)
 	ans = ft_atoi(tmp->content);
 	while (tmp != NULL)
 	{
-		if (ft_atoi(tmp->content) > ft_atoi(cur->content) && ft_atoi(tmp->content) < ans)
+		if (ft_atoi(tmp->content) > ft_atoi(cur->content)
+			&& ft_atoi(tmp->content) < ans)
 			ans = ft_atoi(tmp->content);
 		tmp = tmp->next;
 	}
 	return (ans);
+}
+
+void	moven_atob(t_stack *stack, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < n)
+	{
+		pb(stack);
+	}
 }

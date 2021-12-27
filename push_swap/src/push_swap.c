@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 05:05:19 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 14:42:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,56 +134,33 @@ void	push_swap(t_stack *stack)
 	int	i;
 	int	tmp;
 	int	key;
+	t_list	*tmp_lst;
 
-	low_num = 0;
-	high_num = 0;
-	i = stack->a_hight;
 	if (is_sorted(*(stack->lst_a)) && ft_lstsize(*(stack->lst_b)) == 0)
 		return ;
 	//少ない時はsize_mini
-	if (i < MINI_SIZE_LIMIT)
+	if (stack->a_hight < MINI_SIZE_LIMIT)
 	{
-		while (i-- > 0)
-			pb(stack);
-		size_mini(stack);
-		return ;
+		pb_n(stack, stack->a_hight);
+		return (size_mini(stack));
 	}
-	//多い時
-	//highとlowに分割。lowはbに。
+	low_num = 0;
+	high_num = 0;
+	i = stack->a_hight;
 	key = get_top(*(stack->lst_a));
 	while (i-- > 0)
 	{
-		tmp = i;
-		t_list	*tmp_lst = *(stack->lst_a);
-		while (tmp-- > 0)
-		{
-			if (ft_atoi(tmp_lst->content) >= key)
-				tmp_lst = tmp_lst->next;
-			else
-				break ;
-			if (tmp_lst == NULL)
-				i = 0;
-		}
-		if (get_top(*(stack->lst_a)) < key)
+		tmp_lst = *(stack->lst_a);
+		if (getter(*(stack->lst_a), 0) < key)
 		{
 			low_num++;
 			pb(stack);
+			continue ;
 		}
-		else
-		{
-			high_num++;
-			if (tmp > 1 && get_top(*(stack->lst_a)) > get_sec(*(stack->lst_a)) && get_sec(*(stack->lst_a)) > key)
-				sa(stack);
-			ra(stack);
-		}
+		high_num++;
+		ra(stack);
 	}
-	//highはaのtopに戻す
-	if (low_num + high_num != ft_lstsize(*(stack->lst_a)) + ft_lstsize(*(stack->lst_b)))
-	{
-		i = high_num;
-		while (i-- > 0)
-			rra(stack);
-	}
+	rra_n(stack, high_num);
 	//lowの対応
 	i = low_num;
 	tmp = stack->a_hight;

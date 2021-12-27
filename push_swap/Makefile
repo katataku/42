@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/26 06:15:52 by takkatao         ###   ########.fr        #
+#    Updated: 2021/12/27 13:23:58 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRCS 	 	= \
 	$(SRCSDIR)/reverse_rotate.c\
 	$(SRCSDIR)/main.c\
 	$(SRCSDIR)/utils_lst.c\
+	$(SRCSDIR)/utils_print.c\
 	
 
 OBJSDIR		= ./obj

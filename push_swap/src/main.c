@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 04:57:23 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:28:39 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ t_stack	*init_stack(void)
 	(stack->lst_b) = (t_list **) malloc(sizeof(t_list *));
 	(stack->lst_ans) = (t_list **) malloc(sizeof(t_list *));
 	stack->str_pa = "pa\n";
-	if ((stack->lst_a) == NULL || (stack->lst_b) == NULL || (stack->lst_ans) == NULL)
+	if ((stack->lst_a) == NULL \
+		|| (stack->lst_b) == NULL || (stack->lst_ans) == NULL)
 	{
 		ft_putstr_fd("Error\n", 2);
 		exit (1);

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 17:37:05 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:43:48 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,15 @@ void	pb(t_stack *stack)
 {
 	ft_lstadd_back(stack->lst_ans, ft_lstnew("pb"));
 	push(stack->lst_a, stack->lst_b);
+}
+
+void	pb_n(t_stack *stack, int n)
+{
+	int	i;
+
+	i = 0;
+	while (i++ < n)
+	{
+		pb(stack);
+	}
 }

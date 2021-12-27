@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 04:56:27 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 13:49:15 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,7 @@ void	sort_mini_a(t_stack *stack);
 int	is_sorted(t_list *lst);
 int get_avg(t_list **lst);
 int	find(t_list *lst, int i);
+int	getter(t_list *lst, int i);
+void	pb_n(t_stack *stack, int n);
+void	rra_n(t_stack *stack, int n);
 #endif
