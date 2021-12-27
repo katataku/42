@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 18:45:53 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/05 14:24:44 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 17:15:30 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t n)
 {
-	if (dst == src || n == 0 )
+	if (dst == src || n == 0)
 		return (dst);
 	while (src < dst && dst <= src + n)
 	{

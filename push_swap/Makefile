@@ -6,21 +6,25 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/27 13:23:58 by takkatao         ###   ########.fr        #
+#    Updated: 2021/12/27 17:14:08 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	 	= push_swap
 SRCSDIR		= ./src
 SRCS 	 	= \
-	$(SRCSDIR)/push_swap.c\
+	$(SRCSDIR)/logic_large.c\
+	$(SRCSDIR)/logic_mini.c\
 	$(SRCSDIR)/push.c\
 	$(SRCSDIR)/swap.c\
 	$(SRCSDIR)/rotate.c\
 	$(SRCSDIR)/reverse_rotate.c\
 	$(SRCSDIR)/main.c\
 	$(SRCSDIR)/utils_lst.c\
+	$(SRCSDIR)/utils_lstgetter.c\
 	$(SRCSDIR)/utils_print.c\
+	$(SRCSDIR)/operation_collection.c\
+	
 	
 
 OBJSDIR		= ./obj
