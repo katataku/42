@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 14:42:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:10:29 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,16 +115,11 @@ void	sort_mini_b(t_stack *stack)
 		if (get_top(*lst) > get_third(*lst) && get_sec(*lst) < get_third(*lst))
 			rb(stack);
 	}
-}
-
-void	size_mini(t_stack *stack)
-{
-	sort_mini_b(stack);
-	while (ft_lstsize(*(stack->lst_b)) > 0)
-	{
-		pa(stack);
-		ra(stack);
-	}
+			while (ft_lstsize(*(stack->lst_b)) > 0)
+		{
+			pa(stack);
+			ra(stack);
+		}
 }
 
 void	push_swap(t_stack *stack)
@@ -132,17 +127,17 @@ void	push_swap(t_stack *stack)
 	int	low_num;
 	int	high_num;
 	int	i;
-	int	tmp;
+	int	a_hight_bk;
 	int	key;
-	t_list	*tmp_lst;
 
 	if (is_sorted(*(stack->lst_a)) && ft_lstsize(*(stack->lst_b)) == 0)
 		return ;
-	//少ない時はsize_mini
 	if (stack->a_hight < MINI_SIZE_LIMIT)
 	{
 		pb_n(stack, stack->a_hight);
-		return (size_mini(stack));
+		sort_mini_b(stack);
+
+		return ;
 	}
 	low_num = 0;
 	high_num = 0;
@@ -150,7 +145,6 @@ void	push_swap(t_stack *stack)
 	key = get_top(*(stack->lst_a));
 	while (i-- > 0)
 	{
-		tmp_lst = *(stack->lst_a);
 		if (getter(*(stack->lst_a), 0) < key)
 		{
 			low_num++;
@@ -161,13 +155,11 @@ void	push_swap(t_stack *stack)
 		ra(stack);
 	}
 	rra_n(stack, high_num);
-	//lowの対応
-	i = low_num;
-	tmp = stack->a_hight;
-	if (i > MINI_SIZE_LIMIT)
+	a_hight_bk = stack->a_hight;
+	stack->a_hight = 0;
+	if (low_num > MINI_SIZE_LIMIT)
 	{
 		//lowをaのtopに戻す
-		stack->a_hight = 0;
 		while (ft_lstsize(*(stack->lst_b)) > MINI_SIZE_LIMIT)
 		{
 			key = get_last(*(stack->lst_b));
@@ -179,19 +171,13 @@ void	push_swap(t_stack *stack)
 					pa(stack);
 				}
 				else
-				{
 					rb(stack);
-				}
 			}
 		}
-		sort_mini_b(stack);
-		push_swap(stack);
 	}
-	else
-	{
-		size_mini(stack);
-	}
-	stack->a_hight = tmp - low_num - 1;
+	sort_mini_b(stack);
+	push_swap(stack);
+	stack->a_hight = a_hight_bk - low_num - 1;
 	ra(stack);
 	if (stack->a_hight > 0)
 		push_swap(stack);
