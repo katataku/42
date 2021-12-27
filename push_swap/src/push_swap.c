@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 15:10:29 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 16:16:26 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,70 +115,75 @@ void	sort_mini_b(t_stack *stack)
 		if (get_top(*lst) > get_third(*lst) && get_sec(*lst) < get_third(*lst))
 			rb(stack);
 	}
-			while (ft_lstsize(*(stack->lst_b)) > 0)
-		{
-			pa(stack);
-			ra(stack);
-		}
+	while (ft_lstsize(*(stack->lst_b)) > 0)
+	{
+		pa(stack);
+		ra(stack);
+		stack->sorted_len++;
+	}
 }
 
-void	push_swap(t_stack *stack)
+void	send_lower_tob(t_stack *stack, int *a_hight)
 {
-	int	low_num;
-	int	high_num;
 	int	i;
-	int	a_hight_bk;
 	int	key;
 
-	if (is_sorted(*(stack->lst_a)) && ft_lstsize(*(stack->lst_b)) == 0)
-		return ;
-	if (stack->a_hight < MINI_SIZE_LIMIT)
-	{
-		pb_n(stack, stack->a_hight);
-		sort_mini_b(stack);
-
-		return ;
-	}
-	low_num = 0;
-	high_num = 0;
-	i = stack->a_hight;
+	i = *a_hight;
 	key = get_top(*(stack->lst_a));
 	while (i-- > 0)
 	{
-		if (getter(*(stack->lst_a), 0) < key)
+		if (getter(*(stack->lst_a), 0) <= key)
 		{
-			low_num++;
+			(*a_hight)--;
 			pb(stack);
-			continue ;
 		}
-		high_num++;
-		ra(stack);
+		else
+			ra(stack);
 	}
-	rra_n(stack, high_num);
-	a_hight_bk = stack->a_hight;
-	stack->a_hight = 0;
-	if (low_num > MINI_SIZE_LIMIT)
+	rra_n(stack, *a_hight);
+}
+
+void	sort_lower(t_stack *stack)
+{
+	int	tmp_a_hight;
+	int	key;
+
+	tmp_a_hight = 0;
+	while (ft_lstsize(*(stack->lst_b)) > MINI_SIZE_LIMIT)
 	{
-		//lowをaのtopに戻す
-		while (ft_lstsize(*(stack->lst_b)) > MINI_SIZE_LIMIT)
+		key = get_last(*(stack->lst_b));
+		while (get_top(*(stack->lst_b)) != key)
 		{
-			key = get_last(*(stack->lst_b));
-			while (get_top(*(stack->lst_b)) != key)
+			if (get_top(*(stack->lst_b)) > key)
 			{
-				if (get_top(*(stack->lst_b)) > key)
-				{
-					stack->a_hight++;
-					pa(stack);
-				}
-				else
-					rb(stack);
+				tmp_a_hight++;
+				pa(stack);
+				continue ;
 			}
+			if (get_top(*(stack->lst_b)) == get_min(*(stack->lst_b)))
+			{
+				pa(stack);
+				ra(stack);
+				continue ;
+			}
+			rb(stack);
 		}
 	}
 	sort_mini_b(stack);
-	push_swap(stack);
-	stack->a_hight = a_hight_bk - low_num - 1;
-	ra(stack);
-	if (stack->a_hight > 0)
-		push_swap(stack);
+	push_swap(stack, tmp_a_hight);
+}
+
+void	push_swap(t_stack *stack, int a_hight)
+{
+	if (is_sorted(*(stack->lst_a)) && ft_lstsize(*(stack->lst_b)) == 0)
+		return ;
+	if (a_hight < MINI_SIZE_LIMIT)
+	{
+		pb_n(stack, a_hight);
+		sort_mini_b(stack);
+		return ;
+	}
+	send_lower_tob(stack, &a_hight);
+	sort_lower(stack);
+	push_swap(stack, a_hight);
 }

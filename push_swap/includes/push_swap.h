@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 13:49:15 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:40:41 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ typedef struct s_stack
 	int		b_hight;
 	t_list	**lst_ans;
 	char	*str_pa;
+	int		sorted_len;
 }	t_stack;
 
 
 t_stack	*init_stack(void);
 char	**init_arg_list(int argc, char **argv);
-void	push_swap(t_stack *stack);
+void	push_swap(t_stack *stack, int a_hight);
 void	sa(t_stack *stack);
 void	sb(t_stack *stack);
 void	pa(t_stack *stack);

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 13:28:39 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/27 15:39:03 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_stack	*init_stack(void)
 		ft_putstr_fd("Error\n", 2);
 		exit (1);
 	}
+	stack->sorted_len = 0;
 	return (stack);
 }
 
@@ -84,7 +85,7 @@ int	main(int argc, char **argv)
 	if (stack->a_hight < MINI_SIZE_LIMIT)
 		sort_mini_a(stack);
 	else
-		push_swap(stack);
+		push_swap(stack, ft_lstsize(*stack->lst_a));
 	lst_ans_compose((stack->lst_ans));
 	print_lst_str(*(stack->lst_ans));
 	return (0);
