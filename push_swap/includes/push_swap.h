@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 17:14:46 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/29 06:21:36 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_stack
 	t_list	**lst_a;
 	t_list	**lst_b;
 	int		a_hight;
-	int		b_hight;
 	t_list	**lst_ans;
 	char	*str_pa;
 	int		sorted_len;

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 13:27:45 by takkatao         ###   ########.fr       */
+/*   Updated: 2021/12/29 11:31:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ void	print_stack(t_stack *stack)
 	print_lst_int(*(stack->lst_b));
 	ft_putstr_fd("high_a:", 1);
 	ft_putnbr_fd(stack->a_hight, 1);
-	ft_putstr_fd("\nhigh_b:", 1);
-	ft_putnbr_fd(stack->b_hight, 1);
 	ft_putstr_fd("\n", 1);
 	ft_putstr_fd("lst_ans:", 1);
 	print_lst_str(*(stack->lst_ans));
@@ -72,6 +70,7 @@ void	ft_lstdel_lastone(t_list **lst, void (*del)(void*))
 void	lst_ans_compose(t_list **lst)
 {
 	t_list	*tar;
+	t_list	*tmp;
 
 	tar = *lst;
 	while (tar != NULL && tar->next != NULL && tar->next->next != NULL)
@@ -80,16 +79,15 @@ void	lst_ans_compose(t_list **lst)
 			&& ft_strncmp(tar->next->next->content, "rra", 3) == 0)
 			|| (ft_strncmp(tar->next->content, "rra", 3) == 0 \
 			&& ft_strncmp(tar->next->next->content, "ra", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "rb", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rrb", 3) == 0)
-			|| (ft_strncmp(tar->next->content, "rrb", 3) == 0 \
-			&& ft_strncmp(tar->next->next->content, "rb", 3) == 0)
 			|| (ft_strncmp(tar->next->content, "pa", 3) == 0 \
 			&& ft_strncmp(tar->next->next->content, "pb", 3) == 0)
 			|| (ft_strncmp(tar->next->content, "pb", 3) == 0 \
 			&& ft_strncmp(tar->next->next->content, "pa", 3) == 0))
 		{
-			tar->next = tar->next->next->next;
+			tmp = tar->next->next->next;
+			ft_lstdelone(tar->next->next, NULL);
+			ft_lstdelone(tar->next, NULL);
+			tar->next = tmp;
 			tar = *lst;
 			continue ;
 		}
