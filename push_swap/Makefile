@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/29 11:21:54 by takkatao         ###   ########.fr        #
+#    Updated: 2021/12/29 11:34:26 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(NAME): $(OBJS) $(LIBFT_A)
 
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
-	mkdir -p $(OBJSDIR)
+	@mkdir -p $(OBJSDIR)
 	$(CC) $(CFLAGS) -o $@ -c $< $(INCLUDES)
 
 $(LIBFT_A):
