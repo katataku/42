@@ -82,31 +82,30 @@ bool Fixed::operator!=(const Fixed &f)
 	return (getRawBits() != f.getRawBits());
 }
 
-Fixed &Fixed::operator+(const Fixed &f)
+Fixed Fixed::operator+(const Fixed &f)
 {
-	setRawBits((this->toFloat() + f.toFloat()) * EIGHT_BIT);
-	return *this;
+	return Fixed((this->getRawBits() + f.getRawBits()) / (float)EIGHT_BIT);
+
 }
-Fixed &Fixed::operator-(const Fixed &f)
+Fixed Fixed::operator-(const Fixed &f)
 {
-	setRawBits((this->toFloat() - f.toFloat()) * EIGHT_BIT);
-	return *this;
+	return Fixed((this->getRawBits() - f.getRawBits()) / (float)EIGHT_BIT);
 }
-Fixed &Fixed::operator*(const Fixed &f)
+Fixed Fixed::operator*(const Fixed &f)
 {
-	setRawBits(this->toFloat() * f.toFloat() * EIGHT_BIT);
-	return *this;
+	return Fixed(((long long)((long long)this->getRawBits() * (long long)f.getRawBits()) / (float)EIGHT_BIT / (float)EIGHT_BIT));
 }
-Fixed &Fixed::operator/(const Fixed &f)
-{
+Fixed Fixed::operator/(const Fixed &f)
+{	
 	if (f.getRawBits() == 0)
 	{
 		std::cout << "zero divide detected" << std::endl;
-	} else
-	{
-		setRawBits((this->toFloat() / f.toFloat()) * EIGHT_BIT);
+		return Fixed();
 	}
-	return *this;
+	else
+	{
+		return Fixed(((float)this->getRawBits() / (float)f.getRawBits()));
+	}
 }
 
 Fixed &Fixed::operator++()
