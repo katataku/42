@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 15:03:05 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/02 17:14:45 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	main(int argc, char **argv)
 	char	**arg_list;
 
 	stack = init_stack();
-	arg_list = init_arg_list(argc, argv);
+	arg_list = is_valid(init_arg_list(argc, argv));
 	if (stack == NULL || arg_list == NULL)
 	{
 		ft_putstr_fd("Error\n", 2);

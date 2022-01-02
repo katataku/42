@@ -6,11 +6,17 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2021/11/06 14:32:56 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/02 17:12:34 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+void	error(void)
+{
+	ft_putstr_fd("Error\n", 2);
+	exit (1);
+}
 
 static	bool	is_space(char c)
 {
@@ -22,19 +28,31 @@ static	bool	is_space(char c)
 
 static long	add_safety(long a, long b)
 {
-	if ((a > 0) && (b > (LONG_MAX - a)))
-		return (LONG_MAX);
-	if ((a < 0) && (b < (LONG_MIN - a)))
-		return (LONG_MIN);
+	if ((a > 0) && (b > (INT_MAX - a)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
+	if ((a < 0) && (b < (INT_MIN - a)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
 	return (a + b);
 }
 
 static long	mul_safety(long a, long b)
 {
-	if ((a > 0) && (a > (LONG_MAX / b)))
-		return (LONG_MAX);
-	if ((a < 0) && (a < (LONG_MIN / b)))
-		return (LONG_MIN);
+	if ((a > 0) && (a > (INT_MAX / b)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
+	if ((a < 0) && (a < (INT_MIN / b)))
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
 	return (a * b);
 }
 
@@ -62,6 +80,8 @@ int	ft_atoi(const char *str)
 		if (sign == -1 && cnt == LONG_MIN)
 			return ((int) LONG_MIN);
 	}
+	if (str[i] != '\0')
+		error();
 	return (cnt);
 }
 

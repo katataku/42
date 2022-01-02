@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2021/12/29 11:34:26 by takkatao         ###   ########.fr        #
+#    Updated: 2022/01/02 17:15:05 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS 	 	= \
 	$(SRCSDIR)/utils_lstgetter.c\
 	$(SRCSDIR)/utils_print.c\
 	$(SRCSDIR)/operation_collection.c\
+	$(SRCSDIR)/validation.c\
 	
 	
 
