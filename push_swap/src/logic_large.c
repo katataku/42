@@ -6,11 +6,31 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 17:01:36 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/02 15:23:31 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	get_median_rec(t_list *lst, int hight, int ans, int rec)
+{
+	int		tmp;
+	t_list	*cur_lst;
+	int		i;
+
+	i = 0;
+	tmp = INT_MAX;
+	cur_lst = lst;
+	if (rec == 0)
+		return (ans);
+	while (cur_lst != NULL && i++ < hight)
+	{
+		if (getter(cur_lst, 0) > ans && getter(cur_lst, 0) < tmp)
+			tmp = getter(cur_lst, 0);
+		cur_lst = cur_lst->next;
+	}
+	return (get_median_rec(lst, hight, tmp, rec - 1));
+}
 
 void	send_lower_tob(t_stack *stack, int *a_hight)
 {
@@ -18,7 +38,7 @@ void	send_lower_tob(t_stack *stack, int *a_hight)
 	int	key;
 
 	i = *a_hight;
-	key = get_top(*(stack->lst_a));
+	key = get_median_rec(*(stack->lst_a), *a_hight, INT_MIN, *a_hight / 2);
 	while (i-- > 0)
 	{
 		if (getter(*(stack->lst_a), 0) <= key)
@@ -36,12 +56,14 @@ void	sort_lower(t_stack *stack)
 {
 	int	tmp_a_hight;
 	int	key;
+	int	b_size;
 
 	tmp_a_hight = 0;
 	while (ft_lstsize(*(stack->lst_b)) > MINI_SIZE_LIMIT)
 	{
-		key = get_last(*(stack->lst_b));
-		while (get_top(*(stack->lst_b)) != key)
+		b_size = ft_lstsize(*(stack->lst_b));
+		key = get_median_rec(*(stack->lst_b), b_size, INT_MIN, b_size / 2);
+		while (b_size-- > 0)
 		{
 			if (get_top(*(stack->lst_b)) > key)
 			{
