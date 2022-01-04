@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/29 11:31:57 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/05 07:10:33 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	print_lst_int(t_list *lst)
 {
 	while (lst != NULL)
 	{
-		assert(lst->content != NULL);
 		ft_putnbr_fd(ft_atoi(lst->content), 1);
 		ft_putstr_fd(" ", 1);
 		lst = lst->next;
@@ -28,7 +27,6 @@ void	print_lst_str(t_list *lst)
 {
 	while (lst != NULL)
 	{
-		assert(lst->content != NULL);
 		ft_putstr_fd((lst->content), 1);
 		ft_putstr_fd("\n", 1);
 		lst = lst->next;
@@ -41,8 +39,6 @@ void	print_stack(t_stack *stack)
 	print_lst_int(*(stack->lst_a));
 	ft_putstr_fd("lst_b:", 1);
 	print_lst_int(*(stack->lst_b));
-	ft_putstr_fd("high_a:", 1);
-	ft_putnbr_fd(stack->a_hight, 1);
 	ft_putstr_fd("\n", 1);
 	ft_putstr_fd("lst_ans:", 1);
 	print_lst_str(*(stack->lst_ans));

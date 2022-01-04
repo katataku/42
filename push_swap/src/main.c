@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 17:14:45 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/05 07:11:21 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_stack	*init_stack(void)
 	(stack->lst_a) = (t_list **) ft_calloc(sizeof(t_list *), 1);
 	(stack->lst_b) = (t_list **) ft_calloc(sizeof(t_list *), 1);
 	(stack->lst_ans) = (t_list **) ft_calloc(sizeof(t_list *), 1);
-	stack->str_pa = "pa\n";
 	if ((stack->lst_a) == NULL \
 		|| (stack->lst_b) == NULL \
 		|| (stack->lst_ans) == NULL)
@@ -33,7 +32,6 @@ t_stack	*init_stack(void)
 		ft_putstr_fd("Error\n", 2);
 		exit (1);
 	}
-	stack->sorted_len = 0;
 	return (stack);
 }
 
@@ -90,8 +88,7 @@ int	main(int argc, char **argv)
 	while (arg_list[++i] != NULL)
 		ft_lstadd_back((stack->lst_a), ft_lstnew(arg_list[i]));
 	free(arg_list);
-	stack->a_hight = ft_lstsize(*stack->lst_a);
-	if (stack->a_hight < MINI_SIZE_LIMIT)
+	if (ft_lstsize(*stack->lst_a) < MINI_SIZE_LIMIT)
 		sort_mini_a(stack);
 	else
 		push_swap(stack, ft_lstsize(*stack->lst_a));

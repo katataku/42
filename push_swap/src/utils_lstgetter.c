@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/29 07:11:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/05 07:10:24 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	getter(t_list *lst, int i)
 
 int	get_top(t_list *lst)
 {
-	assert(lst != NULL);
 	return (getter(lst, 0));
 }
 

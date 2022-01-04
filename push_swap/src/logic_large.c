@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 15:23:31 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/05 07:21:21 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	send_lower_tob(t_stack *stack, int *a_hight)
 		else
 			ra(stack);
 	}
-	rra_n(stack, *a_hight);
+	if (*a_hight != ft_lstsize(*(stack->lst_a)))
+		rra_n(stack, *a_hight);
 }
 
 void	sort_lower(t_stack *stack)

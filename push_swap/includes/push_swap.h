@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 17:14:33 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/05 07:24:58 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,13 @@
 # include "libft.h"
 # include <stdarg.h>
 # include <assert.h>
-# define MINI_SIZE_LIMIT 10
+# define MINI_SIZE_LIMIT 15
 
 typedef struct s_stack
 {
 	t_list	**lst_a;
 	t_list	**lst_b;
-	int		a_hight;
 	t_list	**lst_ans;
-	char	*str_pa;
-	int		sorted_len;
 }	t_stack;
 
 t_stack	*init_stack(void);

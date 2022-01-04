@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2022/01/02 17:15:05 by takkatao         ###   ########.fr        #
+#    Updated: 2022/01/05 07:27:15 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ re:fclean all
 test:$(NAME)
 	cd push_swap_tester && python3 push_swap_tester.py -l 5 -c 500 
 	cd push_swap_tester && python3 push_swap_tester.py -l 100 -c 500 
-#	cd push_swap_tester && python3 push_swap_tester.py -l 500 -c 500 
+	cd push_swap_tester && python3 push_swap_tester.py -l 500 -c 100 
 
 .PHONY:visual
 visual:$(NAME)
