@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/27 13:43:48 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:42:47 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	push(t_list **lst_src, t_list **lst_dst)
 
 void	pa(t_stack *stack)
 {
-	ft_lstadd_back(stack->lst_ans, ft_lstnew("pa"));
+	ft_lstadd_back(stack->lst_ans, exit_error(ft_lstnew("pa")));
 	push(stack->lst_b, stack->lst_a);
 }
 
 void	pb(t_stack *stack)
 {
-	ft_lstadd_back(stack->lst_ans, ft_lstnew("pb"));
+	ft_lstadd_back(stack->lst_ans, exit_error(ft_lstnew("pb")));
 	push(stack->lst_a, stack->lst_b);
 }
 

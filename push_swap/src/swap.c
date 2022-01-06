@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2021/12/24 17:37:25 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:43:53 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	swap(t_list **lst)
 
 void	sa(t_stack *stack)
 {
-	ft_lstadd_back(stack->lst_ans, ft_lstnew("sa"));
+	ft_lstadd_back(stack->lst_ans, exit_error(ft_lstnew("sa")));
 	swap(stack->lst_a);
 }
 
 void	sb(t_stack *stack)
 {
-	ft_lstadd_back(stack->lst_ans, ft_lstnew("sb"));
+	ft_lstadd_back(stack->lst_ans, exit_error(ft_lstnew("sb")));
 	swap(stack->lst_b);
 }

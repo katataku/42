@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/05 07:24:58 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:41:55 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,5 @@ int		getter(t_list *lst, int i);
 void	pb_n(t_stack *stack, int n);
 void	rra_n(t_stack *stack, int n);
 char	**is_valid(char **argv);
+void	*exit_error(void *ptr);
 #endif

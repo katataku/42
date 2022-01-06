@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2022/01/05 07:27:15 by takkatao         ###   ########.fr        #
+#    Updated: 2022/01/06 14:45:37 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS 	 	= \
 	$(SRCSDIR)/utils_lst.c\
 	$(SRCSDIR)/utils_lstgetter.c\
 	$(SRCSDIR)/utils_print.c\
-	$(SRCSDIR)/operation_collection.c\
 	$(SRCSDIR)/validation.c\
 	
 	
@@ -82,6 +81,7 @@ test:$(NAME)
 .PHONY:visual
 visual:$(NAME)
 	cp $(NAME) ./test
-	cd test && python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"` 
+#	cd test && python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"` 
+	cd test && python3 pyviz.py 2 1 3
 
 -include $(DEPENDS)

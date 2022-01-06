@@ -6,32 +6,30 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/05 07:11:21 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/06 14:40:15 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	*exit_error(void *ptr)
+{
+	if (ptr == NULL)
+	{
+		ft_putstr_fd("Error\n", 2);
+		exit (1);
+	}
+	return (ptr);
+}
+
 t_stack	*init_stack(void)
 {
 	t_stack	*stack;
 
-	stack = (t_stack *)malloc(sizeof(t_stack));
-	if (stack == NULL)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
-	(stack->lst_a) = (t_list **) ft_calloc(sizeof(t_list *), 1);
-	(stack->lst_b) = (t_list **) ft_calloc(sizeof(t_list *), 1);
-	(stack->lst_ans) = (t_list **) ft_calloc(sizeof(t_list *), 1);
-	if ((stack->lst_a) == NULL \
-		|| (stack->lst_b) == NULL \
-		|| (stack->lst_ans) == NULL)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
+	stack = (t_stack *)exit_error(malloc(sizeof(t_stack)));
+	(stack->lst_a) = (t_list **)exit_error(ft_calloc(sizeof(t_list *), 1));
+	(stack->lst_b) = (t_list **)exit_error(ft_calloc(sizeof(t_list *), 1));
+	(stack->lst_ans) = (t_list **)exit_error(ft_calloc(sizeof(t_list *), 1));
 	return (stack);
 }
 
@@ -41,24 +39,14 @@ char	**init_arg_list(int argc, char **argv)
 	int		i;
 
 	if (argc < 2)
-		return ((char **)ft_calloc(sizeof(char *), 1));
+		return ((char **)exit_error(ft_calloc(sizeof(char *), 1)));
 	if (argc == 2)
-		return (ft_split(argv[1], ' '));
-	arg_list = (char **)ft_calloc(sizeof(char *), argc);
-	if (arg_list == NULL)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
+		return (exit_error(ft_split(argv[1], ' ')));
+	arg_list = (char **)exit_error(ft_calloc(sizeof(char *), argc));
 	i = 0;
 	while (argv[++i] != NULL)
 	{
-		arg_list[i - 1] = ft_strdup(argv[i]);
-		if (arg_list[i - 1] == NULL)
-		{
-			ft_putstr_fd("Error\n", 2);
-			exit (1);
-		}
+		arg_list[i - 1] = exit_error(ft_strdup(argv[i]));
 	}
 	return (arg_list);
 }
@@ -77,16 +65,11 @@ int	main(int argc, char **argv)
 	t_stack	*stack;
 	char	**arg_list;
 
-	stack = init_stack();
-	arg_list = is_valid(init_arg_list(argc, argv));
-	if (stack == NULL || arg_list == NULL)
-	{
-		ft_putstr_fd("Error\n", 2);
-		exit (1);
-	}
+	stack = exit_error(init_stack());
+	arg_list = exit_error(is_valid(init_arg_list(argc, argv)));
 	i = -1;
 	while (arg_list[++i] != NULL)
-		ft_lstadd_back((stack->lst_a), ft_lstnew(arg_list[i]));
+		ft_lstadd_back((stack->lst_a), exit_error(ft_lstnew(arg_list[i])));
 	free(arg_list);
 	if (ft_lstsize(*stack->lst_a) < MINI_SIZE_LIMIT)
 		sort_mini_a(stack);
