@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 09:41:40 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 17:12:34 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/08 17:27:42 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int	ft_atoi(const char *str)
 		if (sign == -1 && cnt == LONG_MIN)
 			return ((int) LONG_MIN);
 	}
-	if (str[i] != '\0')
+	if (str[i] != '\0' || i == 0)
 		error();
 	return (cnt);
 }
