@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2022/01/06 14:45:37 by takkatao         ###   ########.fr        #
+#    Updated: 2022/01/10 18:08:22 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ DEPENDS   		= $(OBJS:.o=.d)
 CC 				= gcc
 CFLAGS			= -Werror -Wall -Wextra -MMD -MP 
 DEGUB_CFLAGS	= -g3 -fsanitize=address
-RM				= /bin/rm -f
 INCLUDES 		= -I./includes
 
 CFLAGS += $(DEGUB_CFLAGS)
