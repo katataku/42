@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/05 07:10:24 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:41:13 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	getter(t_list *lst, int i)
 {
 	if (i == 0)
 	{
-		return (ft_atoi(lst->content));
+		return (*((int *)(lst->content)));
 	}
 	if (i > 0)
 		return (getter(lst->next, i - 1));
