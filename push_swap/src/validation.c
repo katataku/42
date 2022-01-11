@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/02 17:14:21 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/10 18:53:24 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	validate_count(char **argv, char *str)
 	}
 }
 
-char	**is_valid(char **argv)
+char	**validate_arg_list(char **argv)
 {
 	int	i;
 

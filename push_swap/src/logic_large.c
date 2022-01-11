@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/05 07:21:21 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 10:18:13 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ int	get_median_rec(t_list *lst, int hight, int ans, int rec)
 
 void	send_lower_tob(t_stack *stack, int *a_hight)
 {
-	int	i;
-	int	key;
+	int		i;
+	int		key;
 
 	i = *a_hight;
 	key = get_median_rec(*(stack->lst_a), *a_hight, INT_MIN, *a_hight / 2);
@@ -53,6 +53,24 @@ void	send_lower_tob(t_stack *stack, int *a_hight)
 		rra_n(stack, *a_hight);
 }
 
+void	sort_lower_innerloop(t_stack *stack, int *tmp_a_hight, int key)
+{
+	if (getter(*(stack->lst_b), 1) == stack->s_lst[stack->s_cnt] && \
+		getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt + 1])
+		para_n(stack, 2);
+	if (getter(*(stack->lst_b), -1) == stack->s_lst[stack->s_cnt])
+		rrb(stack);
+	if (getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt])
+		para_n(stack, 1);
+	if (getter(*(stack->lst_b), 0) > key)
+	{
+		(*tmp_a_hight)++;
+		pa(stack);
+	}
+	else
+		rb(stack);
+}
+
 void	sort_lower(t_stack *stack)
 {
 	int	tmp_a_hight;
@@ -64,19 +82,8 @@ void	sort_lower(t_stack *stack)
 	{
 		b_size = ft_lstsize(*(stack->lst_b));
 		key = get_median_rec(*(stack->lst_b), b_size, INT_MIN, b_size / 2);
-		while (b_size-- > 0)
-		{
-			if (get_top(*(stack->lst_b)) > key)
-			{
-				tmp_a_hight++;
-				pa(stack);
-				continue ;
-			}
-			if (get_top(*(stack->lst_b)) == get_min(*(stack->lst_b)))
-				para(stack);
-			else
-				rb(stack);
-		}
+		while (get_max(*(stack->lst_b)) > key)
+			sort_lower_innerloop(stack, &tmp_a_hight, key);
 	}
 	sort_mini_b(stack);
 	push_swap(stack, tmp_a_hight);

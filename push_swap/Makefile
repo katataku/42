@@ -6,7 +6,7 @@
 #    By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 09:38:20 by takkatao          #+#    #+#              #
-#    Updated: 2022/01/10 18:08:22 by takkatao         ###   ########.fr        #
+#    Updated: 2022/01/11 08:28:34 by takkatao         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,14 +73,14 @@ re:fclean all
 
 .PHONY:test
 test:$(NAME)
-	cd push_swap_tester && python3 push_swap_tester.py -l 5 -c 500 
-	cd push_swap_tester && python3 push_swap_tester.py -l 100 -c 500 
+	cd push_swap_tester && python3 push_swap_tester.py -l 5 -c 100 
+	cd push_swap_tester && python3 push_swap_tester.py -l 100 -c 100 
 	cd push_swap_tester && python3 push_swap_tester.py -l 500 -c 100 
 
 .PHONY:visual
 visual:$(NAME)
 	cp $(NAME) ./test
-#	cd test && python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"` 
-	cd test && python3 pyviz.py 2 1 3
+	cd test && python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"` 
+#	cd test && python3 pyviz.py 2 1 3
 
 -include $(DEPENDS)

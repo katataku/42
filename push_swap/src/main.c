@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/10 18:41:57 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 10:23:23 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,31 @@ char	**init_arg_list(int argc, char **argv)
 	return (arg_list);
 }
 
-void	free_all(t_stack *stack)
+void	init_unsorted_nums(t_stack *stack)
 {
-	ft_lstclear(stack->lst_a, free);
-	ft_lstclear(stack->lst_b, free);
-	ft_lstclear(stack->lst_ans, NULL);
-	free(stack);
+	int	i;
+	int	j;
+	int	tmp;
+
+	i = ft_lstsize(*stack->lst_a);
+	stack->s_lst = (int *)ft_calloc(i, sizeof(int));
+	while (i-- > 0)
+		stack->s_lst[i] = getter(*stack->lst_a, i);
+	i = -1;
+	while (++i < ft_lstsize(*stack->lst_a))
+	{
+		j = i;
+		while (++j < ft_lstsize(*stack->lst_a))
+		{
+			if (stack->s_lst[i] > stack->s_lst[j])
+			{
+				tmp = stack->s_lst[i];
+				stack->s_lst[i] = stack->s_lst[j];
+				stack->s_lst[j] = tmp;
+			}
+		}
+	}
+	stack->s_cnt = 0;
 }
 
 int	main(int argc, char **argv)
@@ -66,8 +85,8 @@ int	main(int argc, char **argv)
 	char	**arg_list;
 	int		*tmp;
 
-	stack = exit_error(init_stack());
-	arg_list = exit_error(is_valid(init_arg_list(argc, argv)));
+	stack = init_stack();
+	arg_list = validate_arg_list(init_arg_list(argc, argv));
 	i = -1;
 	while (arg_list[++i] != NULL)
 	{
@@ -76,12 +95,12 @@ int	main(int argc, char **argv)
 		ft_lstadd_back((stack->lst_a), exit_error(ft_lstnew(tmp)));
 	}
 	free(arg_list);
+	init_unsorted_nums(stack);
 	if (ft_lstsize(*stack->lst_a) < MINI_SIZE_LIMIT)
 		sort_mini_a(stack);
 	else
 		push_swap(stack, ft_lstsize(*stack->lst_a));
 	lst_ans_compose((stack->lst_ans));
 	print_lst_str(*(stack->lst_ans));
-	free_all(stack);
-	return (0);
+	exit (0);
 }
