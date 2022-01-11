@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/11 12:36:07 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 13:19:38 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,8 @@ void	send_lower_tob(t_stack *stack, int *a_hight)
 
 void	sort_lower_innerloop(t_stack *stack, int *tmp_a_hight, int key)
 {
-	if (getter(*(stack->lst_b), 1) == stack->s_lst[stack->s_cnt] && \
-		getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt + 1])
-		para_n(stack, 2);
+	while (handle_next_on_top(stack) != 0)
+		continue ;
 	if (getter(*(stack->lst_b), -1) == stack->s_lst[stack->s_cnt])
 		rrb(stack);
 	if (getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt])
@@ -95,10 +94,17 @@ void	push_swap(t_stack *stack, int a_hight)
 		return ;
 	if (a_hight < MINI_SIZE_LIMIT)
 	{
-		pb_n(stack, a_hight);
+		while (a_hight-- > 0)
+		{
+			if (getter(*(stack->lst_a), 0) == stack->s_lst[stack->s_cnt])
+				handle_next_on_top(stack);
+			else
+				pb(stack);
+		}
 		sort_mini_b(stack);
 		return ;
 	}
+	a_hight -= handle_next_on_top(stack);
 	send_lower_tob(stack, &a_hight);
 	sort_lower(stack);
 	push_swap(stack, a_hight);

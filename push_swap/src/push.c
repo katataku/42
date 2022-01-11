@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/06 14:42:47 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 13:13:07 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,17 @@ void	pb_n(t_stack *stack, int n)
 	{
 		pb(stack);
 	}
+}
+
+void	para_n(t_stack *stack, int n)
+{
+	int	i;
+
+	i = n;
+	while (i-- > 0)
+		pa(stack);
+	i = n;
+	while (i-- > 0)
+		ra(stack);
+	stack->s_cnt++;
 }

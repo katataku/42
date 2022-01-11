@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/11 12:30:14 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 13:13:22 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,31 @@ void	sort_mini_a(t_stack *stack)
 	}
 }
 
-void	para_n(t_stack *stack, int n)
+int	handle_next_on_top(t_stack *stack)
 {
-	int	i;
+	int	ret;
 
-	i = n;
-	while (i-- > 0)
-		pa(stack);
-	i = n;
-	while (i-- > 0)
+	ret = 0;
+	if (ft_lstsize(*(stack->lst_b)) > 1 && \
+		getter(*(stack->lst_b), 1) == stack->s_lst[stack->s_cnt] && \
+		getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt + 1])
+	{
+		para_n(stack, 2);
+		ret += 2;
+	}
+	if (ft_lstsize(*(stack->lst_b)) > 0 && \
+		getter(*(stack->lst_b), 0) == stack->s_lst[stack->s_cnt])
+	{
+		para_n(stack, 1);
+		ret++;
+	}
+	if (getter(*(stack->lst_a), 0) == stack->s_lst[stack->s_cnt])
+	{
 		ra(stack);
-	stack->s_cnt++;
+		stack->s_cnt++;
+		ret++;
+	}
+	return (ret);
 }
 
 void	sort_mini_b3(t_stack *stack)

@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/11 12:34:07 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 13:12:29 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	pb_n(t_stack *stack, int n);
 void	rra_n(t_stack *stack, int n);
 char	**validate_arg_list(char **argv);
 void	*exit_error(void *ptr);
+int		handle_next_on_top(t_stack *stack);
 #endif
