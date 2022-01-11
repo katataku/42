@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/11 09:29:24 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/11 12:34:07 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "libft.h"
 # include <stdarg.h>
 # include <assert.h>
-# define MINI_SIZE_LIMIT 15
+# define MINI_SIZE_LIMIT 25
 
 typedef struct s_stack
 {
