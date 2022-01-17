@@ -25,7 +25,7 @@ OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.cpp=.o)))
 DEPENDS   		= $(OBJS:.o=.d)
 
 CC 				= c++
-CFLAGS			= -Werror -Wall -Wextra -MMD -MP
+CFLAGS			= -Werror -Wall -Wextra -MMD -MP -std=c++98
 DEGUB_CFLAGS	= -g -fsanitize=address fsanitize=leak
 RM				= /bin/rm -f
 INCLUDES 		= -I./includes
