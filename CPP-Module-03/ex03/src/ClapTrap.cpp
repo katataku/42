@@ -5,7 +5,8 @@ ClapTrap::ClapTrap()
 {
 	std::cout << GREEN << "ClapTrap constructor" << RESET << std::endl;
 	std::cout << GREEN << "  " << getName() << " " << getHitpoints() << " "
-			  << getEnergyPoints() << " " << getAttackDamage() << RESET << std::endl;
+			  << getEnergyPoints() << " " << getAttackDamage() << RESET
+			  << std::endl;
 }
 
 ClapTrap::ClapTrap(std::string name)
@@ -13,7 +14,8 @@ ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << GREEN << "ClapTrap constructor" << RESET << std::endl;
 	std::cout << GREEN << "  " << getName() << " " << getHitpoints() << " "
-			  << getEnergyPoints() << " " << getAttackDamage() << RESET << std::endl;
+			  << getEnergyPoints() << " " << getAttackDamage() << RESET
+			  << std::endl;
 }
 ClapTrap::~ClapTrap()
 {
@@ -25,7 +27,8 @@ ClapTrap::ClapTrap(const ClapTrap &f)
 	*this = f;
 	std::cout << GREEN << "ClapTrap constructor" << RESET << std::endl;
 	std::cout << GREEN << "  " << getName() << " " << getHitpoints() << " "
-			  << getEnergyPoints() << " " << getAttackDamage() << RESET << std::endl;
+			  << getEnergyPoints() << " " << getAttackDamage() << RESET
+			  << std::endl;
 }
 
 ClapTrap &ClapTrap::operator=(const ClapTrap &f)
@@ -57,15 +60,33 @@ std::string ClapTrap::getName() const
 {
 	return name;
 }
+
+void ClapTrap::setName(std::string n)
+{
+	name = n;
+}
+
 unsigned int ClapTrap::getHitpoints() const
 {
 	return hitpoints;
+}
+void ClapTrap::setHitpoints(unsigned int h)
+{
+	hitpoints = h;
 }
 unsigned int ClapTrap::getEnergyPoints() const
 {
 	return energyPoints;
 }
+void ClapTrap::setEnergyPoints(unsigned int h)
+{
+	energyPoints = h;
+}
 unsigned int ClapTrap::getAttackDamage() const
 {
 	return attackDamage;
+}
+void ClapTrap::setAttackDamage(unsigned int h)
+{
+	attackDamage = h;
 }

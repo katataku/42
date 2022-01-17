@@ -1,9 +1,10 @@
-#include <iostream>
 #include "ClapTrap.hpp"
 
 int main(void)
 {
-	ClapTrap A("a"),B("b");
+	ClapTrap A("a");
+	ClapTrap B;
+	ClapTrap C(A);
 
 	A.attack("b");
 	B.takeDamage(10);

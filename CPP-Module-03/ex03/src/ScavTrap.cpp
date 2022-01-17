@@ -2,10 +2,10 @@
 
 ScavTrap::ScavTrap()
 {
-	name		 = "No name";
-	hitpoints	 = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	setName("No name");
+	setHitpoints(defaultHitpoints);
+	setEnergyPoints(defaultEnergyPoints);
+	setAttackDamage(defaultAttackDamage);
 	std::cout << GREEN << "ScavTrap constructor" << RESET << std::endl;
 	std::cout << GREEN << "  " << getName() << " " << getHitpoints() << " "
 			  << getEnergyPoints() << " " << getAttackDamage() << RESET
@@ -14,10 +14,10 @@ ScavTrap::ScavTrap()
 
 ScavTrap::ScavTrap(std::string n)
 {
-	name		 = n;
-	hitpoints	 = 100;
-	energyPoints = 50;
-	attackDamage = 20;
+	setName(n);
+	setHitpoints(defaultHitpoints);
+	setEnergyPoints(defaultEnergyPoints);
+	setAttackDamage(defaultAttackDamage);
 	std::cout << GREEN << "ScavTrap constructor" << RESET << std::endl;
 	std::cout << GREEN << "  " << getName() << " " << getHitpoints() << " "
 			  << getEnergyPoints() << " " << getAttackDamage() << RESET
@@ -39,10 +39,11 @@ ScavTrap::ScavTrap(const ScavTrap &f)
 
 ScavTrap &ScavTrap::operator=(const ScavTrap &f)
 {
-	name			   = f.getName();
-	hitpoints		   = f.getHitpoints();
-	this->energyPoints = f.getEnergyPoints();
-	this->attackDamage = f.getAttackDamage();
+	setName(f.getName());
+	setHitpoints(f.getHitpoints());
+	setEnergyPoints(f.getEnergyPoints());
+	setAttackDamage(f.getAttackDamage());
+
 	return *this;
 }
 

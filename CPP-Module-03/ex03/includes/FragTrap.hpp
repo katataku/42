@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-class FragTrap : public ClapTrap
+class FragTrap : virtual public ClapTrap
 {
   public:
 	FragTrap();
@@ -17,6 +17,11 @@ class FragTrap : public ClapTrap
 	FragTrap &operator=(const FragTrap &);
 
 	void highFivesGuys(void);
+
+	protected:
+	static const unsigned int defaultHitpoints = 100;
+	static const unsigned int defaultEnergyPoints = 100;
+	static const unsigned int defaultAttackDamage = 30;
 };
 
 #endif
