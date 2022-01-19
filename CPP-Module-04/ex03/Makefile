@@ -21,10 +21,6 @@ SRCS 	 	= \
 	$(SRCSDIR)/AMateria.cpp\
 	$(SRCSDIR)/MateriaSource.cpp\
 
-	
-	
-	
-
 OBJSDIR		= ./obj
 OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.cpp=.o)))
 
