@@ -1,5 +1,5 @@
-#ifndef Ice_H
-#define Ice_H
+#ifndef CURE
+#define CURE
 
 #include "escape_sequence.hpp"
 #include <AMateria.hpp>
@@ -7,13 +7,13 @@
 
 #include <iostream>
 #include <string>
-class Ice : public AMateria
+class Cure : public AMateria
 {
   public:
-	Ice();
-	~Ice();
-	Ice(const Ice &);
-	Ice &operator=(const Ice &);
+	Cure();
+	~Cure();
+	Cure(const Cure &);
+	Cure &operator=(const Cure &);
 
 	std::string const &getType() const; // Returns the materia type
 	AMateria			 *clone() const;

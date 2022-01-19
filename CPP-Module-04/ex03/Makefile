@@ -15,11 +15,13 @@ NAME	 	= a.out
 SRCSDIR		= ./src
 SRCS 	 	= \
 	$(SRCSDIR)/main.cpp\
-	$(SRCSDIR)/Animal.cpp\
-	$(SRCSDIR)/Dog.cpp\
-	$(SRCSDIR)/Cat.cpp\
-	$(SRCSDIR)/WrongAnimal.cpp\
-	$(SRCSDIR)/WrongCat.cpp\
+	$(SRCSDIR)/Ice.cpp\
+	$(SRCSDIR)/Cure.cpp\
+	$(SRCSDIR)/Character.cpp\
+	$(SRCSDIR)/AMateria.cpp\
+	$(SRCSDIR)/MateriaSource.cpp\
+
+	
 	
 	
 

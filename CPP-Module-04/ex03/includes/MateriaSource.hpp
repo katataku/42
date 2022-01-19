@@ -1,17 +1,26 @@
-#ifndef MATERIASOURCE_H
-#define MATERIASOURCE_H
+#ifndef MATERIASOURCE
+#define MATERIASOURCE
 
+#include "IMateriaSource.hpp"
 #include "escape_sequence.hpp"
 #include <iostream>
 #include <string>
-#include "IMateriaSource.hpp"
 
-class MateriaSource: public IMateriaSource
+class MateriaSource : public IMateriaSource
 {
-public:
-~MateriaSource() {}
-void learnMateria(AMateria*);
-AMateria* createMateria(std::string const & type);
+  private:
+	AMateria *inventory[4];
+
+  public:
+	MateriaSource();
+	~MateriaSource()
+	{
+	}
+	MateriaSource(MateriaSource &f);
+	MateriaSource &operator=(const MateriaSource &);
+
+	void	  learnMateria(AMateria *);
+	AMateria *createMateria(std::string const &type);
 };
 
 #endif
