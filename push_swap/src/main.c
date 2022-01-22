@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 10:08:11 by takkatao          #+#    #+#             */
-/*   Updated: 2022/01/11 10:23:23 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/01/22 09:31:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	main(int argc, char **argv)
 		tmp = (int *)ft_calloc(1, sizeof(int));
 		*tmp = ft_atoi(arg_list[i]);
 		ft_lstadd_back((stack->lst_a), exit_error(ft_lstnew(tmp)));
+		free(arg_list[i]);
 	}
 	free(arg_list);
 	init_unsorted_nums(stack);
