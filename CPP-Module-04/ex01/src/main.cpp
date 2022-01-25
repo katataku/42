@@ -44,4 +44,27 @@ int main()
 	d->getBrainIdea(0);
 	d->getBrainIdea(1);
 	delete d;
+
+
+	std::cout << "----" << std::endl;
+
+	Cat *e = new Cat();
+	Cat *f = new Cat();
+
+	e->setBrainIdea(0,"cat food");
+	e->setBrainIdea(1,"cat food2");
+
+	*f = *e;
+	f->setBrainIdea(0,"dat food");
+	f->setBrainIdea(1,"dat food2");
+
+	e->getBrainIdea(0);
+	e->getBrainIdea(1);
+	delete e;
+
+	f->getBrainIdea(0);
+	f->getBrainIdea(1);
+	delete f;
+
+	system("leaks a.out");
 }

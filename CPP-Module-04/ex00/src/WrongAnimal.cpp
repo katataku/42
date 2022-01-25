@@ -16,15 +16,15 @@ WrongAnimal::~WrongAnimal()
 	std::cout << RED << "WrongAnimal destructor" << RESET << std::endl;
 }
 
-WrongAnimal::WrongAnimal(const WrongAnimal &f)
+WrongAnimal::WrongAnimal(const WrongAnimal &other)
 {
-	*this = f;
+	*this = other;
 	std::cout << GREEN << "WrongAnimal constructor" << RESET << std::endl;
 }
 
-WrongAnimal &WrongAnimal::operator=(const WrongAnimal &f)
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 {
-	type			   = f.type;
+	type			   = other.type;
 	return *this;
 }
 

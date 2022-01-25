@@ -11,15 +11,15 @@ Cat::~Cat()
 	std::cout << RED << "Cat destructor" << RESET << std::endl;
 }
 
-Cat::Cat(const Cat &f)
+Cat::Cat(const Cat &other)
 {
-	*this = f;
+	*this = other;
 	std::cout << GREEN << "Cat constructor" << RESET << std::endl;
 }
 
-Cat &Cat::operator=(const Cat &f)
+Cat &Cat::operator=(const Cat &other)
 {
-	type			   = f.type;
+	type			   = other.type;
 	return *this;
 }
 

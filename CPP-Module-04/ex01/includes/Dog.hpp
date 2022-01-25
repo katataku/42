@@ -1,5 +1,5 @@
-#ifndef Dog_H
-#define Dog_H
+#ifndef DOG
+#define DOG
 
 #include "Animal.hpp"
 #include "Brain.hpp"
@@ -15,9 +15,9 @@ class Dog : public Animal
   public:
 	Dog();
 	~Dog();
-	Dog(const Dog &);
+	Dog(const Dog &other);
 
-	Dog &operator=(const Dog &);
+	Dog &operator=(const Dog &other);
 
 	void makeSound() const;
 	void getBrainIdea(int i) const;

@@ -10,15 +10,15 @@ Animal::~Animal()
 	std::cout << RED << "Animal destructor" << RESET << std::endl;
 }
 
-Animal::Animal(const Animal &f)
+Animal::Animal(const Animal &other)
 {
-	*this = f;
+	*this = other;
 	std::cout << GREEN << "Animal constructor" << RESET << std::endl;
 }
 
-Animal &Animal::operator=(const Animal &f)
+Animal &Animal::operator=(const Animal &other)
 {
-	type			   = f.type;
+	type			   = other.type;
 	return *this;
 }
 

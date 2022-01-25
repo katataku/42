@@ -12,12 +12,11 @@ Character::~Character()
 {
 }
 
-
 Character::Character(Character &f)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		inventory[i]=f.inventory[i]->clone();
+		inventory[i] = f.inventory[i]->clone();
 	}
 }
 
@@ -55,11 +54,18 @@ void Character::equip(AMateria *m)
 		}
 	}
 }
+
 void Character::unequip(int idx)
 {
-	inventory[idx] = NULL;
+	if (0 <= idx && idx <= 3)
+		inventory[idx] = NULL;
 }
+
 void Character::use(int idx, ICharacter &target)
 {
-	inventory[idx]->use(target);
+	if (0 <= idx && idx <= 3)
+	{
+		if (inventory[idx] != NULL)
+			inventory[idx]->use(target);
+	}
 }

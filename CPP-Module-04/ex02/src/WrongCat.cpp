@@ -11,15 +11,15 @@ WrongCat::~WrongCat()
 	std::cout << RED << "WrongCat destructor" << RESET << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &f)
+WrongCat::WrongCat(const WrongCat &other)
 {
-	*this = f;
+	*this = other;
 	std::cout << GREEN << "WrongCat constructor" << RESET << std::endl;
 }
 
-WrongCat &WrongCat::operator=(const WrongCat &f)
+WrongCat &WrongCat::operator=(const WrongCat &other)
 {
-	type			   = f.type;
+	type			   = other.type;
 	return *this;
 }
 

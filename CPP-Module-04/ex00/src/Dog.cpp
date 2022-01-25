@@ -11,15 +11,15 @@ Dog::~Dog()
 	std::cout << RED << "Dog destructor" << RESET << std::endl;
 }
 
-Dog::Dog(const Dog &f)
+Dog::Dog(const Dog &other)
 {
-	*this = f;
+	*this = other;
 	std::cout << GREEN << "Dog constructor" << RESET << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &f)
+Dog &Dog::operator=(const Dog &other)
 {
-	type			   = f.type;
+	type			   = other.type;
 	return *this;
 }
 

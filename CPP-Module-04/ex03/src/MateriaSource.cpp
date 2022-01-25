@@ -8,6 +8,11 @@ MateriaSource::MateriaSource()
 	}
 }
 
+MateriaSource::~MateriaSource()
+{
+
+}
+
 MateriaSource::MateriaSource(MateriaSource &f)
 {
 		for (int i = 0; i < 4; i++)

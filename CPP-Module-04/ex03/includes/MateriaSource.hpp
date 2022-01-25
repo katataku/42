@@ -13,9 +13,7 @@ class MateriaSource : public IMateriaSource
 
   public:
 	MateriaSource();
-	~MateriaSource()
-	{
-	}
+	~MateriaSource();
 	MateriaSource(MateriaSource &f);
 	MateriaSource &operator=(const MateriaSource &);
 

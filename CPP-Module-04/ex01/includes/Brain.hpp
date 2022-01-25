@@ -6,16 +6,18 @@
 #include <string>
 class Brain
 {
-  public:
+  private:
 	std::string ideas[100];
-  	Brain();
+
+  public:
+	Brain();
 	~Brain();
 	Brain(const Brain &);
 
-	Brain &operator=(const Brain &);
+	Brain &operator=(const Brain &other);
 
 	std::string getBrainIdea(int i) const;
-	void setBrainIdea(int i, std::string idea);
+	void		setBrainIdea(int i, std::string idea);
 };
 
 #endif
