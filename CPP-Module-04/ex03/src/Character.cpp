@@ -10,13 +10,20 @@ Character::Character() : name("no name")
 
 Character::~Character()
 {
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i] != NULL)
+			delete inventory[i];
+	}
 }
 
 Character::Character(Character &f)
+: name(f.name)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		inventory[i] = f.inventory[i]->clone();
+		if (f.inventory[i] != NULL)
+			inventory[i] = f.inventory[i]->clone();
 	}
 }
 

@@ -10,12 +10,16 @@ MateriaSource::MateriaSource()
 
 MateriaSource::~MateriaSource()
 {
-
+	for (int i = 0; i < 4; i++)
+	{
+		if (inventory[i] != NULL)
+			delete inventory[i];
+	}
 }
 
 MateriaSource::MateriaSource(MateriaSource &f)
 {
-		for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 4; i++)
 	{
 		inventory[i] = f.inventory[i];
 	}
