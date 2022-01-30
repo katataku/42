@@ -50,9 +50,9 @@ void	get_map_size(t_vars *game)
 		if (game->cols != -1 && game->cols != column)
 			my_close(game, "Error: map is not rectangle\n");
 		game->cols = column;
-		free(receiver);
 	}
-	close(fd1);
+	if (close(fd1) == -1)
+		my_close(game, "close error");
 }
 
 void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
@@ -100,5 +100,6 @@ void	read_map(t_vars *game)
 		row++;
 	}
 	free(receiver);
-	close(fd2);
+	if (close(fd2) == -1)
+		my_close(game, "close error");
 }

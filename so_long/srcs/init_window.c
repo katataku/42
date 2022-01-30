@@ -13,8 +13,9 @@ void	make_window(t_vars *game)
 
 void	init_images(t_vars *game)
 {
-	int		img_width;
-	int		img_height;
+	int	img_width;
+	int	img_height;
+	int	i;
 
 	game->images[GOAL] = mlx_xpm_file_to_image(game->mlx, GOAL_PATH,
 			&img_width, &img_height);
@@ -26,4 +27,11 @@ void	init_images(t_vars *game)
 			&img_width, &img_height);
 	game->images[FREE] = mlx_xpm_file_to_image(game->mlx, FREE_PATH,
 			&img_width, &img_height);
+	i = 0;
+	while (i < E_IMAGE_COUNT)
+	{
+		if (game->images[i] == NULL)
+			my_close(game, "image load error");
+		i++;
+	}
 }

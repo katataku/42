@@ -71,4 +71,6 @@ int		my_close(t_vars *game, char *message);
 void	*ft_calloc(size_t number, size_t size);
 void	ft_bzero(void *s, size_t n);
 void	count_map(t_vars *game);
+
+char	*ft_xcalloc(size_t count, size_t size);
 #endif
