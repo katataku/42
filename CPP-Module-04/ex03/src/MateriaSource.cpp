@@ -21,14 +21,16 @@ MateriaSource::MateriaSource(MateriaSource &f)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		inventory[i] = f.inventory[i];
+		if (f.inventory[i] != NULL)
+			inventory[i] = f.inventory[i]->clone();
 	}
 }
 MateriaSource &MateriaSource::operator=(const MateriaSource &f)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		inventory[i] = f.inventory[i];
+		if (f.inventory[i] != NULL)
+			inventory[i] = f.inventory[i];
 	}
 	return *this;
 }

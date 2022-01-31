@@ -23,15 +23,17 @@ int main()
 	delete me;
 	delete src;
 
-	// IMateriaSource *src2 = new MateriaSource();
+	// MateriaSource *src2 = new MateriaSource();
 	// src2->learnMateria(new Ice());
 	// src2->learnMateria(new Cure());
- 	// Character *a = new Character("aaa");
-	// tmp = src2->createMateria("ice");
-	// a->equip(tmp);
-	// tmp = src2->createMateria("cure");
-	// a->equip(tmp);
+	// IMateriaSource *src3 = new MateriaSource(*src2);
 	// delete src2;
+ 	// Character *a = new Character("aaa");
+	// tmp = src3->createMateria("ice");
+	// a->equip(tmp);
+	// tmp = src3->createMateria("cure");
+	// delete src3;
+	// a->equip(tmp);
 	// Character *b = new Character(*a);
  	// a->use(0, *b);
 	// a->use(1, *b);
@@ -40,6 +42,6 @@ int main()
 	// b->use(1, *b);
 	// delete b;
 
-	//system("leaks a.out");
+	// system("leaks a.out");
 	return 0;
 }

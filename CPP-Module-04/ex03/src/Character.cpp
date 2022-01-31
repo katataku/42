@@ -40,7 +40,10 @@ Character &Character::operator=(const Character &f)
 	for (int i = 0; i < 4; i++)
 	{
 		delete inventory[i];
-		inventory[i] = f.inventory[i]->clone();
+		if (f.inventory[i] != NULL)
+			inventory[i] = f.inventory[i]->clone();
+		else
+			inventory[i] = NULL;
 	}
 	return *this;
 }
