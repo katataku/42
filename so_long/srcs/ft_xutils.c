@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:52:12 by takkatao          #+#    #+#             */
-/*   Updated: 2022/02/02 12:52:49 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/02/02 13:31:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,20 @@ int	xget_next_line(int fd, char **line)
 		exit(1);
 	}
 	return (tmp);
+}
+
+int	xopen(const char *filename, int flag, t_vars *game)
+{
+	int	fd;
+
+	fd = open(filename, flag);
+	if (fd == -1)
+		my_close(game, "error open file\n");
+	return (fd);
+}
+
+void	xclose(int fd, t_vars *game)
+{
+	if (close(fd) == -1)
+		my_close(game, "close error");
 }

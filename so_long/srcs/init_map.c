@@ -12,16 +12,16 @@ void	count_map(t_vars *game)
 		while (++j < game->cols)
 		{
 			if (game->map[i][j] == ITEM)
-				game->itemNum++;
+				game->item_num++;
 			if (game->map[i][j] == PLAYER)
 			{
-				game->playerNum++;
+				game->player_num++;
 				game->player_x = j;
 				game->player_y = i;
 				game->map[i][j] = FREE;
 			}
 			if (game->map[i][j] == GOAL)
-				game->goalNum++;
+				game->goal_num++;
 		}
 	}
 }
@@ -31,28 +31,27 @@ void	get_map_size(t_vars *game)
 	int		fd1;
 	char	*receiver;
 	int		column;
+	int		ret;
 
+	fd1 = xopen(game->map_filepath, O_RDONLY, game);
 	receiver = NULL;
-	fd1 = open(game->map_filepath, O_RDONLY);
-	if (fd1 == -1)
-		my_close(game, "error open file\n");
 	game->rows = 0;
 	game->cols = -1;
-	while (1)
+	ret = 1;
+	while (ret == 1)
 	{
-		if (xget_next_line(fd1, &receiver) != 1)
-			break ;
-		game->rows++;
-		column = 0;
-		while (receiver[column] != '\0')
-			column++;
-		free(receiver);
-		if (game->cols != -1 && game->cols != column)
-			my_close(game, "Error: map is not rectangle\n");
-		game->cols = column;
+		ret = xget_next_line(fd1, &receiver);
+		if (ft_strlen(receiver) > 0)
+		{
+			column = ft_strlen(receiver);
+			free(receiver);
+			if (game->cols != -1 && game->cols != column)
+				my_close(game, "Error: map is not rectangle\n");
+			game->cols = column;
+			game->rows++;
+		}
 	}
-	if (close(fd1) == -1)
-		my_close(game, "close error");
+	xclose(fd1, game);
 }
 
 void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
@@ -69,7 +68,7 @@ void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
 		game->map[row][column] = PLAYER;
 	else
 		my_close(game, "Error: illegal charactor.\n");
-	if (row == 0 || row == game->rows - 1
+	if (row == 0 || row == game->rows
 		|| column == 0 || column == game->cols - 1)
 	{
 		if (game->map[row][column] != WALL)
@@ -83,31 +82,35 @@ void	read_map(t_vars *game)
 	char	*receiver;
 	int		row;
 	int		column;
+	int		ret;
 
 	fd2 = open(game->map_filepath, O_RDONLY);
 	if (fd2 == -1)
 		my_close(game, "error open file\n");
 	row = 0;
 	receiver = NULL;
-	while (xget_next_line(fd2, &receiver) == 1)
+	ret = 1;
+	while (ret == 1)
 	{
-		column = -1;
-		while (receiver[++column] != '\0')
-			read_map_loop_handler(game, receiver, row, column);
+		ret = xget_next_line(fd2, &receiver);
+		if (ft_strlen(receiver) > 0)
+		{
+			column = -1;
+			while (receiver[++column] != '\0')
+				read_map_loop_handler(game, receiver, row, column);
+			row++;
+		}
 		free(receiver);
-		row++;
 	}
-	free(receiver);
-	if (close(fd2) == -1)
-		my_close(game, "close error");
+	xclose(fd2, game);
 }
 
 void	check_map(t_vars *game)
 {
-	if (game->itemNum <= 0)
+	if (game->item_num <= 0)
 		my_close(game, "Error: too few items\n");
-	if (game->playerNum != 1)
+	if (game->player_num != 1)
 		my_close(game, "Error: player must be only one\n");
-	if (game->goalNum <= 0)
+	if (game->goal_num <= 0)
 		my_close(game, "Error: too many goals\n");
 }
