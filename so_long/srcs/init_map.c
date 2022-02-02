@@ -44,12 +44,12 @@ void	get_map_size(t_vars *game)
 		if (ft_strlen(receiver) > 0)
 		{
 			column = ft_strlen(receiver);
-			free(receiver);
 			if (game->cols != -1 && game->cols != column)
 				my_close(game, "Error: map is not rectangle\n");
 			game->cols = column;
 			game->rows++;
 		}
+		free(receiver);
 	}
 	xclose(fd1, game);
 }
