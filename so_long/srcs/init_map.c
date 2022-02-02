@@ -40,7 +40,7 @@ void	get_map_size(t_vars *game)
 	game->cols = -1;
 	while (1)
 	{
-		if (get_next_line(fd1, &receiver) != 1)
+		if (xget_next_line(fd1, &receiver) != 1)
 			break ;
 		game->rows++;
 		column = 0;
@@ -89,17 +89,25 @@ void	read_map(t_vars *game)
 		my_close(game, "error open file\n");
 	row = 0;
 	receiver = NULL;
-	while (get_next_line(fd2, &receiver) == 1)
+	while (xget_next_line(fd2, &receiver) == 1)
 	{
 		column = -1;
 		while (receiver[++column] != '\0')
-		{
 			read_map_loop_handler(game, receiver, row, column);
-		}
 		free(receiver);
 		row++;
 	}
 	free(receiver);
 	if (close(fd2) == -1)
 		my_close(game, "close error");
+}
+
+void	check_map(t_vars *game)
+{
+	if (game->itemNum <= 0)
+		my_close(game, "Error: too few items\n");
+	if (game->playerNum != 1)
+		my_close(game, "Error: player must be only one\n");
+	if (game->goalNum <= 0)
+		my_close(game, "Error: too many goals\n");
 }

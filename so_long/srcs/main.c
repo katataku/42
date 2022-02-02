@@ -24,7 +24,7 @@ int	my_close(t_vars *game, char *message)
 			free(game->map[i]);
 		free(game->map);
 	}
-	printf("%s", message);
+	printf("%s\n", message);
 	free(game);
 	exit(0);
 }
@@ -35,16 +35,6 @@ int	simple_close(t_vars *game)
 	exit(0);
 }
 
-void	check_map(t_vars *game)
-{
-	if (game->itemNum <= 0)
-		my_close(game, "Error: too few items\n");
-	if (game->playerNum != 1)
-		my_close(game, "Error: player must be only one\n");
-	if (game->goalNum <= 0)
-		my_close(game, "Error: too many goals\n");
-}
-
 void	register_hooks(t_vars *game)
 {
 	mlx_hook(game->win, X_EVENT_KEY_PRESS, 1, &deal_key, game);
@@ -53,13 +43,28 @@ void	register_hooks(t_vars *game)
 	mlx_loop(game->mlx);
 }
 
+int	is_valid_arg(int argc, char **argv)
+{
+	int	len;
+
+	len = ft_strlen(argv[1]);
+	if (argc != 2)
+		return (0);
+	if (len < 4)
+		return (0);
+	if (argv[1][len - 4] == '.' && argv[1][len - 3] == 'b' \
+		&& argv[1][len - 2] == 'e' && argv[1][len - 1] == 'r')
+		return (1);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_vars	*game;
 	int		i;
 
 	game = (t_vars *)ft_xcalloc(sizeof(t_vars), 1);
-	if (argc != 2)
+	if (is_valid_arg(argc, argv) != 1)
 		my_close(game, "illegal arguments");
 	game->map_filepath = argv[1];
 	game->key_flag = 1;

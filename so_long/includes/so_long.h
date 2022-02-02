@@ -63,6 +63,7 @@ typedef struct s_vars {
 
 void	make_window(t_vars *game);
 void	init_images(t_vars *game);
+void	check_map(t_vars *game);
 void	get_map_size(t_vars *game);
 void	read_map(t_vars *game);
 int		deal_key(int key_code, t_vars *game);
@@ -70,7 +71,9 @@ int		main_loop(t_vars *game);
 int		my_close(t_vars *game, char *message);
 void	*ft_calloc(size_t number, size_t size);
 void	ft_bzero(void *s, size_t n);
+size_t	ft_strlen(char *str);
 void	count_map(t_vars *game);
+int		xget_next_line(int fd, char **line);
 
 char	*ft_xcalloc(size_t count, size_t size);
 #endif
