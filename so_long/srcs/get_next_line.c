@@ -67,6 +67,11 @@ static void	ft_free_buff(int flag, char **buff, char **memo, char **line)
 		*memo = NULL;
 		free(*line);
 	}
+	if (ft_strlen(memo) == 0)
+	{
+		free(*memo);
+		*memo = NULL;
+	}
 }
 
 int	get_next_line(int fd, char **line)
