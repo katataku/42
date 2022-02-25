@@ -76,6 +76,8 @@ void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(char *str);
 void	count_map(t_vars *game);
 int		xget_next_line(int fd, char **line);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putnbr_fd(int nb, int fd);
 
 char	*ft_xcalloc(size_t count, size_t size);
 #endif
