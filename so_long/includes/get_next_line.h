@@ -9,7 +9,8 @@
 
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *str);
-char	*ft_strjoin(char *line, char *buff, size_t n_add);
+char	*ft_strnjoin(char *line, char *buff, size_t n_add);
 char	*ft_strdup(char *src);
+int		xget_next_line(int fd, char **line);
 
 #endif

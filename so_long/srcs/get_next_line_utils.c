@@ -37,7 +37,7 @@ static char	*ft_buffcat(char *heap, char *buff, size_t n_add)
 	return (heap);
 }
 
-char	*ft_strjoin(char *line, char *buff, size_t n_add)
+char	*ft_strnjoin(char *line, char *buff, size_t n_add)
 {
 	char	*heap;
 

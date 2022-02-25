@@ -21,8 +21,8 @@ OBJS 		= $(addprefix $(OBJSDIR)/, $(notdir $(SRCS:.c=.o)))
 
 
 minilibx_DIR	= ./minilibx-linux
-minilibx_A			= $(minilibx_DIR)/libmlx_Linux.a
-#minilibx_A			= $(minilibx_DIR)/libmlx_Darwin.a
+#minilibx_A			= $(minilibx_DIR)/libmlx_Linux.a
+minilibx_A			= $(minilibx_DIR)/libmlx_Darwin.a
 DEPENDS   		= $(OBJS:.o=.d)
 
 LIBFT_DIR	= ./libft
@@ -43,8 +43,8 @@ CFLAGS += $(CFLAGS_MLX)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(minilibx_A)
-	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/lib -Imlx_linux -lXext -lX11 -lm
-#	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
+#	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/lib -Imlx_linux -lXext -lX11 -lm
+	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
