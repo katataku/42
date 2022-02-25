@@ -24,14 +24,14 @@ int	my_close(t_vars *game, char *message)
 			free(game->map[i]);
 		free(game->map);
 	}
-	printf("%s\n", message);
+	ft_putstr_fd(message, 1);
 	free(game);
 	exit(0);
 }
 
 int	simple_close(t_vars *game)
 {
-	my_close(game, "");
+	my_close(game, "\n");
 	exit(0);
 }
 
@@ -47,11 +47,11 @@ int	is_valid_arg(int argc, char **argv)
 {
 	int	len;
 
-	len = ft_strlen(argv[1]);
 	if (argc != 2)
 		return (0);
 	if (len < 4)
 		return (0);
+	len = ft_strlen(argv[1]);
 	if (argv[1][len - 4] == '.' && argv[1][len - 3] == 'b' \
 		&& argv[1][len - 2] == 'e' && argv[1][len - 1] == 'r')
 		return (1);

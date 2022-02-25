@@ -32,7 +32,7 @@ CFLAGS_MLX		= -Imlx_linux -O3
 #CFLAGS_MLX		= -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 DEGUB_CFLAGS	= -g3 -fsanitize=address
 RM				= /bin/rm -f
-INCLUDES 		= -I./includes
+INCLUDES 		= -I./includes -I./minilibx-linux
 
 CFLAGS += $(CFLAGS_MLX)
 
