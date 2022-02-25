@@ -11,7 +11,7 @@ void	*ft_calloc(size_t number, size_t size)
 	p = malloc(heap);
 	if (p == NULL)
 	{
-		ft_putchar_fd("malloc error", 1);
+		ft_putstr_fd("malloc error", 1);
 		exit(0);
 	}
 	ft_bzero(p, heap);
