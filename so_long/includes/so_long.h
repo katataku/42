@@ -8,6 +8,7 @@
 # include <fcntl.h>
 # include "get_next_line.h"
 # include "mlx.h"
+# include "libft.h"
 
 # define X_EVENT_KEY_PRESS 2
 # define X_EVENT_KEY_EXIT 17 // Exit program key code
@@ -71,13 +72,8 @@ int		main_loop(t_vars *game);
 int		my_close(t_vars *game, char *message);
 int		xopen(const char *filename, int flag, t_vars *game);
 void	xclose(int fd, t_vars *game);
-void	*ft_calloc(size_t number, size_t size);
-void	ft_bzero(void *s, size_t n);
-size_t	ft_strlen(char *str);
 void	count_map(t_vars *game);
 int		xget_next_line(int fd, char **line);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putnbr_fd(int nb, int fd);
 
 char	*ft_xcalloc(size_t count, size_t size);
 #endif
