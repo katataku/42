@@ -49,9 +49,9 @@ int	is_valid_arg(int argc, char **argv)
 
 	if (argc != 2)
 		return (0);
+	len = ft_strlen(argv[1]);
 	if (len < 4)
 		return (0);
-	len = ft_strlen(argv[1]);
 	if (argv[1][len - 4] == '.' && argv[1][len - 3] == 'b' \
 		&& argv[1][len - 2] == 'e' && argv[1][len - 1] == 'r')
 		return (1);
