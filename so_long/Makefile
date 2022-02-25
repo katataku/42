@@ -40,7 +40,7 @@ CFLAGS += $(CFLAGS_MLX)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(minilibx_A)
-	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
+	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/lib -Imlx_linux -lXext -lX11 -lm
 #	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  
 
 
