@@ -30,8 +30,7 @@ int	deal_key(int key_code, t_vars *game)
 	}
 	if (game->player_x != old_player_x || game->player_y != old_player_y)
 	{
-		game->step_count++;
-		ft_putnbr_fd(game->step_count, 1);
+		ft_putnbr_fd(++(game->step_count), 1);
 		ft_putstr_fd("\n", 1);
 	}
 	if (game->map[game->player_y][game->player_x] == ITEM)

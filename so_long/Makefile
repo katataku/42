@@ -4,6 +4,10 @@ SRCS 	 	= \
 	$(SRCSDIR)/main.c\
 	$(SRCSDIR)/ft_calloc.c\
 	$(SRCSDIR)/ft_bzero.c\
+	$(SRCSDIR)/ft_putchar_fd.c\
+	$(SRCSDIR)/ft_putendl_fd.c\
+	$(SRCSDIR)/ft_putnbr_fd.c\
+	$(SRCSDIR)/ft_putstr_fd.c\
 	$(SRCSDIR)/init_map.c\
 	$(SRCSDIR)/init_window.c\
 	$(SRCSDIR)/event_key_press.c\
@@ -29,7 +33,6 @@ DEPENDS   		= $(OBJS:.o=.d)
 CC 				= gcc
 CFLAGS			= -Werror -Wall -Wextra -MMD -MP
 CFLAGS_MLX		= -Imlx_linux -O3
-#CFLAGS_MLX		= -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 DEGUB_CFLAGS	= -g3 -fsanitize=address
 RM				= /bin/rm -f
 INCLUDES 		= -I./includes -I./minilibx-linux
@@ -41,7 +44,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(minilibx_A)
 	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/lib -Imlx_linux -lXext -lX11 -lm
-#	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  
+#	$(CC) $(CFLAGS) -o  $@  $(OBJS) $(INCLUDES) $(minilibx_A)  -L/usr/X11R6/lib -lX11 -lXext -framework OpenGL -framework AppKit
 
 
 $(OBJSDIR)/%.o: $(SRCSDIR)/%.c
