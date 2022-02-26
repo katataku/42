@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 22:04:59 by takkatao          #+#    #+#             */
-/*   Updated: 2022/02/25 19:06:59 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/02/26 09:33:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,4 @@ void			ft_putstr_fd(char *str, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 size_t			ft_strlen(const char *s);
-
-
-
 #endif
