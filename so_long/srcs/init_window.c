@@ -4,11 +4,11 @@ void	make_window(t_vars *game)
 {
 	game->mlx = mlx_init();
 	if (game->mlx == NULL)
-		my_close(game, "malloc error");
+		my_close(game, "malloc error\n");
 	game->win = mlx_new_window(game->mlx, game->cols * TILE_SIZE,
 			game->rows * TILE_SIZE, "so_long");
 	if (game->win == NULL)
-		my_close(game, "malloc error");
+		my_close(game, "malloc error\n");
 }
 
 void	init_images(t_vars *game)
@@ -31,7 +31,7 @@ void	init_images(t_vars *game)
 	while (i < E_IMAGE_COUNT)
 	{
 		if (game->images[i] == NULL)
-			my_close(game, "image load error");
+			my_close(game, "image load error\n");
 		i++;
 	}
 }

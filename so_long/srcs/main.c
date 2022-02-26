@@ -65,7 +65,7 @@ int	main(int argc, char **argv)
 
 	game = (t_vars *)ft_xcalloc(sizeof(t_vars), 1);
 	if (is_valid_arg(argc, argv) != 1)
-		my_close(game, "illegal arguments");
+		my_close(game, "illegal arguments\n");
 	game->map_filepath = argv[1];
 	game->key_flag = 1;
 	get_map_size(game);

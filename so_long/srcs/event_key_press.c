@@ -3,7 +3,7 @@
 void	check_key_code(int key_code, t_vars *game)
 {
 	if (key_code == KEY_ESC)
-		my_close(game, "");
+		my_close(game, "\n");
 	else if (key_code == KEY_W)
 		game->player_y -= 1;
 	else if (key_code == KEY_S)
