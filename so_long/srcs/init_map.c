@@ -26,34 +26,6 @@ void	count_map(t_vars *game)
 	}
 }
 
-void	get_map_size(t_vars *game)
-{
-	int		fd1;
-	char	*receiver;
-	int		column;
-	int		ret;
-
-	fd1 = xopen(game->map_filepath, O_RDONLY, game);
-	receiver = NULL;
-	game->rows = 0;
-	game->cols = -1;
-	ret = 1;
-	while (ret == 1)
-	{
-		ret = xget_next_line(fd1, &receiver);
-		if (ft_strlen(receiver) > 0)
-		{
-			column = ft_strlen(receiver);
-			if (game->cols != -1 && game->cols != column)
-				my_close(game, "Error: map is not rectangle\n");
-			game->cols = column;
-			game->rows++;
-		}
-		free(receiver);
-	}
-	xclose(fd1, game);
-}
-
 void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
 {
 	if (receiver[column] == '0')
@@ -68,7 +40,7 @@ void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
 		game->map[row][column] = PLAYER;
 	else
 		my_close(game, "Error: illegal charactor.\n");
-	if (row == 0 || row == game->rows
+	if (row == 0 || row == game->rows - 1
 		|| column == 0 || column == game->cols - 1)
 	{
 		if (game->map[row][column] != WALL)
@@ -84,9 +56,7 @@ void	read_map(t_vars *game)
 	int		column;
 	int		ret;
 
-	fd2 = open(game->map_filepath, O_RDONLY);
-	if (fd2 == -1)
-		my_close(game, "error open file\n");
+	fd2 = xopen(game->map_filepath, O_RDONLY, game);
 	row = 0;
 	receiver = NULL;
 	ret = 1;
@@ -113,4 +83,21 @@ void	check_map(t_vars *game)
 		my_close(game, "Error: player must be only one\n");
 	if (game->goal_num <= 0)
 		my_close(game, "Error: too many goals\n");
+}
+
+void	init_map(t_vars *game)
+{
+	int		i;
+
+	get_map_size(game);
+	game->map = (int **)ft_xcalloc(sizeof(int *), game->rows + 1);
+	i = 0;
+	while (i < game->rows)
+	{
+		game->map[i] = (int *)ft_xcalloc(sizeof(int), game->cols + 1);
+		i++;
+	}
+	read_map(game);
+	count_map(game);
+	check_map(game);
 }

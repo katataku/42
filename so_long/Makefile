@@ -12,6 +12,7 @@ SRCS 	 	= \
 	$(SRCSDIR)/init_window.c\
 	$(SRCSDIR)/event_key_press.c\
 	$(SRCSDIR)/main_loop.c\
+	$(SRCSDIR)/get_map_size.c\
 	$(SRCSDIR)/get_next_line.c\
 	$(SRCSDIR)/get_next_line_utils.c\
 	$(SRCSDIR)/ft_xutils.c
@@ -72,8 +73,9 @@ fclean:clean
 .PHONY:re
 re:fclean all
 
-.PHONY:test
-test:$(NAME)
-	$(CC) $(CFLAGS) $^ -Imlx -L/usr/X11R6/lib -lXext -o $@
+.PHONY: test
+test: $(NAME)
+	@mkdir -p ./tests/actual
+	bash ./tests/main.sh
 
 -include $(DEPENDS)

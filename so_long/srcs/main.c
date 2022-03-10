@@ -61,24 +61,12 @@ int	is_valid_arg(int argc, char **argv)
 int	main(int argc, char **argv)
 {
 	t_vars	*game;
-	int		i;
 
 	game = (t_vars *)ft_xcalloc(sizeof(t_vars), 1);
 	if (is_valid_arg(argc, argv) != 1)
 		my_close(game, "illegal arguments\n");
 	game->map_filepath = argv[1];
-	game->key_flag = 1;
-	get_map_size(game);
-	game->map = (int **)ft_xcalloc(sizeof(int *), game->rows + 1);
-	i = 0;
-	while (i < game->rows)
-	{
-		game->map[i] = (int *)ft_xcalloc(sizeof(int), game->cols + 1);
-		i++;
-	}
-	read_map(game);
-	count_map(game);
-	check_map(game);
+	init_map(game);
 	make_window(game);
 	init_images(game);
 	register_hooks(game);

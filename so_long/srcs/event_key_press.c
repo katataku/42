@@ -12,7 +12,6 @@ void	check_key_code(int key_code, t_vars *game)
 		game->player_x -= 1;
 	else if (key_code == KEY_D)
 		game->player_x += 1;
-	game->key_flag = 1;
 }
 
 int	deal_key(int key_code, t_vars *game)

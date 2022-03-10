@@ -51,7 +51,6 @@ typedef struct s_vars {
 	int		**map;
 	int		player_x;
 	int		player_y;
-	int		key_flag;
 	int		item_num;
 	int		player_num;
 	int		goal_num;
@@ -64,15 +63,13 @@ typedef struct s_vars {
 
 void	make_window(t_vars *game);
 void	init_images(t_vars *game);
-void	check_map(t_vars *game);
 void	get_map_size(t_vars *game);
-void	read_map(t_vars *game);
 int		deal_key(int key_code, t_vars *game);
 int		main_loop(t_vars *game);
 int		my_close(t_vars *game, char *message);
 int		xopen(const char *filename, int flag, t_vars *game);
 void	xclose(int fd, t_vars *game);
-void	count_map(t_vars *game);
+void	init_map(t_vars *game);
 int		xget_next_line(int fd, char **line);
 
 char	*ft_xcalloc(size_t count, size_t size);
