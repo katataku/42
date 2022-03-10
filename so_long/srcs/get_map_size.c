@@ -40,7 +40,6 @@ void	get_column_size(t_vars *game)
 	xclose(fd, game);
 }
 
-
 void	check_is_rectangle(t_vars *game)
 {
 	int		fd;
