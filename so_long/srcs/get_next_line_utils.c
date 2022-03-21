@@ -40,13 +40,15 @@ static char	*ft_buffcat(char *heap, char *buff, size_t n_add)
 char	*ft_strnjoin(char *line, char *buff, size_t n_add)
 {
 	char	*heap;
+	char	*tmp;
 
 	if (line == NULL || buff == NULL)
 		return (NULL);
-	heap = (char *)malloc(ft_strlen(line) + n_add + 2);
-	if (heap == NULL)
+	tmp = (char *)malloc(ft_strlen(line) + n_add + 2);
+	if (tmp == NULL)
 		return (NULL);
-	heap = ft_strcpy(heap, line);
+	heap = ft_strcpy(tmp, line);
+	free(tmp);
 	heap = ft_buffcat(heap, buff, n_add);
 	return (heap);
 }
