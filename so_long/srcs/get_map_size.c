@@ -1,5 +1,4 @@
 #include "so_long.h"
-#include <stdio.h>
 
 void	get_row_size(t_vars *game)
 {
@@ -13,11 +12,7 @@ void	get_row_size(t_vars *game)
 	ret = 1;
 	while (ret == 1)
 	{	
-		printf("gnl called fd:%d\n",fd);
 		ret = xget_next_line(fd, &receiver);
-		printf(" gnl ret:%d\n", ret);
-		printf(" gnl recervier:%s\n", receiver);
-
 		if (receiver != NULL && ft_strlen(receiver) > 0)
 			game->rows++;
 		free(receiver);

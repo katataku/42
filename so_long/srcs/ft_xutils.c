@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:52:12 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/25 08:23:19 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/25 08:25:44 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_xcalloc(size_t count, size_t size)
 int	xget_next_line(int fd, char **line)
 {
 	*line = get_next_line(fd);
-	if (*line == NULL)
+	if (*line == NULL || strcmp(*line, ""))
 	{
 		return (0);
 	}
