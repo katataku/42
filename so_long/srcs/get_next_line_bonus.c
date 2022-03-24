@@ -78,7 +78,7 @@ int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
 
 char	*get_next_line(int fd)
 {
-	static t_gnl_status		status_list[INT_MAX];
+	static t_gnl_status		status_list[256];
 	static t_gnl_status		status;
 	t_gnl_status_var		status_var;
 	int						ret;
