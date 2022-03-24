@@ -29,9 +29,9 @@ static size_t	ft_strindex(char *buff, char c)
 	return (i);
 }
 
-static int	ft_put_line(char **line, char **memo, char *buff)
+static bool	ft_put_line(char **line, char **memo, char *buff)
 {
-	int		is_continued;
+	bool	is_continued;
 	size_t	n_index;
 	char	*tmp;
 
@@ -42,13 +42,13 @@ static int	ft_put_line(char **line, char **memo, char *buff)
 	free(*line);
 	*line = tmp;
 	tmp = NULL;
-	is_continued = 0;
+	is_continued = false;
 	if (buff[n_index] == '\n')
 	{
 		tmp = ft_strdup(&buff[n_index + 1]);
 		if (tmp == NULL)
 			return (-1);
-		is_continued = 1;
+		is_continued = true;
 	}
 	free(*memo);
 	*memo = tmp;
@@ -56,11 +56,11 @@ static int	ft_put_line(char **line, char **memo, char *buff)
 	return (is_continued);
 }
 
-static void	ft_free_buff(int flag, char **buff, char **memo, char **line)
+static void	ft_free_buff(bool flag, char **buff, char **memo, char **line)
 {
 	free(*buff);
 	*buff = NULL;
-	if (flag == -1)
+	if (flag == false)
 	{
 		free(*memo);
 		*memo = NULL;
@@ -72,22 +72,18 @@ int	get_next_line(int fd, char **line)
 {
 	static char	*memo[256];
 	char		*buff;
-	int			is_continued;
+	bool		is_continued;
 	ssize_t		read_size;
 
 	if (fd < 0 || 256 <= fd || line == NULL || BUFFER_SIZE <= 0
 		|| init(line, &buff) == -1)
 		return (-1);
-	is_continued = 0;
+	is_continued = false;
 	if (memo[fd])
 		is_continued = ft_put_line(line, &memo[fd], memo[fd]);
 	read_size = 0;
 	if (is_continued == 0)
-	{
 		read_size = read(fd, buff, BUFFER_SIZE);
-		if (read_size == 0)
-			free(*line);
-	}
 	while (read_size > 0 && is_continued == 0)
 	{
 		buff[read_size] = '\0';

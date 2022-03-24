@@ -6,6 +6,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <stdbool.h>
 
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *str);
