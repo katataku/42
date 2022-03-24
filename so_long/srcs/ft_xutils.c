@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 12:52:12 by takkatao          #+#    #+#             */
-/*   Updated: 2022/02/25 17:10:14 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/25 07:48:44 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,12 @@ char	*ft_xcalloc(size_t count, size_t size)
 
 int	xget_next_line(int fd, char **line)
 {
-	int	tmp;
-
-	tmp = get_next_line(fd, line);
-	if (tmp == -1)
+	*line = get_next_line(fd);
+	if (line == NULL)
 	{
-		perror("read error");
-		exit(1);
+		return (0);
 	}
-	return (tmp);
+	return (1);
 }
 
 int	xopen(const char *filename, int flag, t_vars *game)

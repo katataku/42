@@ -1,101 +1,131 @@
 #include "get_next_line.h"
 
-static int	init(char **line, char **buff)
+int	file_read(t_gnl_status *status, t_gnl_status_var *status_var)
 {
-	*line = (char *)malloc(sizeof(char));
-	if (*line == NULL)
-		return (-1);
-	*line[0] = '\0';
-	*buff = (char *)malloc(BUFFER_SIZE + 1);
-	if (*buff == NULL)
+	ssize_t	rc;
+
+	if (status->buffer == NULL)
 	{
-		free(*line);
-		return (-1);
+		status->next_n = 0;
+		status->buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
+		if (status->buffer == NULL)
+			return (-1);
+		rc = read(status_var->fd, status->buffer, BUFFER_SIZE);
+		if (rc <= 0)
+		{
+			free(status->buffer);
+			status->buffer = NULL;
+			if (rc == 0)
+				return (0);
+			return (-1);
+		}
+		status->buffer[rc] = '\0';
 	}
 	return (1);
 }
 
-static size_t	ft_strindex(char *buff, char c)
+int	organizer(t_gnl_status *st, t_gnl_status_var *status_var)
 {
-	size_t	i;
+	char					*tmp;
 
-	i = 0;
-	while (buff[i] != '\0')
+	if (ft_strchr(&st->buffer[st->next_n], '\n'))
 	{
-		if (buff[i] == c)
-			return (i);
-		i++;
+		st->next_n = ft_strchr(&st->buffer[st->next_n], '\n') + 1 - st->buffer;
+		if (st->next_n == BUFFER_SIZE)
+		{
+			free(st->buffer);
+			st->buffer = NULL;
+		}
+		tmp = ft_strchr(status_var->ans, '\n') + 1;
+		*tmp = '\0';
+		return (0);
 	}
-	return (i);
+	if (st->buffer[st->next_n] == '\0')
+	{
+		free(st->buffer);
+		free(status_var->ans);
+		status_var->ans = NULL;
+		return (0);
+	}
+	return (1);
 }
 
-static bool	ft_put_line(char **line, char **memo, char *buff)
+int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
 {
-	bool	is_continued;
-	size_t	n_index;
+	int		ret;
 	char	*tmp;
 
-	n_index = ft_strindex(buff, '\n');
-	tmp = ft_strnjoin(*line, buff, n_index);
+	ret = file_read(status, status_var);
+	if (ret < 0)
+		return (-1);
+	if (ret == 0)
+		return (0);
+	if (status_var->ans == NULL)
+		status_var->ans = ft_strdup("");
+	tmp = ft_strjoin(status_var->ans, &status->buffer[status->next_n]);
 	if (tmp == NULL)
 		return (-1);
-	free(*line);
-	*line = tmp;
-	free(tmp);
-	tmp = NULL;
-	is_continued = false;
-	if (buff[n_index] == '\n')
-	{
-		tmp = ft_strdup(&buff[n_index + 1]);
-		if (tmp == NULL)
-			return (-1);
-		is_continued = true;
-	}
-	free(*memo);
-	*memo = tmp;
-	tmp = NULL;
-	return (is_continued);
+	free(status_var->ans);
+	status_var->ans = tmp;
+	ret = organizer(status, status_var);
+	if (ret == 0)
+		return (0);
+	free (status->buffer);
+	status->buffer = NULL;
+	return (1);
 }
 
-static void	ft_free_buff(bool flag, char **buff, char **memo, char **line)
+char	*get_next_line(int fd)
 {
-	free(*buff);
-	*buff = NULL;
-	if (false)
+	static t_gnl_status		status;
+	t_gnl_status_var		status_var;
+	int						ret;
+
+	status_var.fd = fd;
+	status_var.ans = NULL;
+	while (true)
 	{
-		(void)flag;
-		free(*memo);
-		*memo = NULL;
-		free(*line);
-		*line = NULL;
+		ret = loop_handler(&status, &status_var);
+		if (ret < 0)
+			break ;
+		if (ret == 0)
+			return (status_var.ans);
 	}
+	free(status.buffer);
+	status.buffer = NULL;
+	free(status_var.ans);
+	status_var.ans = NULL;
+	return (NULL);
 }
 
-int	get_next_line(int fd, char **line)
+/*
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include "get_next_line.h"
+
+int	main(void)
 {
-	static char	*memo[256];
-	char		*buff;
-	bool		is_continued;
-	ssize_t		read_size;
+	int	index;//読み込み回数を確認する用
+	//static int i;
+	int	fd = open("test.txt", O_RDONLY);
+	printf("fd = %d\n", fd);
 
-	if (fd < 0 || 256 <= fd || line == NULL || BUFFER_SIZE <= 0
-		|| init(line, &buff) == -1)
-		return (-1);
-	is_continued = false;
-	if (memo[fd])
-		is_continued = ft_put_line(line, &memo[fd], memo[fd]);
-	read_size = 0;
-	if (is_continued == 0)
-		read_size = read(fd, buff, BUFFER_SIZE);
-	while (read_size > 0 && is_continued == 0)
-	{
-		buff[read_size] = '\0';
-		is_continued = ft_put_line(line, &memo[fd], buff);
-		if (is_continued == 0)
-			read_size = read(fd, buff, BUFFER_SIZE);
+	char	*receiver = NULL;
+	index = 0;
+	//printf("static=%d\n", i);//staticの初期値を調べている。デフォルトがある。
+	while (1){
+		receiver = get_next_line(fd);
+		if (!receiver){
+			printf("EOF or ERROR\n");
+			break ;
+		}
+		printf("[%d]%s", index, receiver);
+		index ++;
+		free(receiver);
 	}
-	ft_free_buff(is_continued, &buff, &memo[fd], line);
-	if (read_size == -1)
-		return (-1);
-	return (is_continued);
+	system("leaks a.out");
+	close(fd);
 }
+*/
