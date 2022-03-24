@@ -43,6 +43,7 @@ int	organizer(t_gnl_status *st, t_gnl_status_var *status_var)
 	if (st->buffer[st->next_n] == '\0')
 	{
 		free(st->buffer);
+		st->buffer = NULL;
 		free(status_var->ans);
 		status_var->ans = NULL;
 		return (0);
