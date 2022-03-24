@@ -58,6 +58,7 @@ void	check_is_rectangle(t_vars *game)
 		if (game->cols != column)
 			my_close(game, "Error: map is not rectangle\n");
 		free(receiver);
+		receiver = NULL;
 	}
 	xclose(fd, game);
 }
