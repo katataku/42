@@ -48,7 +48,6 @@ char	*ft_strnjoin(char *line, char *buff, size_t n_add)
 	if (tmp == NULL)
 		return (NULL);
 	heap = ft_strcpy(tmp, line);
-	free(tmp);
 	heap = ft_buffcat(heap, buff, n_add);
 	return (heap);
 }
