@@ -13,8 +13,8 @@ SRCS 	 	= \
 	$(SRCSDIR)/event_key_press.c\
 	$(SRCSDIR)/main_loop.c\
 	$(SRCSDIR)/get_map_size.c\
-	$(SRCSDIR)/get_next_line.c\
-	$(SRCSDIR)/get_next_line_utils.c\
+	$(SRCSDIR)/get_next_line_bonus.c\
+	$(SRCSDIR)/get_next_line_utils_bonus.c\
 	$(SRCSDIR)/ft_xutils.c
 
 OBJSDIR		= ./objs
