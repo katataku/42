@@ -86,7 +86,7 @@ int	get_next_line(int fd, char **line)
 	{
 		read_size = read(fd, buff, BUFFER_SIZE);
 		if (read_size == 0)
-			free(buff);
+			free(*line);
 	}
 	while (read_size > 0 && is_continued == 0)
 	{
