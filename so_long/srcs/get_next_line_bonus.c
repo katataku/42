@@ -76,6 +76,7 @@ int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
 	return (1);
 }
 
+#include <stdio.h>
 char	*get_next_line(int fd)
 {
 	static t_gnl_status		status_list[256];
@@ -83,6 +84,7 @@ char	*get_next_line(int fd)
 	t_gnl_status_var		status_var;
 	int						ret;
 
+	printf("gnl called fd:%d\n",fd);
 	status = status_list[fd];
 	status_var.fd = fd;
 	status_var.ans = NULL;
