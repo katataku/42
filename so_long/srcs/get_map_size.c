@@ -11,9 +11,9 @@ void	get_row_size(t_vars *game)
 	game->rows = 0;
 	ret = 1;
 	while (ret == 1)
-	{	
+	{
 		ret = xget_next_line(fd, &receiver);
-		if (receiver != NULL && ft_strlen(receiver) > 0)
+		if (ft_strlen(receiver) > 0)
 			game->rows++;
 		free(receiver);
 	}
@@ -33,7 +33,7 @@ void	get_column_size(t_vars *game)
 	while (ret == 1)
 	{
 		ret = xget_next_line(fd, &receiver);
-		if (receiver != NULL &&  ft_strlen(receiver) > 0)
+		if (ft_strlen(receiver) > 0)
 			game->cols = ft_strlen(receiver);
 		free(receiver);
 	}
@@ -54,7 +54,6 @@ void	check_is_rectangle(t_vars *game)
 		if (game->cols != column)
 			my_close(game, "Error: map is not rectangle\n");
 		free(receiver);
-		receiver = NULL;
 	}
 	xclose(fd, game);
 }

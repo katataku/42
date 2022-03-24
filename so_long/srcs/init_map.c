@@ -69,8 +69,8 @@ void	read_map(t_vars *game)
 			while (receiver[++column] != '\0')
 				read_map_loop_handler(game, receiver, row, column);
 			row++;
-			free(receiver);
 		}
+		free(receiver);
 	}
 	xclose(fd2, game);
 }
