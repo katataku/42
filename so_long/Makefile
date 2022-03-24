@@ -33,7 +33,7 @@ DEPENDS   		= $(OBJS:.o=.d)
 
 CC 				= gcc
 CFLAGS			= -Werror -Wall -Wextra -MMD -MP
-CFLAGS_MLX		= -Imlx_linux -O3
+CFLAGS_MLX		= -Imlx_linux
 DEGUB_CFLAGS	= -g3 -fsanitize=address
 RM				= /bin/rm -f
 INCLUDES 		= -I./includes -I./minilibx-linux
