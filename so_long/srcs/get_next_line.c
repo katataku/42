@@ -77,16 +77,17 @@ int	get_next_line(int fd, char **line)
 
 	if (fd < 0 || 256 <= fd || line == NULL || BUFFER_SIZE <= 0
 		|| init(line, &buff) == -1)
-	{
-		ft_free_buff(-1, &buff, &memo[fd], line);
 		return (-1);
-	}
 	is_continued = 0;
 	if (memo[fd])
 		is_continued = ft_put_line(line, &memo[fd], memo[fd]);
 	read_size = 0;
 	if (is_continued == 0)
+	{
 		read_size = read(fd, buff, BUFFER_SIZE);
+		if (read_size == 0)
+			free(buff);
+	}
 	while (read_size > 0 && is_continued == 0)
 	{
 		buff[read_size] = '\0';
