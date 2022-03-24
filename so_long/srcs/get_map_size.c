@@ -13,6 +13,7 @@ void	get_row_size(t_vars *game)
 	while (ret == 1)
 	{
 		ret = xget_next_line(fd, &receiver);
+		printf("%s\n",receiver);
 		if (ret == 1 && ft_strlen(receiver) > 0)
 			game->rows++;
 		free(receiver);
