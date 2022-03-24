@@ -41,6 +41,7 @@ static bool	ft_put_line(char **line, char **memo, char *buff)
 		return (-1);
 	free(*line);
 	*line = tmp;
+	free(tmp);
 	tmp = NULL;
 	is_continued = false;
 	if (buff[n_index] == '\n')
