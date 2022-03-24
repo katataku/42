@@ -60,13 +60,13 @@ static void	ft_free_buff(bool flag, char **buff, char **memo, char **line)
 {
 	free(*buff);
 	*buff = NULL;
-	// if (flag == false)
-	// {
-	// 	free(*memo);
-	// 	*memo = NULL;
-	// 	free(*line);
-	// 	*line = NULL;
-	// }
+	if (false)
+	{
+		free(*memo);
+		*memo = NULL;
+		free(*line);
+		*line = NULL;
+	}
 }
 
 int	get_next_line(int fd, char **line)
