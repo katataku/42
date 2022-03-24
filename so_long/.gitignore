@@ -10,6 +10,8 @@ run_test
 assets/libtests
 *~
 a.out
-＊.gch
+*.gch
 actual/
-
+*.d
+so_long
+.DS_Store
