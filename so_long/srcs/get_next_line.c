@@ -78,7 +78,7 @@ int	get_next_line(int fd, char **line)
 	if (fd < 0 || 256 <= fd || line == NULL || BUFFER_SIZE <= 0
 		|| init(line, &buff) == -1)
 	{
-		free(buff);
+		ft_free_buff(-1, &buff, &memo[fd], line);
 		return (-1);
 	}
 	is_continued = 0;
