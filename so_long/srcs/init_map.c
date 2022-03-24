@@ -47,7 +47,6 @@ void	read_map_loop_handler(t_vars *game, char *receiver, int row, int column)
 			my_close(game, "Error: map is not surrounded WALLs\n");
 	}
 }
-#include <stdio.h>
 
 void	read_map(t_vars *game)
 {
@@ -63,10 +62,7 @@ void	read_map(t_vars *game)
 	ret = 1;
 	while (ret == 1)
 	{
-		printf("gnl called fd:%d\n",fd2);
 		ret = xget_next_line(fd2, &receiver);
-		printf(" gnl ret:%d\n", ret);
-		printf(" gnl recervier:%s\n", receiver);
 		if (ft_strlen(receiver) > 0)
 		{
 			column = -1;
