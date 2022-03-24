@@ -7,7 +7,7 @@ int	file_read(t_gnl_status *status, t_gnl_status_var *status_var)
 	if (status->buffer == NULL)
 	{
 		status->next_n = 0;
-		status->buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
+		status->buffer = (char *)ft_xcalloc((size_t)BUFFER_SIZE + 1, sizeof(char));
 		if (status->buffer == NULL)
 			return (-1);
 		rc = read(status_var->fd, status->buffer, BUFFER_SIZE);

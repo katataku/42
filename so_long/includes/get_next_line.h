@@ -27,4 +27,5 @@ int		organizer(t_gnl_status *st, t_gnl_status_var *status_var);
 int		loop_handler(t_gnl_status *status, t_gnl_status_var *status_var);
 char	*get_next_line(int fd);
 
+char	*ft_xcalloc(size_t count, size_t size);
 #endif
