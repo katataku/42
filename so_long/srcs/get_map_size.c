@@ -14,10 +14,8 @@ void	get_row_size(t_vars *game)
 	{
 		ret = xget_next_line(fd, &receiver);
 		if (ft_strlen(receiver) > 0)
-		{
 			game->rows++;
-			free(receiver);
-		}
+		free(receiver);
 	}
 	xclose(fd, game);
 }
@@ -36,10 +34,8 @@ void	get_column_size(t_vars *game)
 	{
 		ret = xget_next_line(fd, &receiver);
 		if (ft_strlen(receiver) > 0)
-		{
 			game->cols = ft_strlen(receiver);
-			free(receiver);
-		}
+		free(receiver);
 	}
 	xclose(fd, game);
 }
