@@ -7,7 +7,7 @@ int	file_read(t_gnl_status *status, t_gnl_status_var *status_var)
 	if (status->buffer == NULL)
 	{
 		status->next_n = 0;
-		status->buffer = (char *)ft_xcalloc((size_t)BUFFER_SIZE + 1, sizeof(char));
+		status->buffer = (char *)malloc((size_t)BUFFER_SIZE + 1);
 		if (status->buffer == NULL)
 			return (-1);
 		rc = read(status_var->fd, status->buffer, BUFFER_SIZE);
@@ -77,10 +77,12 @@ int	loop_handler(t_gnl_status *status, t_gnl_status_var *status_var)
 
 char	*get_next_line(int fd)
 {
+	static t_gnl_status		status_list[INT_MAX];
 	static t_gnl_status		status;
 	t_gnl_status_var		status_var;
 	int						ret;
 
+	status = status_list[fd];
 	status_var.fd = fd;
 	status_var.ans = NULL;
 	while (true)

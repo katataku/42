@@ -36,7 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	total_len = ft_strlen(s1) + ft_strlen(s2);
-	result = (char *)ft_xcalloc(sizeof (char), (total_len + 1));
+	result = (char *)malloc(sizeof (char) * (total_len + 1));
 	if (!result)
 		return (NULL);
 	i = 0;
@@ -83,7 +83,7 @@ char	*ft_strdup(char *s1)
 	size_t	len;
 
 	len = ft_strlen(s1);
-	ptr = (char *)ft_xcalloc (sizeof (char), (len + 1));
+	ptr = (char *) malloc (sizeof (*s1) * (len + 1));
 	if (!ptr)
 		return (NULL);
 	else
