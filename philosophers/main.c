@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/25 17:39:50 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:40:37 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ void	*philo(void *arg)
 		}
 		printf("%lld %d has taken a fork %d \n", get_timestamp(), philo->id,philo->id);
 	//eat
-		printf("%lld %d is eating\n", get_timestamp(), philo->id);
-		usleep(philo->ptr_rules->time_to_eat * 1000);
 		philo->t_last_meal = get_timestamp();
+		printf("%lld %d is eating\n", philo->t_last_meal, philo->id);
+		usleep(philo->ptr_rules->time_to_eat * 1000);
 	//forks back
 		pthread_mutex_unlock(&(philo->ptr_rules->forks[philo->id ]));
 		pthread_mutex_unlock(&(philo->ptr_rules->forks[((philo->id)+1) % philo->ptr_rules->nb_philo]));
