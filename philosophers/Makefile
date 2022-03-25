@@ -23,9 +23,11 @@ all: $(NAME)
 
 fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
+	make fclean -C libft
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
+	make clean -C libft
 
 re: fclean all
 
