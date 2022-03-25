@@ -58,6 +58,7 @@ static int	ft_put_line(char **line, char **memo, char *buff)
 
 static void	ft_free_buff(int flag, char **buff, char **memo, char **line)
 {
+	(void)line;
 	free(*buff);
 	*buff = NULL;
 	if (flag == 0)
