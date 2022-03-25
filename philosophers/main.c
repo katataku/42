@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/25 17:30:11 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/25 17:32:05 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,17 @@ void	*philo(void *arg)
 		{
 			while (pthread_mutex_lock(&(philo->ptr_rules->forks[philo->id])) != 0)
 				usleep(10);
-			printf("%lld %d has taken a fork\n", get_timestamp(), philo->id);		
+			printf("%lld %d has taken a fork %d \n", get_timestamp(), philo->id,philo->id);
 			while (pthread_mutex_lock(&(philo->ptr_rules->forks[(philo->id + 1) % philo->ptr_rules->nb_philo])) != 0)
 				usleep(10);
-			printf("%lld %d has taken a fork\n", get_timestamp(), philo->id);		
+			printf("%lld %d has taken a fork %d \n", get_timestamp(), philo->id,(philo->id + 1) % philo->ptr_rules->nb_philo);
 		}else{
 			while (pthread_mutex_lock(&(philo->ptr_rules->forks[(philo->id+1) % philo->ptr_rules->nb_philo])) != 0)
 				usleep(10);
-			printf("%lld %d has taken a fork\n", get_timestamp(), philo->id);		
+			printf("%lld %d has taken a fork %d \n", get_timestamp(), philo->id,(philo->id+1) % philo->ptr_rules->nb_philo);
 			while (pthread_mutex_lock(&(philo->ptr_rules->forks[philo->id])) != 0)
 				usleep(10);
-			printf("%lld %d has taken a fork\n", get_timestamp(), philo->id);	
+			printf("%lld %d has taken a fork %d \n", get_timestamp(), philo->id,philo->id);
 		}
 	//eat
 		printf("%lld %d is eating\n", get_timestamp(), philo->id);
