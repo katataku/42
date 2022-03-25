@@ -60,7 +60,7 @@ static void	ft_free_buff(int flag, char **buff, char **memo, char **line)
 {
 	free(*buff);
 	*buff = NULL;
-	if (flag == -1)
+	if (flag == 0)
 	{
 		free(*memo);
 		*memo = NULL;
