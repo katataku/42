@@ -64,7 +64,6 @@ static void	ft_free_buff(int flag, char **buff, char **memo, char **line)
 	{
 		free(*memo);
 		*memo = NULL;
-		free(*line);
 	}
 }
 
