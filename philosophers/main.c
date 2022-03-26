@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/27 07:43:41 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/27 07:52:42 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	*philo(void *arg)
 	pthread_mutex_lock(&(philo->mutex_t_last_meal));
 	philo->t_last_meal = get_timestamp();
 	pthread_mutex_unlock(&(philo->mutex_t_last_meal));
-	printf("%lld %d start\n", philo->t_last_meal, philo->id);
+//	printf("%lld %d start\n", philo->t_last_meal, philo->id);
 	if (philo->id % 2 == 1)
 		usleep(2000);
 	while (1)
@@ -99,7 +99,7 @@ void	*philo(void *arg)
 	//sleep
 		printf("%lld %d is sleeping\n", get_timestamp(), philo->id);
 		while (get_timestamp() - philo->t_last_meal < philo->ptr_rules->time_to_eat + philo->ptr_rules->time_to_sleep)
-			usleep(10);
+			usleep(1);
 	}
 	return (NULL);
 }
