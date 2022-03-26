@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/27 07:52:42 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/27 08:18:03 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,12 @@ void	*philo(void *arg)
 	t_philosopher	*philo;
 
 	philo = arg;
-	philo->left_fork_id = philo->id;
-	philo->right_fork_id = (philo->id + 1) % philo->ptr_rules->nb_philo;
 	pthread_mutex_lock(&(philo->mutex_t_last_meal));
 	philo->t_last_meal = get_timestamp();
 	pthread_mutex_unlock(&(philo->mutex_t_last_meal));
 //	printf("%lld %d start\n", philo->t_last_meal, philo->id);
 	if (philo->id % 2 == 1)
-		usleep(2000);
+		usleep(1000);
 	while (1)
 	{
 		while (pthread_mutex_lock(&(philo->ptr_rules->forks[philo->right_fork_id])) != 0)
@@ -88,7 +86,7 @@ void	*philo(void *arg)
 		pthread_mutex_unlock(&(philo->mutex_t_last_meal));
 		printf("%lld %d is eating\n", philo->t_last_meal, philo->id);
 		while (get_timestamp() - philo->t_last_meal < philo->ptr_rules->time_to_eat)
-			usleep(10);
+			usleep(1);
 	//forks back
 		pthread_mutex_unlock(&(philo->ptr_rules->forks[philo->right_fork_id]));
 		pthread_mutex_unlock(&(philo->ptr_rules->forks[philo->left_fork_id]));
@@ -176,9 +174,18 @@ int	main(int argc, char **argv)
 		rule.philosophers[i].id = i;
 		rule.philosophers[i].x_ate = 0;
 		rule.philosophers[i].ptr_rules = &rule;
+		rule.philosophers[i].left_fork_id = rule.philosophers[i].id;
+		rule.philosophers[i].right_fork_id = (rule.philosophers[i].id + 1) % rule.nb_philo;
+		rule.philosophers[i].t_last_meal = LLONG_MAX;
+	}
+	for (int i = 0; i <rule.nb_philo; i++)
+	{
 		if (pthread_create(&thread, NULL, philo, &rule.philosophers[i]) != 0)
 			return (0);
 		pthread_detach(thread);
+	}
+	for (int i = 0; i <rule.nb_philo; i++)
+	{
 		if (pthread_create(&thread, NULL, monitor, &rule.philosophers[i]) != 0)
 			return (0);
 		pthread_detach(thread);
