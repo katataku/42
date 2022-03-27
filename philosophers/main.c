@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/27 09:58:21 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/27 10:01:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	*philo(void *arg)
 	pthread_mutex_lock(&(philo->mutex_t_last_meal));
 	philo->t_last_meal = get_timestamp();
 	pthread_mutex_unlock(&(philo->mutex_t_last_meal));
+	if (philo->id % 2 != 0)
+		usleep(2000);
 	while (1)
 	{
 		while (pthread_mutex_lock(&(philo->ptr_rules->forks[philo->right_fork_id])) != 0)
