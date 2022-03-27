@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/27 09:08:36 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/27 09:58:21 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 #define MAX_PHILO 250
 
-struct s_rules;
+struct	s_rules;
 
-typedef	struct			s_philosopher
+typedef struct s_philosopher
 {
 	int					id;
 	int					x_ate;
@@ -32,7 +32,7 @@ typedef	struct			s_philosopher
 }						t_philosopher;
 
 
-typedef struct			s_rules
+typedef struct s_rules
 {
 	int					nb_philo;
 	int					time_to_die;
@@ -69,7 +69,6 @@ void	*philo(void *arg)
 	pthread_mutex_lock(&(philo->mutex_t_last_meal));
 	philo->t_last_meal = get_timestamp();
 	pthread_mutex_unlock(&(philo->mutex_t_last_meal));
-	printf("%lld %d start\n", philo->t_last_meal, philo->id);
 	while (1)
 	{
 		while (pthread_mutex_lock(&(philo->ptr_rules->forks[philo->right_fork_id])) != 0)
@@ -96,8 +95,17 @@ void	*philo(void *arg)
 
 	//sleep
 		printf("%lld %d is sleeping\n", get_timestamp(), philo->id);
-		while (get_timestamp() - philo->t_last_meal < philo->ptr_rules->time_to_eat + philo->ptr_rules->time_to_sleep)
+		while (1)
+		{
+			pthread_mutex_lock(&(philo->mutex_t_last_meal));
+			if (get_timestamp() - philo->t_last_meal >= philo->ptr_rules->time_to_eat + philo->ptr_rules->time_to_sleep)
+			{
+				pthread_mutex_unlock(&(philo->mutex_t_last_meal));
+				break ;
+			}
+			pthread_mutex_unlock(&(philo->mutex_t_last_meal));
 			usleep(500);
+		}
 	}
 	return (NULL);
 }
@@ -153,6 +161,7 @@ void	init_rule(t_rules *rule, int argc, char **argv)
 	else
 		rule->nb_of_times_each_philosopher_must_eat = INT_MAX;
 	rule->dieded = 0;
+	rule->x_all_ate_philos = 0;
 	pthread_mutex_init(&(rule->mutex_dieded), NULL);
 	pthread_mutex_init(&(rule->mutex_x_all_ate_philos), NULL);
 	for (int i = 0; i < rule->nb_philo; i++)
@@ -185,11 +194,17 @@ int	main(int argc, char **argv)
 		pthread_detach(thread);
 	}
 
-	for (int i = 0; i <rule.nb_philo; i = i + 2)
+	for (int i = 0; i <rule.nb_philo / 2; i = i + 2)
 	{
 		if (pthread_create(&thread, NULL, philo, &rule.philosophers[i]) != 0)
 			return (0);
 		pthread_detach(thread);
+		if (i != rule.nb_philo - i - 2)
+		{
+			if (pthread_create(&thread, NULL, philo, &rule.philosophers[rule.nb_philo - i - 2]) != 0)
+				return (0);
+			pthread_detach(thread);
+		}
 	}
 	for (int i = 1; i <rule.nb_philo; i = i + 2)
 	{
