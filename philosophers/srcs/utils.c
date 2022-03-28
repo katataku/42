@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_xlstnew.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 23:48:23 by ahayashi          #+#    #+#             */
-/*   Updated: 2022/02/25 14:08:04 by takkatao         ###   ########.fr       */
+/*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
+/*   Updated: 2022/03/29 07:55:57 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "xlibft.h"
+#include "philo.h"
 
-t_list	*ft_xlstnew(void *content)
+long long	get_timestamp(void)
 {
-	t_list	*tmp;
+	struct timeval	tv;
 
-	tmp = ft_lstnew(content);
-	if (tmp == NULL)
-	{
-		perror("malloc");
-		exit(STATUS_FAILURE);
-	}
-	return (tmp);
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+}
+
+void	write_message(t_philosopher *philo, long long time, int id, char *msg)
+{
+	pthread_mutex_lock(&(philo->ptr_rules->mutex_writing));
+	printf("%lld %d %s\n", time, id, msg);
+	pthread_mutex_unlock(&(philo->ptr_rules->mutex_writing));
 }
