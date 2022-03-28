@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 07:58:00 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 08:13:54 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 08:27:35 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static	void	all_ate_philo(t_philosopher	*philo, bool *is_ate)
 	{
 		pthread_mutex_lock(&(philo->ptr_rules->mutex_x_all_ate_philos));
 		philo->ptr_rules->x_all_ate_philos++;
+		if (philo->ptr_rules->x_all_ate_philos == philo->ptr_rules->nb_philo)
+			pthread_mutex_unlock(&(philo->ptr_rules->mutex_finish_pgm));
 		pthread_mutex_unlock(&(philo->ptr_rules->mutex_x_all_ate_philos));
 		*is_ate = true;
 	}

@@ -6,14 +6,14 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:42:14 by ahayashi          #+#    #+#             */
-/*   Updated: 2022/03/29 08:00:09 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 08:33:35 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "libft.h"
+# include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -54,6 +54,7 @@ typedef struct s_rules
 	t_philosopher		philo[MAX_PHILO];
 }						t_rules;
 
+int			ft_atoi(const char *str);
 void		init_rule(t_rules *rule, int argc, char **argv);
 void		init_philo(t_rules *rule);
 void		*philo(void *arg);

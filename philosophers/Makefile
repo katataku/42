@@ -6,6 +6,7 @@ SRCS = main.c \
 	srcs/philo.c\
 	srcs/monitor.c\
 	srcs/utils.c\
+	srcs/ft_atoi.c
 
 OBJS = $(SRCS:%.c=%.o)
 LIBS = -lft -Llibft -lreadline 
