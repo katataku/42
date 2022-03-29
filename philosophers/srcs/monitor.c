@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 07:58:00 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 13:43:56 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:05:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 static	void	all_ate_philo(t_philosopher	*philo, bool *is_ate)
 {
-	t_rules	*rule = philo->ptr_rules;
+	t_rules	*rule;
 
+	rule = philo->ptr_rules;
 	pthread_mutex_lock(&(philo->mutex_x_ate));
 	if (philo->x_ate > rule->nb_of_times_each_philosopher_must_eat)
 	{

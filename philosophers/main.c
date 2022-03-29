@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 13:33:02 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:07:58 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ int	launch_philo(t_rules *rule)
 		pthread_detach(thread);
 		i += 2;
 	}
-	i = 0;
-	while (++i < rule->nb_philo)
+	i = 1;
+	while (i < rule->nb_philo)
 	{
-		if (pthread_create(&thread, NULL, philo, &rule->philo[i++]) != 0)
+		if (pthread_create(&thread, NULL, philo, &rule->philo[i]) != 0)
 			return (1);
 		pthread_detach(thread);
+		i += 2;
 	}
 	return (0);
 }

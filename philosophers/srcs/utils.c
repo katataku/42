@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 07:55:57 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:14:37 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ long long	get_timestamp(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	write_message(t_philosopher *philo, long long time, int id, char *msg)
+void	write_message(t_philosopher *philo, int id, char *msg)
 {
 	pthread_mutex_lock(&(philo->ptr_rules->mutex_writing));
-	printf("%lld %d %s\n", time, id, msg);
+	printf("%lld %d %s\n", get_timestamp(), id, msg);
 	pthread_mutex_unlock(&(philo->ptr_rules->mutex_writing));
 }
