@@ -9,13 +9,12 @@ SRCS = main.c \
 	srcs/ft_atoi.c
 
 OBJS = $(SRCS:%.c=%.o)
-LIBS = -lft -Llibft -lreadline 
-INCS = -Ilibft/includes -Iincludes 
+LIBS =
+INCS = -Iincludes 
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C libft
 	$(CC) $(CFLAGS) $(LIBS) $(OBJS) -o $(NAME)
 
 %.o: %.c
@@ -24,11 +23,9 @@ $(NAME): $(OBJS)
 
 fclean: clean
 	$(RM) $(NAME) $(NAME_BONUS)
-	make fclean -C libft
 
 clean:
 	$(RM) $(OBJS) $(OBJS_BONUS)
-	make clean -C libft
 
 re: fclean all
 

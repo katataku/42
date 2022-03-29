@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:42:14 by ahayashi          #+#    #+#             */
-/*   Updated: 2022/03/29 08:33:35 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:10:20 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <unistd.h>
 # include <stdio.h>
 # include <sys/time.h>
 # define MAX_PHILO 250
