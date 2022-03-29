@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 07:58:00 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 09:47:48 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:40:17 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 static	void	all_ate_philo(t_philosopher	*philo, bool *is_ate)
 {
+	const t_rules	*rule = philo->ptr_rules;
+
 	pthread_mutex_lock(&(philo->mutex_x_ate));
-	if (philo->x_ate > philo->ptr_rules->nb_of_times_each_philosopher_must_eat)
+	if (philo->x_ate > rule->nb_of_times_each_philosopher_must_eat)
 	{
-		pthread_mutex_lock(&(philo->ptr_rules->mutex_x_all_ate_philos));
+		pthread_mutex_lock(&(rule->mutex_x_all_ate_philos));
 		philo->ptr_rules->x_all_ate_philos++;
-		if (philo->ptr_rules->x_all_ate_philos == philo->ptr_rules->nb_philo)
-			pthread_mutex_unlock(&(philo->ptr_rules->mutex_finish_pgm));
-		pthread_mutex_unlock(&(philo->ptr_rules->mutex_x_all_ate_philos));
+		if (rule->x_all_ate_philos == rule->nb_philo)
+			pthread_mutex_unlock(&(rule->mutex_finish_pgm));
+		pthread_mutex_unlock(&(rule->mutex_x_all_ate_philos));
 		*is_ate = true;
 	}
 	pthread_mutex_unlock(&(philo->mutex_x_ate));

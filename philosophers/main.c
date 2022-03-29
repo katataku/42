@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 08:04:13 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 13:33:02 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,9 @@ int	launch_philo(t_rules *rule)
 	int				i;
 
 	i = 0;
-	while (i * 2 < rule->nb_philo)
+	while (i < rule->nb_philo)
 	{
 		if (pthread_create(&thread, NULL, philo, &rule->philo[i]) != 0)
-			return (1);
-		pthread_detach(thread);
-		if (i == rule->nb_philo - i - 2)
-			break ;
-		if (pthread_create(&thread, NULL, philo, \
-			&rule->philo[rule->nb_philo - i - 2]) != 0)
 			return (1);
 		pthread_detach(thread);
 		i += 2;
