@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 14:14:37 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 14:57:50 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ void	write_message(t_philosopher *philo, int id, char *msg)
 {
 	pthread_mutex_lock(&(philo->ptr_rules->mutex_writing));
 	printf("%lld %d %s\n", get_timestamp(), id, msg);
+	usleep(1);
 	pthread_mutex_unlock(&(philo->ptr_rules->mutex_writing));
 }
