@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 08:14:24 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:48:31 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	philo_eat(t_philosopher	*philo)
 	write_message(philo, t_left_fork, philo->id, "has taken a fork");
 	write_message(philo, philo->t_last_meal, philo->id, "is eating");
 	while (get_timestamp() - philo->t_last_meal < philo->ptr_rules->time_to_eat)
-		usleep(500);
+		usleep(1000);
 }
 
 static void	philo_sleep(t_philosopher	*philo)
@@ -49,7 +49,7 @@ static void	philo_sleep(t_philosopher	*philo)
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->mutex_t_last_meal));
-		usleep(500);
+		usleep(1000);
 	}
 }
 

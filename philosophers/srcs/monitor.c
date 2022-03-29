@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 07:58:00 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 08:27:35 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/03/29 09:47:48 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	*monitor(void *arg)
 		pthread_mutex_unlock(&(philo->mutex_t_last_meal));
 		if (! is_ate)
 			all_ate_philo(philo, &is_ate);
-		usleep(5000 * 1);
+		usleep(1000 * 3);
 	}
 	return (NULL);
 }
