@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 14:07:58 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:18:03 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,11 @@ int	main(int argc, char **argv)
 {
 	t_rules			rule;
 
+	if (argc < 5 || argc > 6)
+	{
+		printf("illegal arguments\n");
+		return (0);
+	}
 	init_rule(&rule, argc, argv);
 	init_philo(&rule);
 	if (launch_monitor(&rule) == 1)

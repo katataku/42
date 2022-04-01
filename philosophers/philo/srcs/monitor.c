@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 07:58:00 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 14:05:49 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:19:01 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*monitor(void *arg)
 		if (timestamp - philo->t_last_meal > philo->ptr_rules->time_to_die)
 		{
 			pthread_mutex_lock(&(philo->ptr_rules->mutex_writing));
-			printf("%lld %d %s\n", timestamp, philo->id, "died");
+			printf("%lld %d %s\n", timestamp, philo->id + 1, "died");
 			pthread_mutex_unlock(&(philo->ptr_rules->mutex_finish_pgm));
 			return (0);
 		}

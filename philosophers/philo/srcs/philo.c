@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/25 12:52:19 by takkatao          #+#    #+#             */
-/*   Updated: 2022/03/29 15:13:40 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:21:16 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	philo_eat(t_philosopher	*philo)
 
 	rule = philo->ptr_rules;
 	pthread_mutex_lock(&(rule->forks[philo->right_fork_id]));
-	write_message(philo, philo->id, "has taken a fork");
+	write_message(philo->ptr_rules, philo->id, "has taken a fork");
 	pthread_mutex_lock(&(rule->forks[philo->left_fork_id]));
-	write_message(philo, philo->id, "has taken a fork");
+	write_message(philo->ptr_rules, philo->id, "has taken a fork");
 	t_left_fork = get_timestamp();
-	write_message(philo, philo->id, "is eating");
+	write_message(philo->ptr_rules, philo->id, "is eating");
 	pthread_mutex_lock(&(philo->mutex_t_last_meal));
 	philo->t_last_meal = t_left_fork;
 	pthread_mutex_unlock(&(philo->mutex_t_last_meal));
@@ -41,7 +41,7 @@ static void	philo_sleep(t_philosopher	*philo)
 	pthread_mutex_lock(&(philo->mutex_x_ate));
 	philo->x_ate++;
 	pthread_mutex_unlock(&(philo->mutex_x_ate));
-	write_message(philo, philo->id, "is sleeping");
+	write_message(philo->ptr_rules, philo->id, "is sleeping");
 	while (1)
 	{
 		pthread_mutex_lock(&(philo->mutex_t_last_meal));
@@ -70,7 +70,7 @@ void	*philo(void *arg)
 	{
 		philo_eat(philo);
 		philo_sleep(philo);
-		write_message(philo, philo->id, "is thinking");
+		write_message(philo->ptr_rules, philo->id, "is thinking");
 	}
 	return (NULL);
 }

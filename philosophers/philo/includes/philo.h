@@ -6,7 +6,7 @@
 /*   By: takkatao <takkatao@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 16:42:14 by ahayashi          #+#    #+#             */
-/*   Updated: 2022/03/29 14:14:58 by takkatao         ###   ########.fr       */
+/*   Updated: 2022/04/01 16:21:49 by takkatao         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ void		init_philo(t_rules *rule);
 void		*philo(void *arg);
 void		*monitor(void *arg);
 long long	get_timestamp(void);
-void		write_message(t_philosopher *philo, int id, char *msg);
+void		write_message(t_rules	*rule, int id, char *msg);
 
 #endif
