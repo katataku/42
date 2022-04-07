@@ -19,7 +19,7 @@ class Form
 
   public:
 	Form();
-	~Form();
+	virtual ~Form();
 	Form(const Form &);
 	Form &operator=(const Form &);
 

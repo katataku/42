@@ -34,4 +34,5 @@ int main(void)
 	a->executeForm(PresidentialPardon);
 	a->signForm(PresidentialPardon);
 	a->executeForm(PresidentialPardon);
+	delete PresidentialPardon;
 }
