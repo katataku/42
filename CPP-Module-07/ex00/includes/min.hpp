@@ -1,5 +1,5 @@
-#ifndef CONVERT
-#define CONVERT
+#ifndef MIN
+#define MIN
 
 template<typename T>
 T min(T a, T b)

@@ -1,20 +1,19 @@
 #include <iostream>
 #include <iter.hpp>
 
-void printArray(int a)
+template<typename T>
+void print(T const &x)
 {
-	std::cout << a << std::endl;
+	std::cout << x << std::endl;
+	return;
 }
 
-int main(int, char **)
+int main()
 {
-	int array[10];
-	for (int i = 0; i < 10; i++)
-	{
-		array[i] = i;
-	}
+	int tab[] = {0, 1, 2, 3, 4};
+	double tab2[] = {0.0, 1.1, 2.2, 3.3, 4.4};
 
-	::iter(array, 10, printArray);
-
+	iter(tab, 5, print);
+	iter(tab2, 5, print);
 	return 0;
 }

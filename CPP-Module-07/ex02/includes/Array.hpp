@@ -8,44 +8,56 @@ template<typename T>
 class Array
 {
   private:
-	T  *array;
-	int size;
+	T  *array_;
+	int size_;
 
   public:
-	Array() : array(nullptr), size(0) {};
+	Array() : array_(nullptr), size_(0) {};
 	~Array()
 	{
-		delete array;
+		delete array_;
 	};
-	Array(Array &a)
+	Array(const Array &a)
 	{
-		array = new T[a.size];
-		for (int i = 0; i < a.size; i++)
+		array_ = new T[a.size_];
+		for (int i = 0; i < a.size_; i++)
 		{
-			array[i] = a.array[i];
+			array_[i] = a.array_[i];
 		}
-		size = a.size;
+		size_ = a.size_;
 	}
-	Array &operator=(Array &a)
+	Array &operator=(const Array &a)
 	{
-		for (int i = 0; i < a.size; i++)
+		for (int i = 0; i < a.size_; i++)
 		{
-			array[i] = a.array[i];
+			array_[i] = a.array_[i];
 		}
-		size = a.size;
+		size_ = a.size_;
 	};
 
 	Array(unsigned int i)
 	{
-		array = new T[i];
-		size  = i;
+		array_ = new T[i];
+		size_  = i;
 	};
 
 	T &operator[](int i)
 	{
-		if (i < 0 || i >= size)
+		if (i < 0 || i >= size_)
 			throw std::out_of_range("out of range");
-		return array[i];
+		return array_[i];
+	}
+
+	const T &operator[](int i) const
+	{
+		if (i < 0 || i >= size_)
+			throw std::out_of_range("out of range");
+		return array_[i];
+	}
+
+	int size() const
+	{
+		return size_;
 	}
 };
 
