@@ -1,0 +1,30 @@
+server {
+    # tells to listen to port 443
+    listen 443 ssl;
+    # same but for IPV6
+    listen [::]:443 ssl;
+    # tells the name(s) of our website
+    server_name localhost www.localhost;
+
+    ssl on;
+	ssl_protocols TLSv1.3 TLSv1.2;
+    ssl_certificate /etc/ssl/nginx-selfsigned.crt;
+    ssl_certificate_key /etc/ssl/nginx-selfsigned.key;
+
+    # Tells where to look for all the files related to our website
+    root /var/www/localhost;
+    # Enables autoindex to see the contents of the previous line's directory when we reach our website
+    autoindex off;
+    # Tells the possible names of the index file
+    index index.html index.htm index.nginx-debian.html index.php;
+    # Tells to check for existence of files before moving on
+	location / {
+		try_files $uri $uri/ =404;
+	}
+    # Specifies the php configuration
+	location ~ \.php$ {
+		include snippets/fastcgi-php.conf;
+#		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
+		fastcgi_pass ft_server:9000;
+	}
+}
