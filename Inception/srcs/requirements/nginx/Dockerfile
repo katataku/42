@@ -12,7 +12,12 @@ RUN apt-get -y install wget
 # Nginx is an open source web server tool we are going to use to connect our Docker container image to our webpage
 RUN apt-get -y install nginx
 
+#-------------------------------------------------------------------------------------------------
 
+#---------------------------------- 3. Install and configure Nginx  ------------------------------
+# NGINX will need a folder where it will search for everything related to our website
+# We can use the "html" folder that already exists in var/www directory,
+# but it's a good practice to have a separate folder for every website in case we create more than 1
 RUN mkdir /var/www/localhost
 
 # COPY copies files from the given directory on our computer to given directory inside our container.
@@ -26,7 +31,6 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled
 # For the next steps, we will be working inside /var/www/localhost directory
 # To avoid writing /var/www/localhost before every command, we can change current working directory
 # WORKDIR command in dockerfile changes the directory where next commands will be executed
-WORKDIR /var/www/localhost/
 #-------------------------------------------------------------------------------------------------
 
 #------------------------------ 4. Add SSL protocol and autoindex --------------------------------
@@ -47,6 +51,10 @@ RUN openssl req -x509 -nodes -days 30 -subj "/C=BE/ST=Belgium/L=Brussels/O=42 Ne
 #-------------------------------------------------------------------------------------------------
 
 
-COPY ./srcs/start.sh ./
+#----------------------------------- 5. PHP MY ADMIN ---------------------------------------------
+# Move start.sh from our computer inside the container
+COPY ./srcs/start.sh /usr/local/bin
 
-CMD bash start.sh;
+# Every other command in Dockerfile is executed while "building" our container
+# CMD tells Docker the default command to execute when we are "running" our container
+CMD bash /usr/local/bin/start.sh;

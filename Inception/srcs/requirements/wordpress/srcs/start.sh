@@ -1,5 +1,9 @@
+
 # Start up PHP
 service php7.3-fpm start;
+
+# Restart php to apply the changes
+service php7.3-fpm restart;
 
 wp core download --allow-root
 
@@ -20,7 +24,6 @@ wp core install \
 	--admin_email=info@example.com
 
 chown -R www-data:www-data *
-chown -R www-data:www-data /var/www/localhost
 chmod -R 755 /var/www/*
 
 echo "finish setup"

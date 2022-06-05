@@ -4,7 +4,7 @@ server {
     # same but for IPV6
     listen [::]:443 ssl;
     # tells the name(s) of our website
-    server_name _;
+    server_name localhost www.localhost;
 
     ssl on;
 	ssl_protocols TLSv1.3 TLSv1.2;
@@ -16,7 +16,7 @@ server {
     # Enables autoindex to see the contents of the previous line's directory when we reach our website
     autoindex off;
     # Tells the possible names of the index file
-    index index.php index.html index.htm index.nginx-debian.html;
+    index index.html index.htm index.nginx-debian.html index.php;
     # Tells to check for existence of files before moving on
 	location / {
 		try_files $uri $uri/ =404;
@@ -25,6 +25,6 @@ server {
 	location ~ \.php$ {
 		include snippets/fastcgi-php.conf;
 #		fastcgi_pass unix:/run/php/php7.3-fpm.sock;
-		fastcgi_pass wordpress:9000;
+		fastcgi_pass ft_server:9000;
 	}
 }
