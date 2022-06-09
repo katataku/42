@@ -37,3 +37,7 @@ services:
       - .env
     healthcheck:
         test: mysqladmin ping -h 127.0.0.1 -u$$MARIADB_USER -p$$MARIADB_PASSWORD
+        interval: 2s
+        timeout: 2s
+        retries: 5
+        start_period: "30s"
