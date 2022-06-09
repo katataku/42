@@ -1,6 +1,5 @@
 
-
-if [ ! -f ./wp-config.php ]; then
+if ! wp core is-installed --allow-root ; then
 	echo "WordPress is not installed"
 	echo "start download WordPress"
 	wp core download --allow-root
