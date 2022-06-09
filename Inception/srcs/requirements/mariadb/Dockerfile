@@ -16,7 +16,6 @@ RUN apt-get -y install nginx
 RUN apt-get -y install mariadb-server
 
 COPY ./srcs/start.sh ./
-COPY ./srcs/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf 
 
 # Every other command in Dockerfile is executed while "building" our container
 # CMD tells Docker the default command to execute when we are "running" our container
