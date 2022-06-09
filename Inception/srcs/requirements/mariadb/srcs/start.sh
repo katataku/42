@@ -3,19 +3,16 @@ MYSQLCMD="mysql -u root --skip-password"
 
 #------------------------ setup database  ----------------------------------------
 
-service mysql start
+mysql_install_db --user=mysql
 
-sleep 1;
+mysqld -u mysql --bootstrap << EOF
+	FLUSH PRIVILEGES;
+	CREATE DATABASE ${MARIADB_DATABASE};
+	CREATE USER '${MARIADB_USER}'@'%' IDENTIFIED BY '${MARIADB_PASSWORD}';
+	GRANT ALL ON ${MARIADB_DATABASE}.* TO '${MARIADB_USER}'@'%';
+	FLUSH PRIVILEGES;
+EOF
 
-echo "CREATE USER '${MARIADB_USER}'@'%' IDENTIFIED BY 'hogehogePASS'"| ${MYSQLCMD};
-echo "GRANT ALL ON *.* TO 'hogehogeID'@'%'"|  ${MYSQLCMD};
-echo "CREATE DATABASE wordpress;" |  ${MYSQLCMD};
-echo "GRANT ALL PRIVILEGES ON wordpress.* TO 'root'@'localhost' WITH GRANT OPTION;" |  ${MYSQLCMD};
-echo "FLUSH PRIVILEGES;" |  ${MYSQLCMD};
-echo "update mysql.user set plugin='' where user='root';" |  ${MYSQLCMD};
-
-service mysql stop
 
 #------------------------ boot database  ----------------------------------------
-mysql_install_db --user=mysql
 mysqld_safe
