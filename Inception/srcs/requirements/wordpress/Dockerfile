@@ -50,5 +50,10 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN chmod +x wp-cli.phar && mv wp-cli.phar /usr/local/bin/wp
 RUN mkdir -p /var/www/localhost/wordpress
 
+
+RUN mkdir -p /var/run/php
+RUN mkdir -p /var/log/php/ \
+	&& touch /var/log/php/access.log /var/log/php/error.log
+	
 COPY ./srcs/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
