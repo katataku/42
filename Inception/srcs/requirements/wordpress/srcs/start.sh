@@ -4,13 +4,15 @@ if ! wp core is-installed --allow-root ; then
 	echo "start download WordPress"
 	wp core download --allow-root
 
-	echo "start create config of WordPress"
-	wp config create \
-		--allow-root \
-		--dbname=${MARIADB_DATABASE} \
-		--dbuser=${MARIADB_USER} \
-		--dbpass=${MARIADB_PASSWORD} \
-		--dbhost=${WORDPRESS_DB_HOST}
+	if [ ! -e ./wp-config.php ]; then
+		echo "start create config of WordPress"
+		wp config create \
+			--allow-root \
+			--dbname=${MARIADB_DATABASE} \
+			--dbuser=${MARIADB_USER} \
+			--dbpass=${MARIADB_PASSWORD} \
+			--dbhost=${WORDPRESS_DB_HOST}
+	fi
 
 	echo "start install WordPress"
 	wp core install \
