@@ -1,8 +1,12 @@
+#! /bin/bash
 
 if ! wp core is-installed --allow-root ; then
 	echo "WordPress is not installed"
-	echo "start download WordPress"
-	wp core download --allow-root
+
+	if [ ! -e ./index.php ]; then
+		echo "start download WordPress"
+		wp core download --allow-root
+	fi
 
 	if [ ! -e ./wp-config.php ]; then
 		echo "start create config of WordPress"

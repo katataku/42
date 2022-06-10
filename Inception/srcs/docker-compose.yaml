@@ -5,6 +5,8 @@ services:
     image: nginx:inception
     container_name: nginx
     restart: always
+    networks:
+      - inception_network
     ports:
       - 443:443
     env_file:
@@ -19,6 +21,8 @@ services:
     image: wordpress:inception
     container_name: wordpress
     restart: always
+    networks:
+      - inception_network
     expose:
       - 9000
     env_file:
@@ -34,6 +38,8 @@ services:
     image: mariadb:inception
     container_name: mariadb
     restart: always
+    networks:
+      - inception_network
     expose:
       - 3306
     env_file:
@@ -46,3 +52,7 @@ services:
         timeout: 2s
         retries: 5
         start_period: "30s"
+
+networks:
+  inception_network:
+    driver: bridge
