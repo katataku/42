@@ -60,14 +60,14 @@ networks:
 volumes:
   mariadb_volume:
     driver: local
-#    driver_opts:
-#      type: none
-#      device: ../data/mysql
-#      o: bind
+    driver_opts:
+      type: none
+      device: /tmp/data/mysql
+      o: bind
 
   wordpress_volume:
     driver: local
-#    driver_opts:
-#      type: none
-#      device: ../data/wordpress
-#      o: bind
+    driver_opts:
+      type: none
+      device: /tmp/data/wordpress
+      o: bind
