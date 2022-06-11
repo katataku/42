@@ -1,8 +1,8 @@
 FROM debian:buster
 
 RUN apt-get update && apt-get upgrade -y \
-	&& apt-get -y install wget \
-	&& apt-get -y install php-cgi php-common php-fpm php-pear php-mbstring \
+	&& apt-get -y install wget
+RUN apt-get -y install php-cgi php-common php-fpm php-pear php-mbstring \
 			php-zip php-net-socket php-gd php-xml-util php-gettext php-mysql php-bcmath mariadb-client
 
 WORKDIR /var/www/localhost/

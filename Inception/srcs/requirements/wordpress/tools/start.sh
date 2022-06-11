@@ -1,5 +1,4 @@
-#! /bin/bash
-
+#------------------------ setup WordPress  ----------------------------------------
 if ! wp core is-installed --allow-root ; then
 	echo "WordPress is not installed"
 
@@ -35,5 +34,6 @@ else
 	echo "WordPress is already installed"
 fi
 
+#------------------------ boot WordPress  ----------------------------------------
 echo "Starting pfp-fpm7.3"
 php-fpm7.3 -F

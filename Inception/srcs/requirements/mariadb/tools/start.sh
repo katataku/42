@@ -1,5 +1,3 @@
-#! /bin/bash
-
 #------------------------ setup database  ----------------------------------------
 if [ ! -d /var/lib/mysql/mysql ]; then
 	echo "MySQL is not installed"
@@ -21,6 +19,5 @@ else
 fi
 
 #------------------------ boot database  ----------------------------------------
-
 echo "Starting MySQL"
 mysqld_safe
