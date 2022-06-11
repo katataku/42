@@ -22,9 +22,16 @@ if ! wp core is-installed --allow-root ; then
 		--allow-root \
 		--url=localhost \
 		--title=Example \
-		--admin_user=supervisor \
-		--admin_password=strongpassword \
-		--admin_email=info@example.com
+		--admin_user=${WORDPRESS_ADMIN_ID} \
+		--admin_password=${WORDPRESS_ADMIN_PASS} \
+		--admin_email=${WORDPRESS_ADMIN_MAIL} \
+
+	wp user create \
+		--allow-root \
+		${WORDPRESS_USER_ID} \
+		${WORDPRESS_USER_MAIL} \
+		--user_pass=${WORDPRESS_USER_PASS} \
+		--role=author
 
 	chown -R www-data:www-data *
 	chmod -R 755 /var/www/*
