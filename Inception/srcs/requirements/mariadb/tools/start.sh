@@ -13,10 +13,10 @@ if [ ! -d /var/lib/mysql/${MARIADB_DATABASE} ]; then
 		FLUSH PRIVILEGES;
 EOF
 
-	sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 else
 	echo "MySQL is already installed"
 fi
+sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/mariadb.conf.d/50-server.cnf
 
 #------------------------ boot database  ----------------------------------------
 echo "Starting MySQL"
