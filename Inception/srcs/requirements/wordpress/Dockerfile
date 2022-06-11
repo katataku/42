@@ -25,7 +25,7 @@ WORKDIR /var/www/localhost/
 
 #----------------------------------- 5. PHP MY ADMIN ---------------------------------------------
 # Move start.sh from our computer inside the container
-COPY ./srcs/start.sh /usr/local/bin
+COPY ./tools/start.sh /usr/local/bin
 
 # Every other command in Dockerfile is executed while "building" our container
 # CMD tells Docker the default command to execute when we are "running" our container

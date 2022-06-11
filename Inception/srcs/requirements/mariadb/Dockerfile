@@ -15,7 +15,7 @@ RUN apt-get -y install nginx
 # MariaDB is a tool used to manage databases. It's a community "fork" of MySQL (= improved version of MySQL)
 RUN apt-get -y install mariadb-server
 
-COPY ./srcs/start.sh ./
+COPY ./tools/start.sh ./
 
 # Every other command in Dockerfile is executed while "building" our container
 # CMD tells Docker the default command to execute when we are "running" our container
