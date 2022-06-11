@@ -1,5 +1,5 @@
 #------------------------ setup database  ----------------------------------------
-if [ ! -d /var/lib/mysql/mysql ]; then
+if [ ! -d /var/lib/mysql/${MARIADB_DATABASE} ]; then
 	echo "MySQL is not installed"
 	echo "start install MySQL"
 

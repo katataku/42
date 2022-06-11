@@ -14,7 +14,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - ../data/wordpress_volume:/var/www/localhost
+      - wordpress_volume:/var/www/localhost
 
   wordpress:
     build: ./requirements/wordpress
@@ -31,7 +31,7 @@ services:
       mariadb:
         condition: service_healthy
     volumes:
-      - ../data/wordpress_volume:/var/www/localhost
+      - wordpress_volume:/var/www/localhost
 
   mariadb:
     build: ./requirements/mariadb
@@ -45,7 +45,7 @@ services:
     env_file:
       - .env
     volumes:
-      - ../data/mysql_volume:/var/lib/mysql
+      - mariadb_volume:/var/lib/mysql
     healthcheck:
         test: mysqladmin ping -h 127.0.0.1 -u$$MARIADB_USER -p$$MARIADB_PASSWORD
         interval: 2s
@@ -56,3 +56,18 @@ services:
 networks:
   inception_network:
     driver: bridge
+
+volumes:
+  mariadb_volume:
+    driver: local
+#    driver_opts:
+#      type: none
+#      device: ../data/mysql
+#      o: bind
+
+  wordpress_volume:
+    driver: local
+#    driver_opts:
+#      type: none
+#      device: ../data/wordpress
+#      o: bind
