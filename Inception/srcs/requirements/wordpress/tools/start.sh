@@ -1,10 +1,10 @@
-#------------------------ setup WordPress  ----------------------------------------
+﻿#------------------------ setup WordPress  ----------------------------------------
 if ! wp core is-installed --allow-root ; then
 	echo "WordPress is not installed"
 
 	if [ ! -e ./index.php ]; then
 		echo "start download WordPress"
-		wp core download --allow-root
+		wp core download --allow-root --version=5.4
 	fi
 
 	if [ ! -e ./wp-config.php ]; then
@@ -20,7 +20,7 @@ if ! wp core is-installed --allow-root ; then
 	echo "start install WordPress"
 	wp core install \
 		--allow-root \
-		--url=localhost \
+		--url=https://takkatao.42.fr \
 		--title=Example \
 		--admin_user=${WORDPRESS_ADMIN_ID} \
 		--admin_password=${WORDPRESS_ADMIN_PASS} \

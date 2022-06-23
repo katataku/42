@@ -11,7 +11,7 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled
 RUN openssl req -x509 \
 				-nodes \
 				-days 30 \
-				-subj "/C=BE/ST=Belgium/L=Brussels/O=42 Network/OU=s19/CN=ysoroko" \
+				-subj "/C=JP/ST=Kanagawa/L=Kawasaki/O=42 Tokyo/OU=student/CN=takkatao.42.fr" \
 				-newkey rsa:2048 \
 				-keyout /etc/ssl/nginx-selfsigned.key \
 				-out /etc/ssl/nginx-selfsigned.crt;
